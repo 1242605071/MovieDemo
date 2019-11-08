@@ -1,17 +1,16 @@
 package com.bw.movie.view.fragment.showFragment;
 
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 
 import com.bw.movie.R;
 import com.bw.movie.model.base.BaseFragment;
@@ -47,7 +46,12 @@ public class CinemaFragment extends BaseFragment {
     Unbinder unbinder;
     @BindView(R.id.radio_group)
     RadioGroup radioGroup;
+    @BindView(R.id.location)
+    ImageView location;
+    @BindView(R.id.location_text)
+    TextView locationText;
     private ArrayList<Fragment> list;
+
 
     @Override
     protected void initData() {
@@ -120,4 +124,14 @@ public class CinemaFragment extends BaseFragment {
                 break;
         }
     }
+
+//    @OnClick(R.id.location)
+//    public void onViewClicked() {
+//        bdLocationUtils = new BDLocationUtils(getContext());
+//        bdLocationUtils.doLocation();//开启定位
+//        bdLocationUtils.mLocationClient.start();//开始定位
+//        MyLocationListener myLocationListener = new MyLocationListener();
+//
+//    }
+
 }

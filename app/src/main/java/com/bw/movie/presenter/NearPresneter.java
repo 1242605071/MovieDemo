@@ -12,12 +12,24 @@ import io.reactivex.Observable;
  * Description: 附近影院页面
  */
 public class NearPresneter extends BasePresenter {
+    private int page;
+
     public NearPresneter(DataCall dataCall) {
         super(dataCall);
     }
 
     @Override
     protected Observable getModel(Api api, Object... args) {
-        return api.findNearbyCinemas((String)args[0],(String)args[1],(String)args[2],(String)args[3],(int)args[4],(int)args[5]);
+        boolean isRefresh = (boolean) args[4];
+        if (isRefresh) {
+            page = 1;
+        } else {
+            page++;
+        }
+        return api.findNearbyCinemas((String) args[0], (String) args[1], (String) args[2], (String) args[3], page, 10);
+    }
+
+    public int getPage() {
+        return page;
     }
 }

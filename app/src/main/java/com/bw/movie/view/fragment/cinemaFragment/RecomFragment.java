@@ -26,7 +26,7 @@ import butterknife.Unbinder;
  * Author:  l
  * Description: 推荐影院页面
  */
-public class RecomFragment extends BaseFragment {
+public class RecomFragment extends BaseFragment implements XRecyclerView.LoadingListener {
     @BindView(R.id.recom_xrecyview)
     XRecyclerView recomXrecyview;
     Unbinder unbinder;
@@ -41,7 +41,8 @@ public class RecomFragment extends BaseFragment {
         adapter = new RecomAdapter();
         recomXrecyview.setAdapter(adapter);
         recomPresenter = new RecomPresenter(new Rccom());
-        recomPresenter.RequestData("13764","157312968444113764",1,10);
+        recomXrecyview.setLoadingListener(this);
+        onRefresh();
 
     }
 
@@ -55,6 +56,7 @@ public class RecomFragment extends BaseFragment {
         // TODO: inflate a fragment view
         View rootView = super.onCreateView(inflater, container, savedInstanceState);
         unbinder = ButterKnife.bind(this, rootView);
+
         return rootView;
     }
 
@@ -64,13 +66,27 @@ public class RecomFragment extends BaseFragment {
         unbinder.unbind();
     }
 
+    @Override
+    public void onRefresh() {
+        recomPresenter.RequestData("13764","157312968444113764",true);
+        recomXrecyview.refreshComplete();
+    }
+
+    @Override
+    public void onLoadMore() {
+        recomPresenter.RequestData("13764","157312968444113764",false);
+        recomXrecyview.loadMoreComplete();
+
+    }
+
     private class Rccom implements DataCall<List<CinemaBean>>  {
         @Override
         public void success(List<CinemaBean> data) {
+            if (recomPresenter.getPage() ==1){
+                adapter.clear();
+            }
         adapter.addAll(data);
         adapter.notifyDataSetChanged();
-        recomXrecyview.loadMoreComplete();
-        recomXrecyview.refreshComplete();
         }
 
         @Override

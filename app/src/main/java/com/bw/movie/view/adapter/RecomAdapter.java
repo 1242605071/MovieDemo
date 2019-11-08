@@ -1,5 +1,6 @@
 package com.bw.movie.view.adapter;
 
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -42,10 +43,12 @@ public class RecomAdapter extends XRecyclerView.Adapter {
         MyViewHolder myViewHolder = (MyViewHolder) holder;
         ((MyViewHolder) holder).text_name.setText(list.get(position).name);
         ((MyViewHolder) holder).text_address.setText(list.get(position).address);
-        Glide.with(holder.itemView.getContext()).load(list.get(position).logo)
-                .placeholder(R.drawable.ic_launcher_background)
-                .error(R.mipmap.ic_launcher)
-                .into(((MyViewHolder) holder).image_view);
+//        Glide.with(holder.itemView.getContext()).load(list.get(position).logo)
+//                .placeholder(R.drawable.ic_launcher_background)
+//                .error(R.mipmap.ic_launcher)
+//                .into(((MyViewHolder) holder).image_view);
+        String logo = list.get(position).logo;
+        ((MyViewHolder) holder).image_view.setImageURI(Uri.parse(logo));
     }
 
     @Override

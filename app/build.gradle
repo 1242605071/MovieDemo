@@ -5,7 +5,7 @@ android {
         debug {
             keyAlias 'bw_movie'
             keyPassword '123456'
-            storeFile file('E:/weidudianying/MovieDemo/app/movie.keystore')
+            storeFile file('F:/AndroidStudio/Movie/app/movie.keystore')
             storePassword '123456'
         }
     }
@@ -18,6 +18,12 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
+    }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -114,4 +120,5 @@ dependencies {
     implementation 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:+'
     implementation 'com.kyle.nestedradiogrouplib:radiogrouplib:1.0.1'
     implementation 'com.github.xiaohaibin:XBanner:1.7.0'
+    implementation files('libs/BaiduLBS_Android.jar')
 }

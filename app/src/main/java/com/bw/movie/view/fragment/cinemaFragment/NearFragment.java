@@ -29,7 +29,7 @@ import butterknife.Unbinder;
  * Author:  l
  * Description: 附近影院页面
  */
-public class NearFragment extends BaseFragment {
+public class NearFragment extends BaseFragment implements XRecyclerView.LoadingListener {
     @BindView(R.id.near_xrecview)
     XRecyclerView nearXrecview;
     Unbinder unbinder;
@@ -44,7 +44,8 @@ public class NearFragment extends BaseFragment {
         adapter = new NearAdapter();
         nearXrecview.setAdapter(adapter);
         nearPresneter = new NearPresneter(new Neart());
-        nearPresneter.RequestData("13764","157312968444113764","116.30551391385724","40.04571807462411",1,10);
+        nearXrecview.setLoadingListener(this);
+        onRefresh();
     }
 
     @Override
@@ -66,13 +67,27 @@ public class NearFragment extends BaseFragment {
         unbinder.unbind();
     }
 
+    @Override
+    public void onRefresh() {
+        nearPresneter.RequestData("13764", "157312968444113764", "116.30551391385724", "40.04571807462411", true);
+        nearXrecview.refreshComplete();
+    }
+
+    @Override
+    public void onLoadMore() {
+        nearPresneter.RequestData("13764", "157312968444113764", "116.30551391385724", "40.04571807462411", false);
+        nearXrecview.loadMoreComplete();
+    }
+
     private class Neart implements DataCall<List<NearbyBean>> {
         @Override
         public void success(List<NearbyBean> data) {
+            if (nearPresneter.getPage() ==1){
+                adapter.clear();
+            }
             adapter.addAll(data);
             adapter.notifyDataSetChanged();
-            nearXrecview.loadMoreComplete();
-            nearXrecview.refreshComplete();
+
         }
 
         @Override

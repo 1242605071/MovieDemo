@@ -13,12 +13,24 @@ import io.reactivex.Observable;
  */
 public class RecomPresenter extends BasePresenter {
 
+    private int page;
+
     public RecomPresenter(DataCall dataCall) {
         super(dataCall);
     }
 
     @Override
     protected Observable getModel(Api api, Object... args) {
-        return api.findRecommendCinemas((String) args[0], (String) args[1], (int)args[2], (int)args[3]);
+        boolean isRefresh = (boolean) args[2];
+        if (isRefresh) {
+            page = 1;
+        } else {
+            page++;
+        }
+        return api.findRecommendCinemas((String) args[0], (String) args[1], page, 10);
+    }
+
+    public int getPage() {
+        return page;
     }
 }
