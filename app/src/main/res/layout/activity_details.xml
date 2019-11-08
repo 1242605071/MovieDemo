@@ -1,9 +1,152 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".view.activity.DetailsActivity">
+    <com.bw.movie.view.custom.ObservableScrollView
+        android:id="@+id/scrollView1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
 
-</android.support.constraint.ConstraintLayout>
+        <LinearLayout
+            android:background="#1c2243"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            >
+
+            <com.facebook.drawee.view.SimpleDraweeView
+                android:scaleType="fitXY"
+                android:background="#1c2243"
+                android:id="@+id/x_tp"
+                android:layout_width="match_parent"
+                android:layout_height="470dp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:textSize="@dimen/dp_14"
+                    android:id="@+id/x_name"
+                    android:text="wqeqweq"
+                    android:textColor="#fff"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <ImageView
+                    android:id="@+id/guanzhu"
+                    android:layout_marginLeft="@dimen/dp_250"
+                    android:layout_width="@dimen/dp_30"
+                    android:layout_height="@dimen/dp_30"
+                    android:src="@drawable/baise" />
+            </LinearLayout>
+
+            <LinearLayout
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:textSize="@dimen/dp_12"
+                    android:id="@+id/x_leixing"
+                    android:text="动作"
+                    android:textColor="#fff"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:textSize="@dimen/dp_12"
+                    android:layout_marginLeft="@dimen/dp_50"
+                    android:id="@+id/x_time"
+                    android:text="12分钟"
+                    android:textColor="#fff"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:textSize="@dimen/dp_12"
+                    android:id="@+id/x_data"
+                    android:text="日期"
+                    android:textColor="#fff"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:textSize="@dimen/dp_12"
+                    android:layout_marginLeft="@dimen/dp_50"
+                    android:id="@+id/x_guo"
+                    android:text="中国"
+                    android:textColor="#fff"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+
+            </LinearLayout>
+
+            <android.support.design.widget.TabLayout
+                android:id="@+id/details_tab"
+                android:scrollbarSize="14sp"
+                app:tabGravity="fill"
+                app:tabMode="fixed"
+                android:background="#1c2243"
+                app:tabTextColor="#ffff"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+
+            <android.support.v4.view.ViewPager
+                android:id="@+id/x_viewpager"
+                android:layout_width="match_parent"
+                android:layout_height="700dp">
+            </android.support.v4.view.ViewPager>
+
+        </LinearLayout>
+    </com.bw.movie.view.custom.ObservableScrollView>
+    <LinearLayout
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+        <Button
+            android:id="@+id/x_pingjia"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_40"
+            android:layout_weight="4"
+            android:background="#fdf502"
+            android:textColor="#fff"
+            android:textSize="@dimen/dp_20"
+            android:text="写影评"
+            />
+        <Button
+            android:id="@+id/x_xuan"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_40"
+            android:layout_weight="6"
+            android:textColor="#fff"
+            android:textSize="@dimen/dp_20"
+            android:background="#f10673"
+            android:text="选座购票"
+            />
+    </LinearLayout>
+    <RelativeLayout
+        android:id="@+id/layout_title"
+        android:background="@null"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_gravity="top"
+        android:padding="5dp">
+
+        <TextView
+
+            android:id="@+id/tv_titlebar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:textColor="#fff"
+            android:textSize="20dp"
+            android:visibility="gone"/>
+    </RelativeLayout>
+</RelativeLayout>

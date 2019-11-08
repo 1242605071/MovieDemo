@@ -1,6 +1,7 @@
 package com.bw.movie.model.app;
 
 import android.app.Application;
+import android.content.Context;
 
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.tencent.mm.opensdk.openapi.IWXAPI;
@@ -16,6 +17,7 @@ import com.tencent.mm.opensdk.openapi.WXAPIFactory;
  *  
  */
 public class App extends Application {
+    public static Context context;
     public static IWXAPI api;
     public static IWXAPI getWXApi(){
         return api;
@@ -24,6 +26,7 @@ public class App extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        context = this;
         Fresco.initialize(this);
         regoToWx();
     }
