@@ -4,6 +4,8 @@ import com.android.volley.Request;
 import com.bw.movie.model.bean.BanBean;
 import com.bw.movie.model.bean.CinemaBean;
 import com.bw.movie.model.bean.ComBean;
+import com.bw.movie.model.bean.CommentsBean;
+import com.bw.movie.model.bean.DetailsBean;
 import com.bw.movie.model.bean.HotBean;
 import com.bw.movie.model.bean.IRequest;
 import com.bw.movie.model.bean.LogBean;
@@ -81,4 +83,10 @@ public interface Api {
     //根据区域查询影院
     @GET("movieApi/cinema/v2/findCinemaByRegion")
     Observable<IRequest<List<RegioBean>>> findCinemaByRegion(@Query("regionId") int regionId);
+    //查询电影详情
+    @GET("movieApi/movie/v2/findMoviesDetail")
+    Observable<IRequest<DetailsBean>>  findMoviesDetail(@Query("movieId") int movieId);
+    //评论列表
+    @GET("movieApi/movie/v2/findAllMovieComment")
+    Observable<CommentsBean> commentsMap(@Query("movieId") int movieId,@Query("page") int page, @Query("count") int count);
 }
