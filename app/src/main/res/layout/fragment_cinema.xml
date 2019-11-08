@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:background="#141931"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="@dimen/dp_10"
+        android:background="#141931"
+        android:gravity="center_vertical"
+        >
+        <ImageView
+            android:layout_width="@dimen/dp_20"
+            android:layout_height="@dimen/dp_24"
+            android:layout_marginLeft="@dimen/dp_25"
+            android:background="@drawable/icon_location" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_54"
+            android:textColor="#ffffff"
+            android:textSize="14sp" />
+
+        <ImageView
+            android:layout_width="@dimen/dp_24"
+            android:layout_height="@dimen/dp_24"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/dp_24"
+            android:background="@drawable/icon_search" />
+    </RelativeLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <RadioGroup
+            android:id="@+id/radio_group"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:orientation="horizontal"
+            android:background="#1c2243"
+            >
+            <RadioButton
+                android:id="@+id/recom_button"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:checked="true"
+                android:button="@null"
+                android:gravity="center"
+                android:textColor="@android:color/white"
+                android:text="推荐影院"
+                android:textSize="14dp"
+                />
+            <RadioButton
+                android:id="@+id/near_button"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:button="@null"
+                android:textColor="@android:color/white"
+                android:textSize="14dp"
+                android:gravity="center"
+                android:text="附近影院"
+                />
+            <RadioButton
+                android:id="@+id/address_button"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:textColor="@android:color/white"
+                android:textSize="14dp"
+                android:button="@null"
+                android:gravity="center"
+                android:text="海淀区"
+                />
+        </RadioGroup>
+        <android.support.v4.view.ViewPager
+            android:id="@+id/view_pager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            ></android.support.v4.view.ViewPager>
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+    <RelativeLayout
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:layout_width="@dimen/dp_110"
+            android:layout_height="@dimen/dp_140"
+            android:layout_marginTop="@dimen/dp_10"
+            android:layout_marginLeft="@dimen/dp_10"
+            fresco:roundedCornerRadius="10dp"
+            android:id="@+id/hot_i1"/>
+
+        <TextView
+            android:id="@+id/text1"
+            android:textSize="@dimen/sp_12"
+            android:textColor="#ffffff"
+
+            android:layout_marginTop="@dimen/dp_130"
+            android:layout_marginLeft="@dimen/dp_45"
+            android:layout_width="@dimen/dp_30"
+            android:layout_height="@dimen/dp_17" />
+    </RelativeLayout>
+    <TextView
+        android:id="@+id/name"
+        android:textSize="@dimen/sp_14"
+        android:textColor="#ffffff"
+
+        android:layout_marginTop="@dimen/dp_11"
+        android:layout_marginLeft="@dimen/dp_10"
+        android:layout_width="@dimen/dp_110"
+        android:gravity="center"
+        android:layout_height="@dimen/dp_24" />
+    <Button
+        android:layout_width="@dimen/dp_45"
+        android:layout_height="@dimen/dp_20"
+        android:layout_marginLeft="@dimen/dp_40"
+        android:layout_marginTop="@dimen/dp_10"
+        android:background="@drawable/se"
+        android:text="购票"
+        android:textColor="#ffff"
+        android:textSize="@dimen/sp_12" />
+
+</LinearLayout>
