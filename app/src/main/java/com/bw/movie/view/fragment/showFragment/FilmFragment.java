@@ -224,13 +224,4 @@ public class FilmFragment extends BaseFragment {
 
         }
     }
-    /**
-     *
-     * 复合肥结核杆菌
-     * 韩国的春归何处vhv几号放假国际化公开公交卡
-     * 工程竣工吃个鸡叉骨和
-     * 活动经费易见股份科恒股份vkyuf
-     * 还搞笑的那个房管局m
-     *
-     */
 }
