@@ -1,5 +1,7 @@
 package com.bw.movie.model.http;
 
+import com.bw.movie.model.app.Api;
+
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
@@ -10,7 +12,7 @@ public class HttpUtils {
     private static HttpUtils httpUtils = new HttpUtils();
     private final OkHttpClient okHttpClient;
     private final Retrofit retrofit;
-
+    private Api api;
     public static HttpUtils getHttpUtils() {
         return httpUtils;
     }
@@ -27,7 +29,11 @@ public class HttpUtils {
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
+        api = retrofit.create(Api.class);
+    }
 
+    public Api getApi() {
+        return api;
     }
 
     public <T> T create(final Class<T> service) {

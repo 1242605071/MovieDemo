@@ -18,6 +18,9 @@ public interface IView {
         public doData(IBaseView iBaseView) {
             super(iBaseView);
         }
-
+        //根据电影id和区域id查询影院
+        public abstract void findCinemasInfoByRegion( int movieId, int regionId, int page, int count);
+        // 地区
+        public abstract void findRegionList();
     }
 }

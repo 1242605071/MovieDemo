@@ -65,7 +65,8 @@
             android:value="xX506Q1WBzIj5oaUGhE4nNpYZQAmDX4U" />
 
         <activity android:name=".view.activity.WritecommentsActivity" />
-        <activity android:name=".view.activity.ChangeActivity"></activity>
+        <activity android:name=".view.activity.ChangeActivity" />
+        <activity android:name=".view.activity.SelectionActivity"></activity>
     </application>
 
 </manifest>

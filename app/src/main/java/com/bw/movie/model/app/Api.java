@@ -3,6 +3,7 @@ package com.bw.movie.model.app;
 import com.android.volley.Request;
 import com.bw.movie.model.bean.BanBean;
 import com.bw.movie.model.bean.CinemaBean;
+import com.bw.movie.model.bean.CinemasInfoByRegionBean;
 import com.bw.movie.model.bean.ComBean;
 import com.bw.movie.model.bean.CommentsBean;
 import com.bw.movie.model.bean.DetailsBean;
@@ -12,6 +13,7 @@ import com.bw.movie.model.bean.LogBean;
 import com.bw.movie.model.bean.NearbyBean;
 import com.bw.movie.model.bean.PopBean;
 import com.bw.movie.model.bean.RegioBean;
+import com.bw.movie.model.bean.RegionListBean;
 import com.bw.movie.model.bean.SerachBean;
 import com.bw.movie.model.bean.WxLogBean;
 
@@ -89,4 +91,11 @@ public interface Api {
     //评论列表
     @GET("movieApi/movie/v2/findAllMovieComment")
     Observable<CommentsBean> commentsMap(@Query("movieId") int movieId,@Query("page") int page, @Query("count") int count);
+    // 根据电影id和区域id查询影院
+    @GET("movieApi/movie/v2/findCinemasInfoByRegion")
+    Observable<CinemasInfoByRegionBean> findCinemasInfoByRegion(@Query("movieId") int movieId, @Query("regionId") int regionId,
+                                                                @Query("page") int page, @Query("count") int count);
+    // 地区
+    @GET("movieApi/tool/v2/findRegionList")
+    Observable<RegionListBean> findRegionList();
 }
