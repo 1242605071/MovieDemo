@@ -43,12 +43,12 @@ public class NearAdapter extends XRecyclerView.Adapter {
         ((MyViewHolder) holder).text_name.setText(list.get(position).name);
         ((MyViewHolder) holder).text_address.setText(list.get(position).address);
         ((MyViewHolder) holder).text_mi.setText(list.get(position).distance+"米");
-//        Glide.with(holder.itemView.getContext()).load(list.get(position).logo)
-//                .placeholder(R.drawable.ic_launcher_background)
-//                .error(R.mipmap.ic_launcher)
-//                .into(((MyViewHolder) holder).image_view);
-        String logo = list.get(position).logo;
-        ((MyViewHolder) holder).image_view.setImageURI(Uri.parse(logo));
+        Glide.with(holder.itemView.getContext()).load(list.get(position).logo)
+                .placeholder(R.drawable.ic_launcher_background)
+                .error(R.mipmap.ic_launcher)
+                .into(((MyViewHolder) holder).image_view);
+//        String logo = list.get(position).logo;
+//        ((MyViewHolder) holder).image_view.setImageURI(Uri.parse(logo));
     }
 
     @Override

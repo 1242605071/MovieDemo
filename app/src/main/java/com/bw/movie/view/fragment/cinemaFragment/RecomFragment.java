@@ -1,5 +1,6 @@
 package com.bw.movie.view.fragment.cinemaFragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
@@ -11,6 +12,7 @@ import com.bw.movie.model.base.BaseFragment;
 import com.bw.movie.model.bean.CinemaBean;
 import com.bw.movie.model.bean.IRequest;
 import com.bw.movie.presenter.RecomPresenter;
+import com.bw.movie.view.activity.Cinema_detailsActivity;
 import com.bw.movie.view.adapter.RecomAdapter;
 import com.bw.movie.view.core.DataCall;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
@@ -42,6 +44,14 @@ public class RecomFragment extends BaseFragment implements XRecyclerView.Loading
         recomXrecyview.setAdapter(adapter);
         recomPresenter = new RecomPresenter(new Rccom());
         recomXrecyview.setLoadingListener(this);
+
+        adapter.setOnItemClickListener(new RecomAdapter.OnItemClickListener() {
+            @Override
+            public void onClick(int position) {
+                Intent intent  = new Intent(getContext(),Cinema_detailsActivity.class);
+                startActivity(intent);
+            }
+        });
         onRefresh();
 
     }

@@ -6,10 +6,9 @@
     android:layout_width="match_parent"
     android:layout_height="130dp">
 
-    <com.facebook.drawee.view.SimpleDraweeView
+    <ImageView
         android:id="@+id/image_view"
         android:layout_margin="10dp"
-        app:roundedCornerRadius="10dp"
         android:layout_width="@dimen/dp_120"
         android:layout_height="@dimen/dp_70" />
     <LinearLayout
