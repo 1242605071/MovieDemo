@@ -52,8 +52,8 @@ import butterknife.Unbinder;
  *  
  */
 public class FilmFragment extends BaseFragment {
-    @BindView(R.id.Location)
-    ImageView Location;
+    @BindView(R.id.location)
+    ImageView location;
     @BindView(R.id.city)
     TextView city;
     @BindView(R.id.ss)

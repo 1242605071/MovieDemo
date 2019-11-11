@@ -1,14 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:fresco="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:fresco="http://schemas.android.com/tools">
-    <ScrollView
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_50"
+        android:background="#141931">
+
+        <ImageView
+            android:id="@+id/location"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:paddingLeft="20dp"
+            android:paddingTop="15dp"
+            android:paddingBottom="15dp"
+            android:src="@drawable/icon_location" />
+
+        <TextView
+            android:id="@+id/city"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:paddingLeft="@dimen/dp_10"
+            android:layout_toRightOf="@+id/location"
+            android:gravity="center_vertical"
+            android:text="北京"
+            android:textColor="#ffffff"
+            android:textSize="14sp" />
+
+        <ImageView
+            android:id="@+id/ss"
+            android:layout_width="@dimen/dp_24"
+            android:layout_height="@dimen/dp_24"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/dp_24"
+            android:background="@drawable/icon_search" />
+    </RelativeLayout>
+
+    <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#141931"
-        >
+        android:background="#141931">
 
         <LinearLayout
 
@@ -16,38 +54,6 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dp_10"
-                android:background="#141931"
-
-                >
-
-                <ImageView
-                    android:id="@+id/Location"
-                    android:layout_width="@dimen/dp_20"
-                    android:layout_height="@dimen/dp_24"
-                    android:layout_marginLeft="@dimen/dp_25"
-                    android:background="@drawable/icon_location" />
-
-                <TextView
-                    android:text=""
-                    android:id="@+id/city"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/dp_54"
-                    android:textColor="#ffffff"
-                    android:textSize="14sp" />
-
-                <ImageView
-                    android:id="@+id/ss"
-                    android:layout_width="@dimen/dp_24"
-                    android:layout_height="@dimen/dp_24"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginRight="@dimen/dp_24"
-                    android:background="@drawable/icon_search" />
-            </RelativeLayout>
 
             <com.stx.xhb.xbanner.XBanner
                 android:id="@+id/home_banner"
@@ -108,7 +114,7 @@
             <RelativeLayout
 
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/dp_38"
+                android:layout_height="wrap_content"
                 android:background="#1c2243">
 
                 <ImageView
@@ -177,13 +183,14 @@
                     android:textColor="#ffffff"
                     android:textSize="12sp" />
             </RelativeLayout>
+
             <com.facebook.drawee.view.SimpleDraweeView
                 android:id="@+id/home_i1"
                 android:layout_width="@dimen/dp_312"
                 android:layout_height="@dimen/dp_210"
                 android:layout_marginLeft="@dimen/dp_24"
                 android:layout_marginTop="@dimen/dp_20"
-                fresco:roundedCornerRadius="10dp"/>
+                fresco:roundedCornerRadius="10dp" />
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/rmmove"
@@ -192,5 +199,5 @@
         </LinearLayout>
 
 
-    </ScrollView>
+    </android.support.v4.widget.NestedScrollView>
 </LinearLayout>
