@@ -99,8 +99,17 @@ public class DetailsActivity extends BaseActivity implements ObservableScrollVie
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.x_pingjia:
+                Intent intent = new Intent(DetailsActivity.this, WritecommentsActivity.class);
+                intent.putExtra("movieId", movieId);
+                intent.putExtra("name", result.name);
+                startActivity(intent);
                 break;
             case R.id.x_xuan:
+                Intent intent1 = new Intent(DetailsActivity.this, ChangeActivity.class);
+                intent1.putExtra("movieId",movieId);
+                intent1.putExtra("name",result.name);
+                startActivity(intent1);
+
                 break;
         }
     }
