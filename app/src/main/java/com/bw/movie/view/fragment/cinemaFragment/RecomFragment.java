@@ -48,7 +48,7 @@ public class RecomFragment extends BaseFragment implements XRecyclerView.Loading
         adapter.setOnItemClickListener(new RecomAdapter.OnItemClickListener() {
             @Override
             public void onClick(int position) {
-                Intent intent  = new Intent(getContext(),Cinema_detailsActivity.class);
+                Intent intent = new Intent(getContext(), Cinema_detailsActivity.class);
                 startActivity(intent);
             }
         });
@@ -78,25 +78,25 @@ public class RecomFragment extends BaseFragment implements XRecyclerView.Loading
 
     @Override
     public void onRefresh() {
-        recomPresenter.RequestData("13764","157312968444113764",true);
+        recomPresenter.RequestData("13764", "157312968444113764", true);
         recomXrecyview.refreshComplete();
     }
 
     @Override
     public void onLoadMore() {
-        recomPresenter.RequestData("13764","157312968444113764",false);
+        recomPresenter.RequestData("13764", "157312968444113764", false);
         recomXrecyview.loadMoreComplete();
 
     }
 
-    private class Rccom implements DataCall<List<CinemaBean>>  {
+    private class Rccom implements DataCall<List<CinemaBean>> {
         @Override
         public void success(List<CinemaBean> data) {
-            if (recomPresenter.getPage() ==1){
+            if (recomPresenter.getPage() == 1) {
                 adapter.clear();
             }
-        adapter.addAll(data);
-        adapter.notifyDataSetChanged();
+            adapter.addAll(data);
+            adapter.notifyDataSetChanged();
         }
 
         @Override

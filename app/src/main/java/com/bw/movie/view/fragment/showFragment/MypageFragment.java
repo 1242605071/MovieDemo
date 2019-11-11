@@ -1,7 +1,22 @@
 package com.bw.movie.view.fragment.showFragment;
 
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.v7.widget.CardView;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
+
 import com.bw.movie.R;
 import com.bw.movie.model.base.BaseFragment;
+import com.bw.movie.view.activity.LoginActivity;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+import butterknife.Unbinder;
 
 /**
  *  * <p>文件描述：我的<p>
@@ -13,6 +28,16 @@ import com.bw.movie.model.base.BaseFragment;
  *  
  */
 public class MypageFragment extends BaseFragment {
+    @BindView(R.id.personimage)
+    ImageView personimage;
+    @BindView(R.id.textdying)
+    TextView textdying;
+    @BindView(R.id.sz)
+    ImageView sz;
+    @BindView(R.id.carddl)
+    CardView carddl;
+    Unbinder unbinder;
+
     @Override
     protected void initData() {
 
@@ -21,5 +46,25 @@ public class MypageFragment extends BaseFragment {
     @Override
     protected int initView() {
         return R.layout.fragment_mypage;
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        // TODO: inflate a fragment view
+        View rootView = super.onCreateView(inflater, container, savedInstanceState);
+        unbinder = ButterKnife.bind(this, rootView);
+        return rootView;
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        unbinder.unbind();
+    }
+
+    @OnClick(R.id.carddl)
+    public void onViewClicked() {
+        Intent intent = new Intent(getContext(),LoginActivity.class);
+        startActivity(intent);
     }
 }

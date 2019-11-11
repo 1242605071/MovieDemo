@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:background="#141931"
     tools:context=".view.activity.ChangeActivity">
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -13,9 +14,9 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
             android:focusable="true"
-            android:focusableInTouchMode="true">
+            android:focusableInTouchMode="true"
+            android:orientation="vertical">
 
             <ImageView
                 android:id="@+id/iv_pic"
@@ -33,72 +34,72 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="啊点啊"
-                    android:textSize="@dimen/sp_18"
-                    android:textColor="@android:color/background_light"></TextView>
+                    android:textColor="@android:color/background_light"
+                    android:textSize="@dimen/sp_18"></TextView>
 
                 <TextView
                     android:id="@+id/tv1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_name"
+                    android:layout_marginTop="@dimen/dp_10"
                     android:text="时长"
-                    android:textSize="@dimen/sp_14"
                     android:textColor="@android:color/background_light"
-                    android:layout_below="@+id/tv_name"
-                    android:layout_marginTop="@dimen/dp_10"></TextView>
+                    android:textSize="@dimen/sp_14"></TextView>
 
                 <TextView
                     android:id="@+id/tv_time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="时长"
-                    android:textSize="@dimen/sp_14"
-                    android:textColor="@android:color/background_light"
                     android:layout_below="@+id/tv1"
-                    android:layout_marginTop="@dimen/dp_10"></TextView>
+                    android:layout_marginTop="@dimen/dp_10"
+                    android:text="时长"
+                    android:textColor="@android:color/background_light"
+                    android:textSize="@dimen/sp_14"></TextView>
 
                 <TextView
                     android:id="@+id/tv2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="评分"
-                    android:textSize="@dimen/sp_14"
-                    android:textColor="@android:color/background_light"
                     android:layout_alignTop="@id/tv1"
+                    android:layout_marginLeft="@dimen/dp_80"
                     android:layout_toRightOf="@id/tv1"
-                    android:layout_marginLeft="@dimen/dp_80"></TextView>
+                    android:text="评分"
+                    android:textColor="@android:color/background_light"
+                    android:textSize="@dimen/sp_14"></TextView>
 
                 <TextView
                     android:id="@+id/tv_score"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="评分"
-                    android:textSize="@dimen/sp_14"
-                    android:textColor="@android:color/background_light"
                     android:layout_alignTop="@id/tv_time"
+                    android:layout_marginLeft="@dimen/dp_80"
                     android:layout_toRightOf="@id/tv1"
-                    android:layout_marginLeft="@dimen/dp_80"></TextView>
+                    android:text="评分"
+                    android:textColor="@android:color/background_light"
+                    android:textSize="@dimen/sp_14"></TextView>
 
                 <TextView
                     android:id="@+id/tv3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="导演"
-                    android:textSize="@dimen/sp_14"
-                    android:textColor="@android:color/background_light"
                     android:layout_alignTop="@id/tv1"
+                    android:layout_marginLeft="@dimen/dp_80"
                     android:layout_toRightOf="@+id/tv2"
-                    android:layout_marginLeft="@dimen/dp_80"></TextView>
+                    android:text="导演"
+                    android:textColor="@android:color/background_light"
+                    android:textSize="@dimen/sp_14"></TextView>
 
                 <TextView
                     android:id="@+id/tv_director"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="评分"
-                    android:textSize="@dimen/sp_14"
-                    android:textColor="@android:color/background_light"
                     android:layout_alignTop="@id/tv_time"
+                    android:layout_marginLeft="@dimen/dp_70"
                     android:layout_toRightOf="@+id/tv_score"
-                    android:layout_marginLeft="@dimen/dp_70"></TextView>
+                    android:text="评分"
+                    android:textColor="@android:color/background_light"
+                    android:textSize="@dimen/sp_14"></TextView>
 
             </RelativeLayout>
 
@@ -110,37 +111,37 @@
 
                 <RadioButton
                     android:id="@+id/rb_region"
-                    android:layout_weight="1"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
+                    android:layout_weight="1"
                     android:button="@null"
-                    android:text="家里屯"
-                    android:textSize="@dimen/sp_14"
-                    android:textColor="@android:color/background_light"
+                    android:checked="true"
                     android:gravity="center"
-                    android:checked="true"></RadioButton>
+                    android:text="家里屯"
+                    android:textColor="@android:color/background_light"
+                    android:textSize="@dimen/sp_14"></RadioButton>
 
                 <RadioButton
                     android:id="@+id/rb_time"
-                    android:layout_weight="1"
                     android:layout_width="@dimen/dp_0"
                     android:layout_height="match_parent"
+                    android:layout_weight="1"
                     android:button="@null"
+                    android:gravity="center"
                     android:text="电影排期"
-                    android:textSize="@dimen/sp_14"
                     android:textColor="@android:color/background_light"
-                    android:gravity="center"></RadioButton>
+                    android:textSize="@dimen/sp_14"></RadioButton>
 
                 <RadioButton
                     android:id="@+id/rb_lowPrice"
-                    android:layout_weight="1"
                     android:layout_width="@dimen/dp_0"
                     android:layout_height="match_parent"
+                    android:layout_weight="1"
                     android:button="@null"
+                    android:gravity="center"
                     android:text="价格最低"
-                    android:textSize="@dimen/sp_14"
                     android:textColor="@android:color/background_light"
-                    android:gravity="center"></RadioButton>
+                    android:textSize="@dimen/sp_14"></RadioButton>
 
             </RadioGroup>
 
