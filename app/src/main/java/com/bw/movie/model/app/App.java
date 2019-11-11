@@ -22,6 +22,7 @@ public class App extends Application {
     public static IWXAPI getWXApi(){
         return api;
 
+
     }
     @Override
     public void onCreate() {
