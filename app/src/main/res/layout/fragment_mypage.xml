@@ -2,28 +2,29 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="#141931"
     android:orientation="vertical">
     <RelativeLayout
         android:orientation="horizontal"
         android:layout_width="@dimen/dp_360"
         android:layout_height="@dimen/dp_153"
-        android:background="#1c2243">
+        android:background="@drawable/invalid_name">
 
         <TextView
             android:layout_width="@dimen/sp_32"
             android:layout_height="@dimen/sp_22"
             android:layout_marginTop="@dimen/dp_41"
-            android:layout_marginLeft="@dimen/dp_164"
-            android:gravity="center"
+            android:layout_centerHorizontal="true"
             android:text="我的"
-            android:textColor="#fff"
+            android:textColor="@android:color/white"
             android:textSize="@dimen/sp_16"></TextView>
 
         <ImageView
             android:layout_width="@dimen/dp_22"
-            android:layout_height="12dp"
-            android:layout_marginLeft="@dimen/dp_313"
+            android:layout_height="@dimen/dp_17"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/dp_25"
             android:layout_marginTop="@dimen/dp_44"
             android:background="@drawable/xinxi" />
 
@@ -35,41 +36,47 @@
         android:layout_width="@dimen/dp_312"
         android:layout_height="@dimen/dp_90"
         android:layout_gravity="center"
+        app:cardCornerRadius="10dp"
         android:layout_marginLeft="@dimen/dp_24"
-        android:layout_marginTop="@dimen/dp_94">
+        android:layout_marginTop="@dimen/dp_94"
+        >
 
 
         <ImageView
             android:id="@+id/personimage"
-            android:layout_width="@dimen/dp_46"
+            android:layout_width="wrap_content"
             android:layout_height="@dimen/dp_46"
+            android:layout_gravity="center_vertical"
             android:layout_marginLeft="@dimen/dp_12"
-            android:layout_marginTop="@dimen/dp_22"
-            android:background="@drawable/jian" />
+            android:background="@drawable/jian"
+
+            />
 
         <TextView
             android:id="@+id/textdying"
             android:layout_width="@dimen/dp_64"
             android:layout_height="@dimen/dp_22"
             android:layout_marginLeft="@dimen/dp_74"
-            android:layout_marginTop="@dimen/dp_34"
+            android:layout_gravity="center_vertical"
             android:text="电影故事"
-
             android:textColor="#141931"
             android:textSize="@dimen/sp_16" />
 
         <ImageView
             android:id="@+id/sz"
-            android:layout_width="@dimen/dp_8"
-            android:layout_height="@dimen/dp_12"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
             android:layout_marginLeft="@dimen/dp_284"
-            android:layout_marginTop="@dimen/dp_39"
-            android:background="@drawable/sf" />
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/sf"
+            android:paddingLeft="3dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="4dp"
+            />
     </android.support.v7.widget.CardView>
 
 
     <RelativeLayout
-
         android:layout_width="@dimen/dp_312"
         android:layout_height="@dimen/dp_40"
         android:layout_marginLeft="@dimen/dp_24"
@@ -92,6 +99,17 @@
             android:layout_marginLeft="@dimen/dp_12"
             android:layout_width="@dimen/dp_24"
             android:layout_height="@dimen/dp_20" />
+
+        <ImageView
+            android:id="@+id/dsz"
+            android:layout_width="24dp"
+            android:layout_height="23.5dp"
+            android:layout_marginLeft="@dimen/dp_284"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/shape_1"
+            android:layout_centerVertical="true"
+            android:padding="5dp"
+            />
     </RelativeLayout>
 
     <LinearLayout
@@ -104,6 +122,7 @@
         android:orientation="vertical">
 
         <LinearLayout
+            android:layout_marginTop="@dimen/dp_5"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1">

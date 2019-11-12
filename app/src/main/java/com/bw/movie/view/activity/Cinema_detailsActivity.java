@@ -13,7 +13,7 @@ import butterknife.OnClick;
 /**
  * Time:  2019-11-11
  * Author:  l
- * Description:
+ * Description: 影院详情页面
  */
 public class Cinema_detailsActivity extends BaseActivity {
     @BindView(R.id.jian)

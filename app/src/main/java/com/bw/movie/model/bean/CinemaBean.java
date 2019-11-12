@@ -14,8 +14,8 @@ public class CinemaBean {
     //    //            "logo": "http://172.17.8.100/images/movie/logo/CGVxx.jpg",
     //    //            "name": "CGV星星影城"
 
-        public String address;
-        public int id;
+       public String address;
+       public int id;
        public String name;
        public String logo;
 }

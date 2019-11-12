@@ -1,12 +1,9 @@
 package com.bw.movie.presenter;
 
-import com.bw.movie.model.app.Api;
 import com.bw.movie.model.base.IBaseView;
 import com.bw.movie.model.bean.CinemasInfoByRegionBean;
-import com.bw.movie.model.bean.RegionListBean;
 import com.bw.movie.model.http.HttpUtils;
 import com.bw.movie.view.core.IView;
-import com.facebook.drawee.components.RetryManager;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Consumer;
@@ -44,19 +41,10 @@ public class Presenter extends IView.doData{
                     }
                 });
     }
-    // 地区
+
     @Override
     public void findRegionList() {
-        HttpUtils.getHttpUtils().getApi()
-                .findRegionList()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Consumer<RegionListBean>() {
-                    @Override
-                    public void accept(RegionListBean regionListBean) throws Exception {
-                            iBaseView.onCurress(regionListBean);
-                    }
-                });
 
     }
+
 }

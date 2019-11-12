@@ -1,6 +1,5 @@
 package com.bw.movie.model.app;
 
-import com.android.volley.Request;
 import com.bw.movie.model.bean.BanBean;
 import com.bw.movie.model.bean.CinemaBean;
 import com.bw.movie.model.bean.CinemasInfoByRegionBean;
@@ -13,7 +12,7 @@ import com.bw.movie.model.bean.LogBean;
 import com.bw.movie.model.bean.NearbyBean;
 import com.bw.movie.model.bean.PopBean;
 import com.bw.movie.model.bean.RegioBean;
-import com.bw.movie.model.bean.RegionListBean;
+import com.bw.movie.model.bean.ResultInfo;
 import com.bw.movie.model.bean.SerachBean;
 import com.bw.movie.model.bean.WxLogBean;
 
@@ -97,5 +96,6 @@ public interface Api {
                                                                 @Query("page") int page, @Query("count") int count);
     // 地区
     @GET("movieApi/tool/v2/findRegionList")
-    Observable<RegionListBean> findRegionList();
+    Observable<IRequest<List<ResultInfo>>> findRegionList();
+
 }

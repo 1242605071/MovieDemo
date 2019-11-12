@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.bw.movie.R;
 import com.bw.movie.model.base.BaseFragment;
+import com.bw.movie.view.activity.ChangeActivity;
 import com.bw.movie.view.activity.LoginActivity;
 
 import butterknife.BindView;
@@ -37,6 +38,8 @@ public class MypageFragment extends BaseFragment {
     @BindView(R.id.carddl)
     CardView carddl;
     Unbinder unbinder;
+    @BindView(R.id.dsz)
+    ImageView dsz;
 
     @Override
     protected void initData() {
@@ -62,9 +65,18 @@ public class MypageFragment extends BaseFragment {
         unbinder.unbind();
     }
 
-    @OnClick(R.id.carddl)
-    public void onViewClicked() {
-        Intent intent = new Intent(getContext(),LoginActivity.class);
-        startActivity(intent);
+
+    @OnClick({R.id.sz, R.id.carddl})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.sz:
+                Intent intent1 = new Intent(getContext(), ChangeActivity.class);
+                startActivity(intent1);
+                break;
+            case R.id.carddl:
+                Intent intent = new Intent(getContext(), LoginActivity.class);
+                startActivity(intent);
+                break;
+        }
     }
 }
