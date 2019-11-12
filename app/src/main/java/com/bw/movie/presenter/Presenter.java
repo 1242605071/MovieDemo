@@ -1,12 +1,14 @@
 package com.bw.movie.presenter;
 
-import com.bw.movie.model.app.Api;
+import android.widget.Toast;
+
 import com.bw.movie.model.base.IBaseView;
 import com.bw.movie.model.bean.CinemasInfoByRegionBean;
-import com.bw.movie.model.bean.RegionListBean;
+import com.bw.movie.model.bean.OrderBean;
+import com.bw.movie.model.bean.SchedBean;
+import com.bw.movie.model.bean.SeatleBean;
 import com.bw.movie.model.http.HttpUtils;
 import com.bw.movie.view.core.IView;
-import com.facebook.drawee.components.RetryManager;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Consumer;
@@ -44,19 +46,68 @@ public class Presenter extends IView.doData{
                     }
                 });
     }
-    // 地区
+
     @Override
-    public void findRegionList() {
+    public void seatle(int hallId) {
         HttpUtils.getHttpUtils().getApi()
-                .findRegionList()
+                .seatle(hallId)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Consumer<RegionListBean>() {
+                .subscribe(new Consumer<SeatleBean>() {
                     @Override
-                    public void accept(RegionListBean regionListBean) throws Exception {
-                            iBaseView.onCurress(regionListBean);
+                    public void accept(SeatleBean seatleBean) throws Exception {
+                        iBaseView.onCurress(seatleBean);
+                    }
+                }, new Consumer<Throwable>() {
+                    @Override
+                    public void accept(Throwable throwable) throws Exception {
+
+                    }
+                });
+    }
+
+    @Override
+    public void bySchedule(int movieId, int cinemaId) {
+        HttpUtils.getHttpUtils().getApi()
+                .bySchedule(movieId, cinemaId)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Consumer<SchedBean>() {
+                    @Override
+                    public void accept(SchedBean schedBean) throws Exception {
+                        iBaseView.onCurress(schedBean);
+                    }
+                }, new Consumer<Throwable>() {
+                    @Override
+                    public void accept(Throwable throwable) throws Exception {
+
                     }
                 });
 
+    }
+
+    @Override
+    public void buyMovieTickets(String userId, String sessionId, int scheduleId, String seat, String sign) {
+        HttpUtils.getHttpUtils().getApi()
+                .buyMovieTickets(userId, sessionId, scheduleId, seat, sign)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Consumer<OrderBean>() {
+                    @Override
+                    public void accept(OrderBean orderBean) throws Exception {
+                        if (orderBean.status.equals("0000")){
+                            iBaseView.onCurress(orderBean);
+                        }else{
+
+
+                        }
+
+                    }
+                }, new Consumer<Throwable>() {
+                    @Override
+                    public void accept(Throwable throwable) throws Exception {
+                     throwable.printStackTrace();
+                    }
+                });
     }
 }

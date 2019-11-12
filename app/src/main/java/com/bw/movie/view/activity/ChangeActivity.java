@@ -4,9 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.View;
 import android.widget.ImageView;
-import android.widget.PopupWindow;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -16,17 +14,13 @@ import com.bw.movie.R;
 import com.bw.movie.model.base.BaseIActivity;
 import com.bw.movie.model.base.BasePersenter;
 import com.bw.movie.model.bean.CinemaBean;
-import com.bw.movie.model.bean.CinemasInfoByRegionBean;
 import com.bw.movie.model.bean.DetailsBean;
 import com.bw.movie.model.bean.IRequest;
-import com.bw.movie.model.bean.RegionListBean;
 import com.bw.movie.presenter.FindMoviesDetailPresenter;
 import com.bw.movie.presenter.Presenter;
 import com.bw.movie.presenter.RecomPresenter;
 import com.bw.movie.view.adapter.ChangeAdapter;
-import com.bw.movie.view.adapter.CinemaByRegionAdapter;
-import com.bw.movie.view.adapter.RecomAdapter;
-import com.bw.movie.view.adapter.RegionListAdapter;
+
 import com.bw.movie.view.core.DataCall;
 import com.bw.movie.view.core.IView;
 
@@ -34,7 +28,15 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-
+/**
+ *  * <p>文件描述：选择影院<p>
+ *  * <p>作者：zheng<p>
+ *  * <p>创建时间：2019/11/6<p>
+ *  * <p>更改时间：2019/11/6<p>
+ *  * <p>版本号：1<p>
+ *  *
+ *  
+ */
 public class ChangeActivity extends BaseIActivity implements IView.doView {
 
 
@@ -68,6 +70,8 @@ public class ChangeActivity extends BaseIActivity implements IView.doView {
     private IView.doData persenter;
     private ChangeAdapter adapter;
     private RecomPresenter recomPresenter;
+    private int movieId;
+    private int cinemaId;
 
     @Override
     protected BasePersenter initPersenter() {
@@ -90,7 +94,7 @@ public class ChangeActivity extends BaseIActivity implements IView.doView {
         // TODO: add setContentView(...) invocation
         ButterKnife.bind(this);
         Intent intent = getIntent();
-        int movieId = intent.getIntExtra("movieId", 0);
+        movieId = intent.getIntExtra("movieId", 0);
         name =intent.getStringExtra("name");
         FindMoviesDetailPresenter findMoviesDetailPresenter = new FindMoviesDetailPresenter(new SerachData());
         findMoviesDetailPresenter.RequestData(movieId);
@@ -104,6 +108,8 @@ public class ChangeActivity extends BaseIActivity implements IView.doView {
             @Override
             public void onClick(int postion) {
                 Intent intent = new Intent(ChangeActivity.this,SelectionActivity.class);
+                intent.putExtra("movieId", movieId);
+                intent.putExtra("cinemaId", cinemaId);
                 startActivity(intent);
             }
         });
@@ -150,6 +156,8 @@ public class ChangeActivity extends BaseIActivity implements IView.doView {
         public void success(List<CinemaBean> data) {
             adapter.addAll(data);
             adapter.notifyDataSetChanged();
+            cinemaId = data.get(0).id;
+
         }
 
         @Override

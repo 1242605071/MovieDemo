@@ -1,6 +1,5 @@
 package com.bw.movie.model.app;
 
-import com.android.volley.Request;
 import com.bw.movie.model.bean.BanBean;
 import com.bw.movie.model.bean.CinemaBean;
 import com.bw.movie.model.bean.CinemasInfoByRegionBean;
@@ -11,9 +10,11 @@ import com.bw.movie.model.bean.HotBean;
 import com.bw.movie.model.bean.IRequest;
 import com.bw.movie.model.bean.LogBean;
 import com.bw.movie.model.bean.NearbyBean;
+import com.bw.movie.model.bean.OrderBean;
 import com.bw.movie.model.bean.PopBean;
 import com.bw.movie.model.bean.RegioBean;
-import com.bw.movie.model.bean.RegionListBean;
+import com.bw.movie.model.bean.SchedBean;
+import com.bw.movie.model.bean.SeatleBean;
 import com.bw.movie.model.bean.SerachBean;
 import com.bw.movie.model.bean.WxLogBean;
 
@@ -95,7 +96,16 @@ public interface Api {
     @GET("movieApi/movie/v2/findCinemasInfoByRegion")
     Observable<CinemasInfoByRegionBean> findCinemasInfoByRegion(@Query("movieId") int movieId, @Query("regionId") int regionId,
                                                                 @Query("page") int page, @Query("count") int count);
-    // 地区
-    @GET("movieApi/tool/v2/findRegionList")
-    Observable<RegionListBean> findRegionList();
+
+    //根据影厅id 查询座位信息
+    @GET("movieApi/movie/v2/findSeatInfo")
+    Observable<SeatleBean> seatle(@Query("hallId") int hallId);
+    //根据电影ID和影院ID查询电影排期列表
+    @GET("movieApi/movie/v2/findMovieSchedule")
+    Observable<SchedBean> bySchedule(@Query("movieId") int movieId,@Query("cinemaId") int cinemaId);
+    //购票下单
+    @FormUrlEncoded
+    @POST("movieApi/movie/v2/verify/buyMovieTickets")
+    Observable<OrderBean> buyMovieTickets(@Field("userId") String userId,@Field("sessionId")String sessionId,@Query("scheduleId") int scheduleId,@Query("seat")String seat,@Query("sign")String sign);
+
 }
