@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="#141931"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_width="@dimen/dp_24"
+        android:layout_height="@dimen/dp_24"
+        android:layout_marginTop="@dimen/dp_20"
+        android:layout_marginLeft="@dimen/dp_24"
+        android:src="@drawable/copy_2"
+        />
+    <TextView
+        android:id="@+id/details_address"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="海淀区悦秀路99号二层"
+        android:layout_marginTop="@dimen/dp_23"
+        android:layout_marginLeft="@dimen/dp_58"
+        android:textSize="@dimen/sp_12"
+        android:textColor="@android:color/white"
+        />
+    <ImageView
+        android:layout_width="@dimen/dp_24"
+        android:layout_height="@dimen/dp_24"
+        android:layout_marginTop="@dimen/dp_63"
+        android:layout_marginLeft="@dimen/dp_24"
+        android:src="@drawable/dianhua"
+        />
+    <TextView
+        android:id="@+id/details_phone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0412-8999123"
+        android:layout_marginTop="@dimen/dp_66"
+        android:layout_marginLeft="@dimen/dp_58"
+        android:textSize="@dimen/sp_12"
+        android:textColor="@android:color/white"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="乘车路线"
+        android:layout_marginTop="@dimen/dp_108"
+        android:layout_marginLeft="@dimen/dp_24"
+        android:textSize="@dimen/sp_12"
+        android:textColor="@android:color/white"
+        />
+    <TextView
+        android:id="@+id/details_bus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="地铁：
+13号线西二旗站A口出，换乘运通509路或362路公交车软件园南站下车，过马路对面；"
+        android:layout_marginTop="@dimen/dp_141"
+        android:layout_marginLeft="@dimen/dp_24"
+        android:textSize="@dimen/sp_12"
+        android:textColor="@android:color/white"
+        />
+
+</RelativeLayout>
