@@ -2,6 +2,7 @@ package com.bw.movie.model.app;
 
 import com.bw.movie.model.bean.BanBean;
 import com.bw.movie.model.bean.CinemaBean;
+import com.bw.movie.model.bean.CinemaInfo;
 import com.bw.movie.model.bean.CinemasInfoByRegionBean;
 import com.bw.movie.model.bean.ComBean;
 import com.bw.movie.model.bean.CommentsBean;
@@ -13,6 +14,7 @@ import com.bw.movie.model.bean.NearbyBean;
 import com.bw.movie.model.bean.OrderBean;
 import com.bw.movie.model.bean.PopBean;
 import com.bw.movie.model.bean.RegioBean;
+import com.bw.movie.model.bean.ResultInfo;
 import com.bw.movie.model.bean.SchedBean;
 import com.bw.movie.model.bean.SeatleBean;
 import com.bw.movie.model.bean.SerachBean;
@@ -63,9 +65,11 @@ public interface Api {
     //即将上映
     @GET("movieApi/movie/v2/findComingSoonMovieList")
     Observable<IRequest<List<ComBean>>> findComingSoonMovieList(@Query("page") int page, @Query("count") int count);
+
     //热门电影
     @GET("movieApi/movie/v2/findHotMovieList")
     Observable<IRequest<List<PopBean>>> findHotMovieList(@Query("page") int page, @Query("count") int count);
+
     //影片搜索
     @GET("movieApi/movie/v2/findMovieByKeyword")
     Observable<IRequest<List<SerachBean>>> findMovieByKeyword(@Query("keyword") String keyword, @Query("page") int page, @Query("count") int count);
@@ -73,25 +77,32 @@ public interface Api {
     //推荐影院
     @GET("movieApi/cinema/v1/findRecommendCinemas")
     Observable<IRequest<List<CinemaBean>>> findRecommendCinemas(@Header("userId") String userId,
-                                                               @Header("sessionId") String sessionId,
-                                                               @Query("page") int page, @Query("count") int count);
+                                                                @Header("sessionId") String sessionId,
+                                                                @Query("page") int page, @Query("count") int count);
 
     //查询附近影院
     @GET("movieApi/cinema/v1/findNearbyCinemas")
     Observable<IRequest<List<NearbyBean>>> findNearbyCinemas(@Header("userId") String userId,
-                                                            @Header("sessionId") String sessionId,
-                                                            @Query("longitude") String longitude, @Query("latitude") String latitude,
-                                                            @Query("page") int page, @Query("count") int count);
+                                                             @Header("sessionId") String sessionId,
+                                                             @Query("longitude") String longitude, @Query("latitude") String latitude,
+                                                             @Query("page") int page, @Query("count") int count);
 
     //根据区域查询影院
     @GET("movieApi/cinema/v2/findCinemaByRegion")
     Observable<IRequest<List<RegioBean>>> findCinemaByRegion(@Query("regionId") int regionId);
+
+    //查询区域列表
+    @GET("movieApi/tool/v2/findRegionList")
+    Observable<IRequest<List<ResultInfo>>> findRegionList();
+
     //查询电影详情
     @GET("movieApi/movie/v2/findMoviesDetail")
-    Observable<IRequest<DetailsBean>>  findMoviesDetail(@Query("movieId") int movieId);
+    Observable<IRequest<DetailsBean>> findMoviesDetail(@Query("movieId") int movieId);
+
     //评论列表
     @GET("movieApi/movie/v2/findAllMovieComment")
-    Observable<CommentsBean> commentsMap(@Query("movieId") int movieId,@Query("page") int page, @Query("count") int count);
+    Observable<CommentsBean> commentsMap(@Query("movieId") int movieId, @Query("page") int page, @Query("count") int count);
+
     // 根据电影id和区域id查询影院
     @GET("movieApi/movie/v2/findCinemasInfoByRegion")
     Observable<CinemasInfoByRegionBean> findCinemasInfoByRegion(@Query("movieId") int movieId, @Query("regionId") int regionId,
@@ -100,12 +111,16 @@ public interface Api {
     //根据影厅id 查询座位信息
     @GET("movieApi/movie/v2/findSeatInfo")
     Observable<SeatleBean> seatle(@Query("hallId") int hallId);
+
     //根据电影ID和影院ID查询电影排期列表
     @GET("movieApi/movie/v2/findMovieSchedule")
-    Observable<SchedBean> bySchedule(@Query("movieId") int movieId,@Query("cinemaId") int cinemaId);
+    Observable<SchedBean> bySchedule(@Query("movieId") int movieId, @Query("cinemaId") int cinemaId);
+
     //购票下单
     @FormUrlEncoded
     @POST("movieApi/movie/v2/verify/buyMovieTickets")
-    Observable<OrderBean> buyMovieTickets(@Field("userId") String userId,@Field("sessionId")String sessionId,@Query("scheduleId") int scheduleId,@Query("seat")String seat,@Query("sign")String sign);
-
+    Observable<OrderBean> buyMovieTickets(@Field("userId") String userId, @Field("sessionId") String sessionId, @Query("scheduleId") int scheduleId, @Query("seat") String seat, @Query("sign") String sign);
+    //查询电影信息明细
+    @GET("movieApi/cinema/v1/findCinemaInfo")
+    Observable<IRequest<CinemaInfo>> findCinemaInfo(@Header("userId") String userId, @Header("sessionId") String sessionId, @Query("cinemaId") int cinemaId);
 }

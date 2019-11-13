@@ -1,7 +1,10 @@
 package com.bw.movie.model.base;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.KeyEvent;
+import android.widget.Toast;
 
 
 public abstract class BaseActivity extends AppCompatActivity {
@@ -10,7 +13,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (initLayout()!=0){
+        if (initLayout() != 0) {
             setContentView(initLayout());
             //初始化
         }
@@ -23,7 +26,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if (basePresenter!=null){
+        if (basePresenter != null) {
             basePresenter.onDestroy();
         }
     }

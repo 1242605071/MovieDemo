@@ -3,6 +3,7 @@ package com.bw.movie.view.fragment.cinemaFragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,6 +35,9 @@ public class RecomFragment extends BaseFragment implements XRecyclerView.Loading
     Unbinder unbinder;
     private RecomAdapter adapter;
     private RecomPresenter recomPresenter;
+    private int cimid;
+    private int idd;
+
 
     @Override
     protected void initData() {
@@ -50,6 +54,8 @@ public class RecomFragment extends BaseFragment implements XRecyclerView.Loading
             public void onClick(int position) {
                 Intent intent = new Intent(getContext(), Cinema_detailsActivity.class);
                 startActivity(intent);
+
+
             }
         });
         onRefresh();
@@ -97,6 +103,7 @@ public class RecomFragment extends BaseFragment implements XRecyclerView.Loading
             }
             adapter.addAll(data);
             adapter.notifyDataSetChanged();
+
         }
 
         @Override

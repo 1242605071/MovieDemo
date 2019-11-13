@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="#141931"
-    android:orientation="vertical"
-       >
+    android:orientation="vertical">
 
     <ImageView
         android:id="@+id/jian"
@@ -46,7 +45,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/dp_122"
         android:layout_marginLeft="@dimen/dp_34"
-        tools:text="3D眼镜"
+        android:text="3D眼镜"
         android:textColor="#d3af56"
         />
     <TextView
@@ -54,7 +53,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/dp_122"
         android:layout_marginLeft="@dimen/dp_104"
-        tools:text="儿童优惠"
+        android:text="儿童优惠"
         android:textColor="#d3af56"
         />
     <TextView
@@ -62,7 +61,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/dp_122"
         android:layout_marginLeft="@dimen/dp_183"
-        tools:text="4K厅"
+        android:text="4K厅"
         android:textColor="#d3af56"
         />
     <TextView
@@ -71,7 +70,7 @@
         android:layout_marginTop="@dimen/dp_122"
         android:layout_marginRight="24dp"
         android:layout_alignParentRight="true"
-        tools:text="到这去"
+        android:text="到这去"
         android:textColor="@android:color/white"
         />
     <ImageView
@@ -82,105 +81,21 @@
         android:layout_alignParentRight="true"
         android:src="@drawable/group_10" />
 
-    <LinearLayout
+    <android.support.design.widget.TabLayout
+        android:id="@+id/cim_tab"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_38"
         android:layout_marginTop="@dimen/dp_161"
+        app:tabTextColor="@android:color/white"
         android:orientation="horizontal"
         >
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="@dimen/sp_14"
-            android:textColor="@android:color/white"
-            android:layout_marginTop="@dimen/dp_9"
-            android:layout_marginLeft="@dimen/dp_70"
-            android:layout_marginBottom="@dimen/dp_9"
-            android:text="影院详情"
-            />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="@dimen/sp_14"
-            android:textColor="@android:color/white"
-            android:layout_marginTop="@dimen/dp_9"
-            android:layout_marginLeft="@dimen/dp_103"
-            android:layout_marginBottom="@dimen/dp_9"
-            android:text="影院评价"
-            />
-    </LinearLayout>
-    <ImageView
-        android:layout_width="@dimen/dp_24"
-        android:layout_height="@dimen/dp_24"
-        android:layout_marginTop="@dimen/dp_219"
-        android:layout_marginLeft="@dimen/dp_24"
-        android:src="@drawable/copy_2"
-        />
-    <TextView
-        android:layout_width="wrap_content"
+    </android.support.design.widget.TabLayout>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/cim_view"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:text="海淀区悦秀路99号二层"
-        android:layout_marginTop="@dimen/dp_223"
-        android:layout_marginLeft="@dimen/dp_58"
-        android:textSize="@dimen/sp_12"
-        android:textColor="@android:color/white"
-        />
-    <ImageView
-        android:layout_width="@dimen/dp_24"
-        android:layout_height="@dimen/dp_24"
-        android:layout_marginTop="@dimen/dp_263"
-        android:layout_marginLeft="@dimen/dp_24"
-        android:src="@drawable/copy_2"
-        />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:text="0412-8999123"
-        android:layout_marginTop="@dimen/dp_263"
-        android:layout_marginLeft="@dimen/dp_58"
-        android:textSize="@dimen/sp_12"
-        android:textColor="@android:color/white"
-        />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:text="乘车路线"
-        android:layout_marginTop="@dimen/dp_308"
-        android:layout_marginLeft="@dimen/dp_24"
-        android:textSize="@dimen/sp_12"
-        android:textColor="@android:color/white"
-        />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:text="地铁：
-13号线西二旗站A口出，换乘运通509路或362路公交车软件园南站下车，过马路对面；"
-        android:layout_marginTop="@dimen/dp_341"
-        android:layout_marginLeft="@dimen/dp_24"
-        android:textSize="@dimen/sp_12"
-        android:textColor="@android:color/white"
-        />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:text="公交：
-乘坐362、429、592、运通509到软件园南站下车；"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="@dimen/dp_100"
-        android:layout_marginLeft="@dimen/dp_24"
-        android:textSize="@dimen/sp_12"
-        android:textColor="@android:color/white"
-        />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:text="自驾：
-可沿北五环到上地环岛，向北与第二环岛（上地七街），向西500米左右即到"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="@dimen/dp_40"
-        android:layout_marginLeft="@dimen/dp_24"
-        android:textSize="@dimen/sp_12"
-        android:textColor="@android:color/white"
-        />
+        android:layout_below="@+id/cim_tab"
+        ></android.support.v4.view.ViewPager>
 
 </RelativeLayout>
