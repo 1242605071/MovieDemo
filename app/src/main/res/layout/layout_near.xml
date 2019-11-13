@@ -1,52 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-
-    android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:layout_height="150dp">
-
+    android:layout_marginRight="@dimen/dp_20"
+    android:layout_marginLeft="@dimen/dp_20"
+    android:layout_marginTop="10dp"
+    android:background="#1c2243"
+    android:layout_height="90dp">
 
     <ImageView
         android:id="@+id/image_view"
-        android:layout_margin="10dp"
-        android:layout_width="@dimen/dp_120"
-        android:layout_height="@dimen/dp_70" />
+        android:layout_centerVertical="true"
+        android:layout_width="@dimen/dp_80"
+        android:layout_height="@dimen/dp_80"
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:orientation="horizontal">
+        android:layout_marginLeft="@dimen/dp_10"
+        />
 
-        <LinearLayout
-            android:layout_width="200dp"
-            android:layout_height="130dp"
-            android:layout_marginTop="16dp"
-            android:orientation="vertical">
-
-            <TextView
-
-                android:id="@+id/text_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:text="撒"
-                android:textColor="@android:color/white"
-                android:textSize="20dp" />
-
-            <TextView
-                android:id="@+id/text_address"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:text="撒"
-                android:textColor="@android:color/white"
-                android:textSize="16dp" />
-        </LinearLayout>
-
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="110dp">
+    <TextView
+        android:id="@+id/text_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/sp_14"
+        android:layout_marginTop="@dimen/dp_10"
+        android:textColor="@android:color/white"
+        android:layout_marginLeft="@dimen/dp_100"
+        android:text="撒"
+        />
+    <TextView
+        android:id="@+id/text_address"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/sp_12"
+        android:layout_marginTop="@dimen/dp_37"
+        android:textColor="@android:color/white"
+        android:layout_marginLeft="@dimen/dp_100"
+        android:text="撒"/>
 
             <TextView
                 android:id="@+id/text_mi"
@@ -54,11 +43,10 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentBottom="true"
-                android:layout_marginRight="26dp"
-                android:layout_marginBottom="19dp"
+                android:layout_marginRight="@dimen/dp_10"
+                android:layout_marginBottom="@dimen/dp_6"
                 android:text="200米"
                 android:textColor="@android:color/white" />
-        </RelativeLayout>
-    </LinearLayout>
 
-</LinearLayout>
+
+</RelativeLayout>

@@ -2,6 +2,7 @@ package com.bw.movie.model.app;
 
 import com.bw.movie.model.bean.BanBean;
 import com.bw.movie.model.bean.CinemaBean;
+import com.bw.movie.model.bean.CinemaInfo;
 import com.bw.movie.model.bean.CinemasInfoByRegionBean;
 import com.bw.movie.model.bean.ComBean;
 import com.bw.movie.model.bean.CommentsBean;
@@ -13,6 +14,7 @@ import com.bw.movie.model.bean.NearbyBean;
 import com.bw.movie.model.bean.OrderBean;
 import com.bw.movie.model.bean.PopBean;
 import com.bw.movie.model.bean.RegioBean;
+import com.bw.movie.model.bean.ResultInfo;
 import com.bw.movie.model.bean.SchedBean;
 import com.bw.movie.model.bean.SeatleBean;
 import com.bw.movie.model.bean.SerachBean;
@@ -86,6 +88,11 @@ public interface Api {
     //根据区域查询影院
     @GET("movieApi/cinema/v2/findCinemaByRegion")
     Observable<IRequest<List<RegioBean>>> findCinemaByRegion(@Query("regionId") int regionId);
+
+    //查询区域列表
+    @GET("movieApi/tool/v2/findRegionList")
+    Observable<IRequest<List<ResultInfo>>> findRegionList();
+
     //查询电影详情
     @GET("movieApi/movie/v2/findMoviesDetail")
     Observable<IRequest<DetailsBean>>  findMoviesDetail(@Query("movieId") int movieId);
@@ -107,4 +114,8 @@ public interface Api {
     @FormUrlEncoded
     @POST("movieApi/movie/v2/verify/buyMovieTickets")
     Observable<OrderBean> buyMovieTickets(@Header("userId") String userId,@Header("sessionId") String sessionId,@Field("scheduleId") int scheduleId,@Field("seat") String seat,@Field("sign") String sign);
+
+    //查询电影信息明细
+    @GET("movieApi/cinema/v1/findCinemaInfo")
+    Observable<IRequest<CinemaInfo>> findCinemaInfo(@Header("userId") String userId, @Header("sessionId") String sessionId, @Query("cinemaId") int cinemaId);
 }

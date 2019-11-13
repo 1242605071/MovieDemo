@@ -18,4 +18,6 @@ public class CinemaBean {
         public int id;
        public String name;
        public String logo;
+
+
 }
