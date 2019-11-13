@@ -17,6 +17,7 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
     }
     sourceSets {
         main {
@@ -121,4 +122,5 @@ dependencies {
     implementation 'com.kyle.nestedradiogrouplib:radiogrouplib:1.0.1'
     implementation 'com.github.xiaohaibin:XBanner:1.7.0'
     implementation files('libs/BaiduLBS_Android.jar')
+    implementation 'com.android.support:multidex:1.0.3'
 }

@@ -2,6 +2,10 @@ package com.bw.movie.model.base;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.Toast;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 
 public abstract class BaseActivity extends AppCompatActivity {
@@ -14,7 +18,9 @@ public abstract class BaseActivity extends AppCompatActivity {
             setContentView(initLayout());
             //初始化
         }
+
     }
+
 
     protected abstract int initLayout();
 

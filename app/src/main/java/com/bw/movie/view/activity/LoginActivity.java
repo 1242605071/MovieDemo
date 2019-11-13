@@ -1,6 +1,7 @@
 package com.bw.movie.view.activity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -14,6 +15,7 @@ import com.bw.movie.R;
 import com.bw.movie.model.app.App;
 import com.bw.movie.model.base.BaseActivity;
 import com.bw.movie.model.bean.IRequest;
+import com.bw.movie.model.bean.LogBean;
 import com.bw.movie.model.encryption.Base64;
 import com.bw.movie.model.encryption.EncryptUtil;
 import com.bw.movie.presenter.BindingLoginPresenter;
@@ -104,12 +106,18 @@ public class LoginActivity extends BaseActivity {
 
 
 
-    private class Login implements DataCall {
+    private class Login implements DataCall <LogBean>{
         @Override
-        public void success(Object data) {
+        public void success(LogBean data) {
+            SharedPreferences login = getSharedPreferences("login", MODE_PRIVATE);
+            SharedPreferences.Editor edit = login.edit();
+            edit.putString("userId", data.userId + "");
+            edit.putString("sessionId", data.sessionId );
+            edit.commit();
             Toast.makeText(LoginActivity.this, "登录成功", Toast.LENGTH_SHORT).show();
             startActivity(new Intent(LoginActivity.this, ShowActivity.class));
         }
+
 
         @Override
         public void fail(IRequest iRequest) {

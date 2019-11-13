@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bw.movie.R;
 import com.bw.movie.model.base.BaseActivity;
@@ -12,6 +13,9 @@ import com.bw.movie.view.fragment.showFragment.FilmFragment;
 import com.bw.movie.view.fragment.showFragment.MypageFragment;
 import com.kyle.radiogrouplib.NestedRadioGroup;
 import com.kyle.radiogrouplib.NestedRadioLayout;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -58,6 +62,7 @@ public class ShowActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         // TODO: add setContentView(...) invocation
         ButterKnife.bind(this);
+
         // 初始化Fragment
         homeFragment = new FilmFragment();
         cinemaFragment = new CinemaFragment();
@@ -119,6 +124,21 @@ public class ShowActivity extends BaseActivity {
                 tvCinema.setVisibility(View.GONE);
                 tvMine.setVisibility(View.VISIBLE);
                 break;
+        }
+    }
+    boolean isState = true;
+    public void onBackPressed() {
+        if (isState) {
+            isState = false;
+            Toast.makeText(this, "再按一次退出程序", Toast.LENGTH_SHORT).show();
+            new Timer().schedule(new TimerTask() {
+                @Override
+                public void run() {
+                    isState = true;
+                }
+            }, 2000);
+        } else {
+            finish();
         }
     }
 }

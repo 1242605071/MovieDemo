@@ -91,7 +91,7 @@ public interface Api {
     Observable<IRequest<DetailsBean>>  findMoviesDetail(@Query("movieId") int movieId);
     //评论列表
     @GET("movieApi/movie/v2/findAllMovieComment")
-    Observable<CommentsBean> commentsMap(@Query("movieId") int movieId,@Query("page") int page, @Query("count") int count);
+    Observable<IRequest<List<CommentsBean>>> commentsMap(@Query("movieId") int movieId,@Query("page") int page, @Query("count") int count);
     // 根据电影id和区域id查询影院
     @GET("movieApi/movie/v2/findCinemasInfoByRegion")
     Observable<CinemasInfoByRegionBean> findCinemasInfoByRegion(@Query("movieId") int movieId, @Query("regionId") int regionId,
@@ -106,6 +106,5 @@ public interface Api {
     //购票下单
     @FormUrlEncoded
     @POST("movieApi/movie/v2/verify/buyMovieTickets")
-    Observable<OrderBean> buyMovieTickets(@Field("userId") String userId,@Field("sessionId")String sessionId,@Query("scheduleId") int scheduleId,@Query("seat")String seat,@Query("sign")String sign);
-
+    Observable<OrderBean> buyMovieTickets(@Header("userId") String userId,@Header("sessionId") String sessionId,@Field("scheduleId") int scheduleId,@Field("seat") String seat,@Field("sign") String sign);
 }

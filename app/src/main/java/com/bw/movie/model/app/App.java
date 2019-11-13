@@ -2,6 +2,8 @@ package com.bw.movie.model.app;
 
 import android.app.Application;
 import android.content.Context;
+import android.support.multidex.MultiDex;
+import android.support.multidex.MultiDexApplication;
 
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.tencent.mm.opensdk.openapi.IWXAPI;
@@ -16,7 +18,7 @@ import com.tencent.mm.opensdk.openapi.WXAPIFactory;
  *  *
  *  
  */
-public class App extends Application {
+public class App extends MultiDexApplication {
     public static Context context;
     public static IWXAPI api;
     public static IWXAPI getWXApi(){
@@ -34,5 +36,11 @@ public class App extends Application {
     private void regoToWx() {
         api = WXAPIFactory.createWXAPI(this, "wxb3852e6a6b7d9516", true);
         api.registerApp("wxb3852e6a6b7d9516");
+    }
+
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(base);
+        MultiDex.install(this);
     }
 }
