@@ -1,10 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-    <com.jcodecraeer.xrecyclerview.XRecyclerView
+    <android.support.v7.widget.RecyclerView
         android:id="@+id/comm_recy"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"></com.jcodecraeer.xrecyclerview.XRecyclerView>
+        android:layout_height="match_parent"
+        android:layout_weight="9"
+        >
+    </android.support.v7.widget.RecyclerView>
+    <Button
+        android:id="@+id/btn_paiqi"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_40"
+        android:text="查看该影院电影排期"
+        android:textColor="@android:color/white"
+        android:background="#e8185e"
+        />
+
 </LinearLayout>

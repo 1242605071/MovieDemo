@@ -2,6 +2,7 @@ package com.bw.movie.view.fragment.cinema_detailsFragment;
 
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,7 +14,6 @@ import com.bw.movie.model.bean.IRequest;
 import com.bw.movie.presenter.CinemaCommentPresenter;
 import com.bw.movie.view.adapter.CommentAdapter;
 import com.bw.movie.view.core.DataCall;
-import com.jcodecraeer.xrecyclerview.XRecyclerView;
 
 import java.util.List;
 
@@ -26,9 +26,9 @@ import butterknife.Unbinder;
  * Author:  杨世博
  * Description: 影院评价
  */
-public class CommentFragment extends BaseFragment {
+public class CommentFragment extends BaseFragment{
     @BindView(R.id.comm_recy)
-    XRecyclerView commRecy;
+    RecyclerView commRecy;
     Unbinder unbinder;
     private CommentAdapter adapter;
     private CinemaCommentPresenter presenter;
@@ -61,6 +61,7 @@ public class CommentFragment extends BaseFragment {
         super.onDestroyView();
         unbinder.unbind();
     }
+
 
     private class Cinema implements DataCall<List<CinemaCommentBean>> {
         @Override

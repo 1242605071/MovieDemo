@@ -26,7 +26,7 @@ import java.util.List;
  * Author:  杨世博
  * Description:
  */
-public class CommentAdapter extends XRecyclerView.Adapter {
+public class CommentAdapter extends RecyclerView.Adapter {
     private List<CinemaCommentBean> list = new ArrayList<>();
 
     public void addAll(List<CinemaCommentBean> data) {
