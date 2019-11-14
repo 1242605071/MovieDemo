@@ -81,7 +81,7 @@ public class SelectionActivity extends BaseIActivity implements IView.doView {
     @BindView(R.id.radio_zzfb)
     RadioButton radioZzfb;
     @BindView(R.id.liner_lay)
-    LinearLayout linerLay;
+    RelativeLayout linerLay;
     @BindView(R.id.btn_purchaseOrder)
     Button btnPurchaseOrder;
     @BindView(R.id.room_btn)
