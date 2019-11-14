@@ -103,7 +103,8 @@ public class SelectionActivity extends BaseIActivity implements IView.doView {
     private String sessionId;
     private String sign;
     private String seatt;
-
+    private String order;
+    public static int flag = 0;
     @Override
     protected BasePersenter initPersenter() {
         return new Presenter(this);
@@ -151,14 +152,23 @@ public class SelectionActivity extends BaseIActivity implements IView.doView {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btn_purchaseOrder:
-                linerLay.setVisibility(View.VISIBLE);
+                if (flag == 0) {
+                    // 第一次单击触发的事件
+                    linerLay.setVisibility(View.VISIBLE);
+                    flag = 1;
+
+                } else {
+                    // 第二次单击buttont改变触发的事件
+                    persenter.buyMovieTickets(userId,sessionId,scheduleId,seatt,sign);
+                    persenter.pay(userId,sessionId,1,order);
+                    flag = 0;
+                }
 
                 break;
             case R.id.room_btn:
                 break;
             case R.id.weixin:
                 Log.i("aaaaaad", "座位"+seatt);
-                persenter.buyMovieTickets(userId,sessionId,scheduleId,seatt,sign);
                 break;
         }
     }
@@ -263,10 +273,10 @@ public class SelectionActivity extends BaseIActivity implements IView.doView {
             });
         } else if (obj instanceof OrderBean) {
             OrderBean orderBean = (OrderBean) obj;
-            String order = orderBean.orderId;
-            Toast.makeText(this, "订单号"+order, Toast.LENGTH_SHORT).show();
-            Log.i("aaaaaa", "onCurress: "+order);
-            persenter.pay(userId,sessionId,1,order);
+            order = orderBean.orderId;
+            Toast.makeText(this, "订单号"+ order, Toast.LENGTH_SHORT).show();
+            Log.i("aaaaaa", "onCurress: "+ order);
+
         }else if (obj instanceof PayBean){
             PayBean payBean = (PayBean) obj;
             PayReq payReq = new PayReq();
