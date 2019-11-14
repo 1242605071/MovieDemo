@@ -30,6 +30,18 @@ public class NearAdapter extends XRecyclerView.Adapter {
             list.addAll(data);
         }
     }
+    //第一步 定义接口
+    public interface OnItemClickListener {
+        void onClick(int position);
+    }
+
+    private OnItemClickListener listener;
+
+    //第二步， 写一个公共的方法
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        this.listener = listener;
+    }
+
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -38,7 +50,7 @@ public class NearAdapter extends XRecyclerView.Adapter {
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, final int position) {
         MyViewHolder myViewHolder = (MyViewHolder) holder;
         ((MyViewHolder) holder).text_name.setText(list.get(position).name);
         ((MyViewHolder) holder).text_address.setText(list.get(position).address);
@@ -49,6 +61,14 @@ public class NearAdapter extends XRecyclerView.Adapter {
                 .into(((MyViewHolder) holder).image_view);
 //        String logo = list.get(position).logo;
 //        ((MyViewHolder) holder).image_view.setImageURI(Uri.parse(logo));
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (listener!=null){
+                    listener.onClick(position);
+                }
+            }
+        });
     }
 
     @Override

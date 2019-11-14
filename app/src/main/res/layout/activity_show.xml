@@ -1,111 +1,164 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".view.activity.ShowActivity">
+
     <FrameLayout
         android:id="@+id/frame"
-        android:layout_width="@dimen/dp_360"
-        android:layout_height="wrap_content"
-        />
-    <RelativeLayout
-        android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#DFE0E7">
+        android:layout_height="0dp"
+        android:layout_weight="9"
+        />
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="#1c2243"
+        android:orientation="horizontal"
+        >
+        <RelativeLayout
+            android:id="@+id/relay_view1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_horizontal">
 
-        <com.kyle.radiogrouplib.NestedRadioGroup
-            android:id="@+id/rg_group"
-            android:layout_width="@dimen/dp_360"
-            android:layout_height="@dimen/dp_60"
+            <LinearLayout
+                android:id="@+id/lin_movie"
+                android:layout_width="@dimen/dp_108"
+                android:layout_height="@dimen/dp_36"
+                android:layout_marginTop="@dimen/dp_12"
+                android:layout_marginBottom="@dimen/dp_12"
+                android:background="@drawable/home_btn"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal">
 
-            android:background="#1c2243">
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                <ImageView
+                    android:layout_width="@dimen/dp_20"
+                    android:layout_height="@dimen/dp_20"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/movie_true" />
 
                 <TextView
-                    android:id="@+id/tv_movies"
+                    android:id="@+id/tv_moview"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/dp_14"
-                    android:layout_marginTop="@dimen/dp_12"
-                    android:background="@drawable/home_btn"
-                    android:paddingLeft="@dimen/dp_60"
-                    android:paddingTop="@dimen/dp_9"
-                    android:paddingRight="@dimen/dp_20"
-                    android:paddingBottom="@dimen/dp_9"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/dp_20"
                     android:text="电影"
                     android:textColor="#e8185e"
                     android:textSize="@dimen/sp_14" />
+            </LinearLayout>
 
-                <com.kyle.radiogrouplib.NestedRadioLayout
+            <ImageView
+                android:id="@+id/movie_ima"
+                android:layout_width="@dimen/dp_20"
+                android:layout_height="@dimen/dp_20"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/home_selector"
+                android:visibility="invisible" />
+        </RelativeLayout>
 
-                    android:id="@+id/rb_movies"
+        <RelativeLayout
+            android:id="@+id/relay_view2"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_horizontal">
+
+            <LinearLayout
+                android:id="@+id/lin_cinema"
+                android:layout_width="@dimen/dp_108"
+                android:layout_height="@dimen/dp_36"
+                android:layout_marginTop="@dimen/dp_12"
+                android:layout_marginBottom="@dimen/dp_12"
+                android:background="@drawable/home_btn"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal"
+                android:visibility="invisible">
+
+                <ImageView
                     android:layout_width="@dimen/dp_20"
                     android:layout_height="@dimen/dp_20"
-                    android:layout_marginLeft="@dimen/dp_34"
-                    android:layout_marginTop="@dimen/dp_20"
-                    android:background="@drawable/home_selector"
-                    android:button="@null"
-                    android:checked="true" />
+                    android:layout_gravity="center_vertical"
+                    android:background="@drawable/yingyuan_true"
+                    />
 
                 <TextView
                     android:id="@+id/tv_cinema"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/dp_130"
-                    android:layout_marginTop="@dimen/dp_12"
-                    android:background="@drawable/home_btn"
-                    android:paddingLeft="@dimen/dp_60"
-                    android:paddingTop="@dimen/dp_9"
-                    android:paddingRight="@dimen/dp_20"
-                    android:paddingBottom="@dimen/dp_9"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/dp_20"
                     android:text="影院"
                     android:textColor="#e8185e"
-                    android:textSize="@dimen/sp_14"
-                    android:visibility="invisible" />
+                    android:textSize="@dimen/sp_14" />
+            </LinearLayout>
 
-                <com.kyle.radiogrouplib.NestedRadioLayout
-                    android:id="@+id/rb_cinema"
+            <ImageView
+                android:id="@+id/cinema_ima"
+                android:layout_width="@dimen/dp_20"
+                android:layout_height="@dimen/dp_20"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/yingyuna_false" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/relay_view3"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_horizontal">
+
+            <LinearLayout
+                android:id="@+id/lin_mine"
+                android:layout_width="@dimen/dp_108"
+                android:layout_height="@dimen/dp_36"
+                android:layout_marginTop="@dimen/dp_12"
+                android:layout_marginBottom="@dimen/dp_12"
+                android:background="@drawable/home_btn"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal"
+                android:visibility="invisible">
+
+                <ImageView
                     android:layout_width="@dimen/dp_20"
                     android:layout_height="@dimen/dp_20"
-                    android:layout_marginLeft="@dimen/dp_150"
-                    android:layout_marginTop="@dimen/dp_20"
-                    android:layout_marginRight="@dimen/dp_20"
-                    android:background="@drawable/cinema_selector"
-                    android:button="@null" />
+                    android:layout_gravity="center_vertical"
+                    android:background="@drawable/mine_selector"
+                    android:src="@drawable/mine_true"
+
+                    />
 
                 <TextView
                     android:id="@+id/tv_mine"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/dp_248"
-                    android:layout_marginTop="@dimen/dp_12"
-                    android:background="@drawable/home_btn"
-                    android:paddingLeft="@dimen/dp_60"
-                    android:paddingTop="@dimen/dp_9"
-                    android:paddingRight="@dimen/dp_20"
-                    android:paddingBottom="@dimen/dp_9"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/dp_20"
                     android:text="我的"
                     android:textColor="#e8185e"
                     android:textSize="@dimen/sp_14"
-                    android:visibility="invisible" />
 
-                <com.kyle.radiogrouplib.NestedRadioLayout
-                    android:id="@+id/rb_mine"
-                    android:layout_width="@dimen/dp_20"
-                    android:layout_height="@dimen/dp_20"
-                    android:layout_marginLeft="@dimen/dp_268"
-                    android:layout_marginTop="@dimen/dp_20"
-                    android:layout_marginRight="@dimen/dp_20"
-                    android:background="@drawable/mine_selector"
-                    android:button="@null" />
-            </RelativeLayout>
-        </com.kyle.radiogrouplib.NestedRadioGroup>
-    </RelativeLayout>
-</RelativeLayout>
+                    />
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/mine_ima"
+                android:layout_width="@dimen/dp_20"
+                android:layout_height="@dimen/dp_20"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/mine_false" />
+        </RelativeLayout>
+
+
+    </RadioGroup>
+
+
+</LinearLayout>

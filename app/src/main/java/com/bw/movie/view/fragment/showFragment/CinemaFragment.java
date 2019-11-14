@@ -125,13 +125,6 @@ public class CinemaFragment extends BaseFragment {
         }
     }
 
-//    @OnClick(R.id.location)
-//    public void onViewClicked() {
-//        bdLocationUtils = new BDLocationUtils(getContext());
-//        bdLocationUtils.doLocation();//开启定位
-//        bdLocationUtils.mLocationClient.start();//开始定位
-//        MyLocationListener myLocationListener = new MyLocationListener();
-//
-//    }
+
 
 }

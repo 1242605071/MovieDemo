@@ -1,5 +1,7 @@
 package com.bw.movie.view.fragment.cinemaFragment;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
@@ -13,6 +15,7 @@ import com.bw.movie.model.bean.IRequest;
 import com.bw.movie.model.bean.NearbyBean;
 import com.bw.movie.presenter.NearPresneter;
 import com.bw.movie.presenter.RecomPresenter;
+import com.bw.movie.view.activity.Cinema_detailsActivity;
 import com.bw.movie.view.adapter.NearAdapter;
 import com.bw.movie.view.adapter.RecomAdapter;
 import com.bw.movie.view.core.DataCall;
@@ -45,6 +48,13 @@ public class NearFragment extends BaseFragment implements XRecyclerView.LoadingL
         nearXrecview.setAdapter(adapter);
         nearPresneter = new NearPresneter(new Neart());
         nearXrecview.setLoadingListener(this);
+        adapter.setOnItemClickListener(new NearAdapter.OnItemClickListener() {
+            @Override
+            public void onClick(int position) {
+                Intent intent = new Intent(getContext(), Cinema_detailsActivity.class);
+                startActivity(intent);
+            }
+        });
         onRefresh();
     }
 

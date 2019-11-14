@@ -3,7 +3,6 @@ package com.bw.movie.view.fragment.cinemaFragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,12 +29,12 @@ import butterknife.Unbinder;
  * Description: 推荐影院页面
  */
 public class RecomFragment extends BaseFragment implements XRecyclerView.LoadingListener {
+
     @BindView(R.id.recom_xrecyview)
     XRecyclerView recomXrecyview;
     Unbinder unbinder;
     private RecomAdapter adapter;
     private RecomPresenter recomPresenter;
-    private int cimid;
     private int idd;
 
 
@@ -49,12 +48,13 @@ public class RecomFragment extends BaseFragment implements XRecyclerView.Loading
         recomPresenter = new RecomPresenter(new Rccom());
         recomXrecyview.setLoadingListener(this);
 
+
         adapter.setOnItemClickListener(new RecomAdapter.OnItemClickListener() {
             @Override
             public void onClick(int position) {
                 Intent intent = new Intent(getContext(), Cinema_detailsActivity.class);
+                intent.putExtra("id",idd);
                 startActivity(intent);
-
 
             }
         });
@@ -104,6 +104,7 @@ public class RecomFragment extends BaseFragment implements XRecyclerView.Loading
             adapter.addAll(data);
             adapter.notifyDataSetChanged();
 
+             idd = data.get(0).id;
         }
 
         @Override

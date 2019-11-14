@@ -2,6 +2,7 @@ package com.bw.movie.model.app;
 
 import com.bw.movie.model.bean.BanBean;
 import com.bw.movie.model.bean.CinemaBean;
+import com.bw.movie.model.bean.CinemaCommentBean;
 import com.bw.movie.model.bean.CinemaInfo;
 import com.bw.movie.model.bean.CinemasInfoByRegionBean;
 import com.bw.movie.model.bean.ComBean;
@@ -118,4 +119,9 @@ public interface Api {
     //查询电影信息明细
     @GET("movieApi/cinema/v1/findCinemaInfo")
     Observable<IRequest<CinemaInfo>> findCinemaInfo(@Header("userId") String userId, @Header("sessionId") String sessionId, @Query("cinemaId") int cinemaId);
+
+    //查询影院用户评论列表
+    @GET("movieApi/cinema/v1/findAllCinemaComment")
+    Observable<IRequest<List<CinemaCommentBean>>> findAllCinemaComment(@Query("cinemaId") int cinemaId, @Query("page") int page, @Query("count") int count);
+
 }

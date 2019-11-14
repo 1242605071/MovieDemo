@@ -1,6 +1,5 @@
 package com.bw.movie.view.activity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -10,8 +9,8 @@ import android.widget.ImageView;
 import com.bw.movie.R;
 import com.bw.movie.model.base.BaseActivity;
 import com.bw.movie.view.adapter.FragmentAdapter;
-import com.bw.movie.view.fragment.Cinema_detailsFragment.CommentFragment;
-import com.bw.movie.view.fragment.Cinema_detailsFragment.DetailsFragment;
+import com.bw.movie.view.fragment.cinema_detailsFragment.CommentFragment;
+import com.bw.movie.view.fragment.cinema_detailsFragment.DetailsFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -54,6 +53,7 @@ public class Cinema_detailsActivity extends BaseActivity {
 
         cimTab.getTabAt(0).setText("影院详情");
         cimTab.getTabAt(1).setText("影院评价");
+
 
 
     }

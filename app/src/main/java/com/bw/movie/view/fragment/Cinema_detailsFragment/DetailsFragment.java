@@ -1,11 +1,11 @@
-package com.bw.movie.view.fragment.Cinema_detailsFragment;
+package com.bw.movie.view.fragment.cinema_detailsFragment;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.bw.movie.R;
@@ -13,12 +13,12 @@ import com.bw.movie.model.base.BaseFragment;
 import com.bw.movie.model.bean.CinemaInfo;
 import com.bw.movie.model.bean.IRequest;
 import com.bw.movie.presenter.CinemaInfoPresenter;
+import com.bw.movie.view.activity.ScheduActivity;
 import com.bw.movie.view.core.DataCall;
-
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import butterknife.Unbinder;
 
 /**
@@ -35,14 +35,17 @@ public class DetailsFragment extends BaseFragment {
     TextView detailsPhone;
     @BindView(R.id.details_bus)
     TextView detailsBus;
-    private CinemaInfoPresenter presenter;
+    public CinemaInfoPresenter presenter;
+    @BindView(R.id.btn_paiqi)
+    Button btnPaiqi;
 
     @Override
     protected void initData() {
-
+        Intent intent = getActivity().getIntent();
+        int id = intent.getIntExtra("id", 0);
         presenter = new CinemaInfoPresenter(new Cinmes());
 
-        presenter.RequestData("13772", "157355978503213772", 1);
+        presenter.RequestData("13772", "157355978503213772", id);
     }
 
     @Override
@@ -63,6 +66,13 @@ public class DetailsFragment extends BaseFragment {
         super.onDestroyView();
         unbinder.unbind();
     }
+
+    @OnClick(R.id.btn_paiqi)
+    public void onViewClicked() {
+        Intent intent = new Intent(getContext(), ScheduActivity.class);
+        startActivity(intent);
+    }
+
 
     private class Cinmes implements DataCall<CinemaInfo> {
         @Override
