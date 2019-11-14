@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,20 +8,21 @@
     tools:context=".view.activity.ShowActivity">
     <FrameLayout
         android:id="@+id/frame"
+        android:layout_weight="9"
         android:layout_width="@dimen/dp_360"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         />
     <RelativeLayout
         android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_height="0dp"
         android:background="#DFE0E7">
 
         <com.kyle.radiogrouplib.NestedRadioGroup
             android:id="@+id/rg_group"
             android:layout_width="@dimen/dp_360"
-            android:layout_height="@dimen/dp_60"
-
+            android:layout_height="match_parent"
             android:background="#1c2243">
 
             <RelativeLayout
@@ -108,4 +109,4 @@
             </RelativeLayout>
         </com.kyle.radiogrouplib.NestedRadioGroup>
     </RelativeLayout>
-</RelativeLayout>
+</LinearLayout>

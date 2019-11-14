@@ -12,6 +12,7 @@ import com.bw.movie.model.bean.IRequest;
 import com.bw.movie.model.bean.LogBean;
 import com.bw.movie.model.bean.NearbyBean;
 import com.bw.movie.model.bean.OrderBean;
+import com.bw.movie.model.bean.PayBean;
 import com.bw.movie.model.bean.PopBean;
 import com.bw.movie.model.bean.RegioBean;
 import com.bw.movie.model.bean.ResultInfo;
@@ -118,4 +119,9 @@ public interface Api {
     //查询电影信息明细
     @GET("movieApi/cinema/v1/findCinemaInfo")
     Observable<IRequest<CinemaInfo>> findCinemaInfo(@Header("userId") String userId, @Header("sessionId") String sessionId, @Query("cinemaId") int cinemaId);
+    //支付
+    @FormUrlEncoded
+    @POST("movieApi/movie/v2/verify/pay")
+    Observable<PayBean> pay(@Header("userId") String userId, @Header("sessionId") String sessionId,@Field("payType") int paytype,@Field("orderId")String orderId);
+
 }

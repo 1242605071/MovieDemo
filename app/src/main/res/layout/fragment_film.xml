@@ -195,7 +195,7 @@
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/rmmove"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/dp_280" />
+                android:layout_height="@dimen/dp_220" />
         </LinearLayout>
 
 

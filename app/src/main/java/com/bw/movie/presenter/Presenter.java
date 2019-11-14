@@ -5,6 +5,7 @@ import android.widget.Toast;
 import com.bw.movie.model.base.IBaseView;
 import com.bw.movie.model.bean.CinemasInfoByRegionBean;
 import com.bw.movie.model.bean.OrderBean;
+import com.bw.movie.model.bean.PayBean;
 import com.bw.movie.model.bean.SchedBean;
 import com.bw.movie.model.bean.SeatleBean;
 import com.bw.movie.model.http.HttpUtils;
@@ -107,6 +108,25 @@ public class Presenter extends IView.doData{
                     @Override
                     public void accept(Throwable throwable) throws Exception {
                      throwable.printStackTrace();
+                    }
+                });
+    }
+
+    @Override
+    public void pay(String userId, String sessionId, int paytype, String orderId) {
+        HttpUtils.getHttpUtils().getApi()
+                .pay(userId, sessionId, paytype, orderId)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Consumer<PayBean>() {
+                    @Override
+                    public void accept(PayBean payBean) throws Exception {
+                        iBaseView.onCurress(payBean);
+                    }
+                }, new Consumer<Throwable>() {
+                    @Override
+                    public void accept(Throwable throwable) throws Exception {
+
                     }
                 });
     }
