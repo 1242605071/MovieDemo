@@ -2,6 +2,7 @@ package com.bw.movie.model.app;
 
 import com.bw.movie.model.bean.BanBean;
 import com.bw.movie.model.bean.CinemaBean;
+import com.bw.movie.model.bean.CinemaCommentBean;
 import com.bw.movie.model.bean.CinemaInfo;
 import com.bw.movie.model.bean.CinemasInfoByRegionBean;
 import com.bw.movie.model.bean.ComBean;
@@ -12,6 +13,7 @@ import com.bw.movie.model.bean.IRequest;
 import com.bw.movie.model.bean.LogBean;
 import com.bw.movie.model.bean.NearbyBean;
 import com.bw.movie.model.bean.OrderBean;
+import com.bw.movie.model.bean.PayBean;
 import com.bw.movie.model.bean.PopBean;
 import com.bw.movie.model.bean.RegioBean;
 import com.bw.movie.model.bean.ResultInfo;
@@ -126,6 +128,6 @@ public interface Api {
     //支付
     @FormUrlEncoded
     @POST("movieApi/movie/v2/verify/pay")
-    Observable<PayBean> pay(@Header("userId") String userId, @Header("sessionId") String sessionId,@Field("payType") int paytype,@Field("orderId")String orderId);
+    Observable<PayBean> pay(@Header("userId") String userId, @Header("sessionId") String sessionId, @Field("payType") int paytype, @Field("orderId")String orderId);
 
 }
