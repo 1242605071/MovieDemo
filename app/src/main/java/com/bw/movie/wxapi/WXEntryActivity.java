@@ -8,14 +8,17 @@ import android.widget.Toast;
 
 
 import com.bw.movie.model.app.App;
+import com.tencent.mm.opensdk.constants.ConstantsAPI;
 import com.tencent.mm.opensdk.modelbase.BaseReq;
 import com.tencent.mm.opensdk.modelbase.BaseResp;
 import com.tencent.mm.opensdk.modelmsg.SendAuth;
+import com.tencent.mm.opensdk.openapi.IWXAPI;
 import com.tencent.mm.opensdk.openapi.IWXAPIEventHandler;
 
 import org.greenrobot.eventbus.EventBus;
 
 public class WXEntryActivity extends Activity implements IWXAPIEventHandler {
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,5 +45,24 @@ public class WXEntryActivity extends Activity implements IWXAPIEventHandler {
                 break;
         }
         finish();
+        String result;
+        if (baseResp.getType() == ConstantsAPI.COMMAND_PAY_BY_WX) {
+            switch (baseResp.errCode) {
+                case BaseResp.ErrCode.ERR_OK:
+                    result = "支付已完成";
+                    break;
+
+                case BaseResp.ErrCode.ERR_USER_CANCEL:
+                    result = "支付已取消";
+                    break;
+
+                default:
+                    result = baseResp.errStr == null ? "支付遇到问题" : baseResp.errStr;
+                    break;
+            }
+            Toast.makeText(this, result, Toast.LENGTH_SHORT).show();
+            finish();
+
+        }
     }
 }

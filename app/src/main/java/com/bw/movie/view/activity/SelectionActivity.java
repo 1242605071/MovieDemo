@@ -19,11 +19,13 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bw.movie.R;
+import com.bw.movie.model.app.App;
 import com.bw.movie.model.base.BaseIActivity;
 import com.bw.movie.model.base.BasePersenter;
 import com.bw.movie.model.bean.DetailsBean;
 import com.bw.movie.model.bean.IRequest;
 import com.bw.movie.model.bean.OrderBean;
+import com.bw.movie.model.bean.PayBean;
 import com.bw.movie.model.bean.SchedBean;
 import com.bw.movie.model.bean.SeatleBean;
 import com.bw.movie.presenter.FindMoviesDetailPresenter;
@@ -32,6 +34,7 @@ import com.bw.movie.view.adapter.MovieSeatAdapter;
 import com.bw.movie.view.adapter.SchedAdapter;
 import com.bw.movie.view.core.DataCall;
 import com.bw.movie.view.core.IView;
+import com.tencent.mm.opensdk.modelpay.PayReq;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -92,16 +95,14 @@ public class SelectionActivity extends BaseIActivity implements IView.doView {
     private double zf;
     private double fare = 0.01;
     private IView.doData persenter;
-
     //座位
     private String seat;
     //排期表
     private int scheduleId;
-    //订单号
-    private String order;
     private String userId;
     private String sessionId;
     private String sign;
+    private String seatt;
 
     @Override
     protected BasePersenter initPersenter() {
@@ -133,7 +134,6 @@ public class SelectionActivity extends BaseIActivity implements IView.doView {
         findMoviesDetailPresenter.RequestData(movieId);
         SharedPreferences login = getSharedPreferences("login", MODE_PRIVATE);
         userId = login.getString("userId", "");
-
         sessionId = login.getString("sessionId", "");
         String s = userId+""+23 + "movie";
         Log.i("asd", "加密前 "+s);
@@ -152,11 +152,13 @@ public class SelectionActivity extends BaseIActivity implements IView.doView {
         switch (view.getId()) {
             case R.id.btn_purchaseOrder:
                 linerLay.setVisibility(View.VISIBLE);
+
                 break;
             case R.id.room_btn:
                 break;
             case R.id.weixin:
-                persenter.buyMovieTickets(userId,sessionId,scheduleId,seat,sign);
+                Log.i("aaaaaad", "座位"+seatt);
+                persenter.buyMovieTickets(userId,sessionId,scheduleId,seatt,sign);
                 break;
         }
     }
@@ -192,7 +194,7 @@ public class SelectionActivity extends BaseIActivity implements IView.doView {
             List<SchedBean.ResultBean> resut = schedBean.result;
             final int halld = resut.get(0).hallId;
             scheduleId = resut.get(0).id;
-            Log.i("asdddddd", "排期"+scheduleId);
+            Log.i("asdddddd", "排期"+halld);
             LinearLayoutManager manager = new LinearLayoutManager(SelectionActivity.this, LinearLayoutManager.HORIZONTAL, false);
             roomRecycler.setLayoutManager(manager);
             SchedAdapter schedAdapter = new SchedAdapter(R.layout.room_item, resut);
@@ -213,6 +215,8 @@ public class SelectionActivity extends BaseIActivity implements IView.doView {
             SeatleBean seatleBean = (SeatleBean) obj;
             final List<SeatleBean.ResultBean> result = seatleBean.result;
             seat = result.get(0).seat;
+            String row= result.get(0).row;
+            seatt = row+"-"+seat;
             LinearLayoutManager manager = new GridLayoutManager(this, 8);
             roomMovieSeat.setLayoutManager(manager);
             MovieSeatAdapter seatAdapter = new MovieSeatAdapter(result);
@@ -259,8 +263,23 @@ public class SelectionActivity extends BaseIActivity implements IView.doView {
             });
         } else if (obj instanceof OrderBean) {
             OrderBean orderBean = (OrderBean) obj;
-            order = orderBean.orderId;
+            String order = orderBean.orderId;
+            Toast.makeText(this, "订单号"+order, Toast.LENGTH_SHORT).show();
             Log.i("aaaaaa", "onCurress: "+order);
+            persenter.pay(userId,sessionId,1,order);
+        }else if (obj instanceof PayBean){
+            PayBean payBean = (PayBean) obj;
+            PayReq payReq = new PayReq();
+            payReq.appId =payBean.appId;
+            payReq.partnerId = payBean.partnerId;
+            payReq.prepayId = payBean.prepayId;
+            payReq.nonceStr = payBean.nonceStr;
+            payReq.timeStamp = payBean.timeStamp;
+            payReq.packageValue = payBean.packageValue;
+            payReq.sign = payBean.sign;
+            payReq.extData = "app data"; // optional
+            App.api.sendReq(payReq);
+
         }
     }
 

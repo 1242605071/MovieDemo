@@ -28,5 +28,6 @@ public interface IView {
         public abstract void bySchedule( int movieId, int cinemaId);
         //购票下单
         public abstract void buyMovieTickets(String userId,String sessionId, int scheduleId,String seat,String sign);
+        public abstract void pay(String userId,String sessionId, int paytype,String orderId);
     }
 }
