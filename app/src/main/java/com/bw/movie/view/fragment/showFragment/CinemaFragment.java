@@ -1,5 +1,6 @@
 package com.bw.movie.view.fragment.showFragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -14,6 +15,7 @@ import android.widget.TextView;
 
 import com.bw.movie.R;
 import com.bw.movie.model.base.BaseFragment;
+import com.bw.movie.view.activity.SearchCinActivity;
 import com.bw.movie.view.fragment.cinemaFragment.AddressFragment;
 import com.bw.movie.view.fragment.cinemaFragment.NearFragment;
 import com.bw.movie.view.fragment.cinemaFragment.RecomFragment;
@@ -48,8 +50,10 @@ public class CinemaFragment extends BaseFragment {
     RadioGroup radioGroup;
     @BindView(R.id.location)
     ImageView location;
-    @BindView(R.id.location_text)
-    TextView locationText;
+    @BindView(R.id.city)
+    TextView city;
+    @BindView(R.id.cim_ss)
+    ImageView cimSs;
     private ArrayList<Fragment> list;
 
 
@@ -126,5 +130,9 @@ public class CinemaFragment extends BaseFragment {
     }
 
 
-
+    @OnClick(R.id.cim_ss)
+    public void onViewClicked() {
+        Intent intent = new Intent(getContext(),SearchCinActivity.class);
+        startActivity(intent);
+    }
 }

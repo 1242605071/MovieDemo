@@ -76,6 +76,7 @@
         <activity android:name=".view.activity.SelectionActivity" />
         <activity android:name=".view.activity.TestActivity">  </activity>
         <activity android:name=".view.activity.ScheduActivity"/>
+        <activity android:name=".view.activity.SearchCinActivity"/>
 
 
     </application>

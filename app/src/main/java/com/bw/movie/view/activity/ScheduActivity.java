@@ -1,5 +1,6 @@
 package com.bw.movie.view.activity;
 
+import com.bw.movie.R;
 import com.bw.movie.model.base.BaseActivity;
 
 /**
@@ -10,6 +11,6 @@ import com.bw.movie.model.base.BaseActivity;
 public class ScheduActivity extends BaseActivity {
     @Override
     protected int initLayout() {
-        return 0;
+        return R.layout.layout_cinemaschedulelist;
     }
 }

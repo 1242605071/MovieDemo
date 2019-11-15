@@ -1,17 +1,21 @@
 package com.bw.movie.view.fragment.cinema_detailsFragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+
 
 import com.bw.movie.R;
 import com.bw.movie.model.base.BaseFragment;
 import com.bw.movie.model.bean.CinemaCommentBean;
 import com.bw.movie.model.bean.IRequest;
 import com.bw.movie.presenter.CinemaCommentPresenter;
+import com.bw.movie.view.activity.ScheduActivity;
 import com.bw.movie.view.adapter.CommentAdapter;
 import com.bw.movie.view.core.DataCall;
 
@@ -19,6 +23,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import butterknife.Unbinder;
 
 /**
@@ -26,10 +31,12 @@ import butterknife.Unbinder;
  * Author:  杨世博
  * Description: 影院评价
  */
-public class CommentFragment extends BaseFragment{
+public class CommentFragment extends BaseFragment {
     @BindView(R.id.comm_recy)
     RecyclerView commRecy;
     Unbinder unbinder;
+    @BindView(R.id.btn_paiqi)
+    Button btnPaiqi;
     private CommentAdapter adapter;
     private CinemaCommentPresenter presenter;
 
@@ -40,7 +47,7 @@ public class CommentFragment extends BaseFragment{
         adapter = new CommentAdapter();
         commRecy.setAdapter(adapter);
         presenter = new CinemaCommentPresenter(new Cinema());
-        presenter.RequestData(1,1,5);
+        presenter.RequestData(1, 1, 5);
     }
 
     @Override
@@ -60,6 +67,12 @@ public class CommentFragment extends BaseFragment{
     public void onDestroyView() {
         super.onDestroyView();
         unbinder.unbind();
+    }
+
+    @OnClick(R.id.btn_paiqi)
+    public void onViewClicked() {
+        Intent intent = new Intent(getContext(), ScheduActivity.class);
+        startActivity(intent);
     }
 
 
