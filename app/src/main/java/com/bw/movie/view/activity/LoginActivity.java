@@ -16,6 +16,7 @@ import com.bw.movie.model.app.App;
 import com.bw.movie.model.base.BaseActivity;
 import com.bw.movie.model.bean.IRequest;
 import com.bw.movie.model.bean.LogBean;
+import com.bw.movie.model.bean.WxLogBean;
 import com.bw.movie.model.encryption.Base64;
 import com.bw.movie.model.encryption.EncryptUtil;
 import com.bw.movie.presenter.BindingLoginPresenter;
@@ -125,9 +126,14 @@ public class LoginActivity extends BaseActivity {
         }
     }
 
-    private class BindingLog implements DataCall {
+    private class BindingLog implements DataCall<WxLogBean> {
         @Override
-        public void success(Object data) {
+        public void success(WxLogBean data) {
+            SharedPreferences login = getSharedPreferences("login", MODE_PRIVATE);
+            SharedPreferences.Editor edit = login.edit();
+            edit.putString("userId", data.userId + "");
+            edit.putString("sessionId", data.sessionId );
+            edit.commit();
             Intent intent = new Intent(LoginActivity.this, ShowActivity.class);
             startActivity(intent);
         }

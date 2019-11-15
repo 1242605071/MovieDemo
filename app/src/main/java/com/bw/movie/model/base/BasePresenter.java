@@ -1,6 +1,9 @@
 package com.bw.movie.model.base;
 
+import android.widget.Toast;
+
 import com.bw.movie.model.app.Api;
+import com.bw.movie.model.app.App;
 import com.bw.movie.model.bean.IRequest;
 import com.bw.movie.model.http.HttpUtils;
 import com.bw.movie.view.core.DataCall;
@@ -29,7 +32,10 @@ public abstract class BasePresenter {
                     public void accept(IRequest iRequest) throws Exception {
                         if (iRequest.status.equals("0000")) {
                             dataCall.success(iRequest.result);
-                        }else
+                        }if (iRequest.status.equals("9999")){
+                            Toast.makeText(App.context, iRequest.message, Toast.LENGTH_SHORT).show();
+                        }
+                        else
                         {
                             dataCall.fail(iRequest);
                         }

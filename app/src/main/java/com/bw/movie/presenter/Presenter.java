@@ -2,6 +2,7 @@ package com.bw.movie.presenter;
 
 import android.widget.Toast;
 
+import com.bw.movie.model.app.App;
 import com.bw.movie.model.base.IBaseView;
 import com.bw.movie.model.bean.CinemasInfoByRegionBean;
 import com.bw.movie.model.bean.OrderBean;
@@ -98,9 +99,8 @@ public class Presenter extends IView.doData{
                     public void accept(OrderBean orderBean) throws Exception {
                         if (orderBean.status.equals("0000")){
                             iBaseView.onCurress(orderBean);
-                        }else{
-
-
+                        }else if (orderBean.status.equals("9999")){
+                            Toast.makeText(App.context, orderBean.message, Toast.LENGTH_SHORT).show();
                         }
 
                     }

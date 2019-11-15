@@ -90,21 +90,18 @@ public class SelectionActivity extends BaseIActivity implements IView.doView {
     TextView weixin;
     private int movieId;
     private int cinemaId;
-    private String string;
     private long sum;
     private double zf;
     private double fare = 0.01;
     private IView.doData persenter;
-    //座位
-    private String seat;
-    //排期表
-    private int scheduleId;
     private String userId;
     private String sessionId;
     private String sign;
-    private String seatt;
     private String order;
     public static int flag = 0;
+    //排期表
+    private int id;
+
     @Override
     protected BasePersenter initPersenter() {
         return new Presenter(this);
@@ -159,43 +156,20 @@ public class SelectionActivity extends BaseIActivity implements IView.doView {
 
                 } else {
                     // 第二次单击buttont改变触发的事件
-                    persenter.buyMovieTickets(userId,sessionId,scheduleId,seatt,sign);
-                    persenter.pay(userId,sessionId,1,order);
+                    SharedPreferences qw = getSharedPreferences("zw", Context.MODE_PRIVATE);
+                    String seat = qw.getString("seat", null);
+                    persenter.buyMovieTickets(userId,sessionId,id,seat,sign);
                     flag = 0;
                 }
-
                 break;
             case R.id.room_btn:
                 break;
             case R.id.weixin:
-                Log.i("aaaaaad", "座位"+seatt);
                 break;
         }
     }
 
-    //MD5加密
-    public static String MD5(String sourceStr) {
-        String result = "";
-        try {
-            MessageDigest md = MessageDigest.getInstance("MD5");
-            md.update(sourceStr.getBytes());
-            byte b[] = md.digest();
-            int i;
-            StringBuffer buf = new StringBuffer("");
-            for (int offset = 0; offset < b.length; offset++) {
-                i = b[offset];
-                if (i < 0)
-                    i += 256;
-                if (i < 16)
-                    buf.append("0");
-                buf.append(Integer.toHexString(i));
-            }
-            result = buf.toString();
-        } catch (NoSuchAlgorithmException e) {
-            System.out.println(e);
-        }
-        return result;
-    }
+
 
     @Override
     public void onCurress(Object obj) {
@@ -203,8 +177,6 @@ public class SelectionActivity extends BaseIActivity implements IView.doView {
             SchedBean schedBean = (SchedBean) obj;
             List<SchedBean.ResultBean> resut = schedBean.result;
             final int halld = resut.get(0).hallId;
-            scheduleId = resut.get(0).id;
-            Log.i("asdddddd", "排期"+halld);
             LinearLayoutManager manager = new LinearLayoutManager(SelectionActivity.this, LinearLayoutManager.HORIZONTAL, false);
             roomRecycler.setLayoutManager(manager);
             SchedAdapter schedAdapter = new SchedAdapter(R.layout.room_item, resut);
@@ -217,16 +189,12 @@ public class SelectionActivity extends BaseIActivity implements IView.doView {
 
                 @Override
                 public void getId(int idd) {
-                    SharedPreferences qq = getSharedPreferences("zw", Context.MODE_PRIVATE);
-                    qq.edit().putInt("scheduleId", idd).commit();
+                    id = idd;
                 }
             });
         } else if (obj instanceof SeatleBean) {
             SeatleBean seatleBean = (SeatleBean) obj;
             final List<SeatleBean.ResultBean> result = seatleBean.result;
-            seat = result.get(0).seat;
-            String row= result.get(0).row;
-            seatt = row+"-"+seat;
             LinearLayoutManager manager = new GridLayoutManager(this, 8);
             roomMovieSeat.setLayoutManager(manager);
             MovieSeatAdapter seatAdapter = new MovieSeatAdapter(result);
@@ -235,19 +203,18 @@ public class SelectionActivity extends BaseIActivity implements IView.doView {
                 @Override
                 public void getBack(String s) {
                     Toast.makeText(SelectionActivity.this, s, Toast.LENGTH_SHORT).show();
-                    string = s;
+                    String string = s;
                     for (int i = 0; i < result.size(); i++) {
                         if (result.get(i).status == 3) {
                             sum++;
                         }
                     }
-                    if (sum > 8) {
+                    if (sum > 100) {
                         Toast.makeText(SelectionActivity.this, "最多" + sum + "张", Toast.LENGTH_SHORT).show();
                         return;
                     } else {
                         //设置价格
                         if (sum != 0) {
-                            zf = sum * fare;
                             btnPurchaseOrder.setText("￥:" + sum * fare);
                             btnPurchaseOrder.setVisibility(View.VISIBLE);
                             roomBtn.setVisibility(View.INVISIBLE);
@@ -267,15 +234,17 @@ public class SelectionActivity extends BaseIActivity implements IView.doView {
                         str = s + ",";
                     }
                     Log.i("qqq", "getStrng: " + str);
+                    String seat = str.substring(0, str.lastIndexOf(","));
+                    Log.d("zzzz", "座位: "+seat);
                     SharedPreferences qq = getSharedPreferences("zw", Context.MODE_PRIVATE);
-                    qq.edit().putString("str", str).commit();
+                    qq.edit().putString("seat",seat).commit();
                 }
             });
         } else if (obj instanceof OrderBean) {
             OrderBean orderBean = (OrderBean) obj;
             order = orderBean.orderId;
             Toast.makeText(this, "订单号"+ order, Toast.LENGTH_SHORT).show();
-            Log.i("aaaaaa", "onCurress: "+ order);
+            persenter.pay(userId,sessionId,1,order);
 
         }else if (obj instanceof PayBean){
             PayBean payBean = (PayBean) obj;
@@ -289,7 +258,6 @@ public class SelectionActivity extends BaseIActivity implements IView.doView {
             payReq.sign = payBean.sign;
             payReq.extData = "app data"; // optional
             App.api.sendReq(payReq);
-
         }
     }
 
@@ -320,5 +288,28 @@ public class SelectionActivity extends BaseIActivity implements IView.doView {
         public void fail(IRequest iRequest) {
 
         }
+    }
+    //MD5加密
+    public static String MD5(String sourceStr) {
+        String result = "";
+        try {
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            md.update(sourceStr.getBytes());
+            byte b[] = md.digest();
+            int i;
+            StringBuffer buf = new StringBuffer("");
+            for (int offset = 0; offset < b.length; offset++) {
+                i = b[offset];
+                if (i < 0)
+                    i += 256;
+                if (i < 16)
+                    buf.append("0");
+                buf.append(Integer.toHexString(i));
+            }
+            result = buf.toString();
+        } catch (NoSuchAlgorithmException e) {
+            System.out.println(e);
+        }
+        return result;
     }
 }
