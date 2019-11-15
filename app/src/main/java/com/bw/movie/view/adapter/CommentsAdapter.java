@@ -4,6 +4,8 @@ import android.support.annotation.Nullable;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.CircleCrop;
+import com.bumptech.glide.request.RequestOptions;
 import com.bw.movie.R;
 
 import com.bw.movie.model.bean.CommentsBean;
@@ -34,7 +36,10 @@ public class CommentsAdapter extends BaseQuickAdapter<CommentsBean, BaseViewHold
         String format1 = format.format(item.commentTime);
         helper.setText(R.id.time1,format1+"");
         helper.setText(R.id.nrong,item.commentContent);
+        helper.setText(R.id.reply,"等" + item.commentId + "人觉得很赞");
         ImageView imageView = helper.getView(R.id.tx);
-        Glide.with(mContext).load(item.commentHeadPic).into(imageView);
+        Glide.with(mContext).load(item.commentHeadPic)
+                .apply(RequestOptions.bitmapTransform(new CircleCrop()))
+                .into(imageView);
     }
 }

@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#141931">
+
+    <ImageView
+        android:layout_width="@dimen/dp_16"
+        android:layout_height="@dimen/dp_16"
+        android:layout_marginLeft="@dimen/dp_28"
+        android:layout_marginTop="@dimen/dp_41"
+        android:src="@drawable/jian" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/dp_38"
+        android:text="电影排期"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/sp_16" />
+
+    <LinearLayout
+        android:background="#1c2243"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/dp_38"
+        android:layout_marginTop="@dimen/dp_80"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="明天 05-28"
+            android:textColor="@android:color/white"
+            android:layout_marginRight="@dimen/dp_20"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="明天 05-28"
+            android:textColor="@android:color/white"
+            android:layout_marginRight="@dimen/dp_20"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="明天 05-28"
+            android:textColor="@android:color/white"
+            android:layout_marginRight="@dimen/dp_20"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="明天 05-28"
+            android:textColor="@android:color/white"
+            android:layout_marginRight="@dimen/dp_20"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="明天 05-28"
+            android:textColor="@android:color/white"
+            android:layout_marginRight="@dimen/dp_20"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="明天 05-28"
+            android:textColor="@android:color/white"
+            android:layout_marginRight="@dimen/dp_20"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="明天 05-28"
+            android:textColor="@android:color/white"
+            android:layout_marginRight="@dimen/dp_20"
+            />
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_148">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_121"
+            android:layout_marginLeft="@dimen/dp_24"
+            android:layout_marginTop="@dimen/dp_10"
+            android:layout_marginRight="@dimen/dp_24"
+            android:background="#1c2243">
+
+            <com.facebook.drawee.view.SimpleDraweeView
+                android:layout_width="@dimen/dp_84"
+                android:layout_height="@dimen/dp_101"
+                android:layout_margin="@dimen/dp_10" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp_104"
+                android:layout_marginTop="@dimen/dp_10"
+                android:text="悲伤逆流成河"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/sp_14" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp_104"
+                android:layout_marginTop="@dimen/dp_40"
+                android:text="导演：落落"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/sp_12" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp_104"
+                android:layout_marginTop="@dimen/dp_67"
+                android:text="主演：赵英博  任敏  辛云来"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/sp_12" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp_104"
+                android:layout_marginTop="@dimen/dp_94"
+                android:text="评分：9.4分"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/sp_12" />
+        </RelativeLayout>
+    </RelativeLayout>
+</RelativeLayout>

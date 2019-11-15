@@ -4,10 +4,12 @@ import com.bw.movie.model.bean.BanBean;
 import com.bw.movie.model.bean.CinemaBean;
 import com.bw.movie.model.bean.CinemaCommentBean;
 import com.bw.movie.model.bean.CinemaInfo;
+import com.bw.movie.model.bean.CinemaScheduleList;
 import com.bw.movie.model.bean.CinemasInfoByRegionBean;
 import com.bw.movie.model.bean.ComBean;
 import com.bw.movie.model.bean.CommentsBean;
 import com.bw.movie.model.bean.DetailsBean;
+import com.bw.movie.model.bean.FindAllCinemas;
 import com.bw.movie.model.bean.HotBean;
 import com.bw.movie.model.bean.IRequest;
 import com.bw.movie.model.bean.LogBean;
@@ -129,5 +131,13 @@ public interface Api {
     @FormUrlEncoded
     @POST("movieApi/movie/v2/verify/pay")
     Observable<PayBean> pay(@Header("userId") String userId, @Header("sessionId") String sessionId, @Field("payType") int paytype, @Field("orderId")String orderId);
+
+    //查询影院下的电影排期
+    @GET("movieApi/cinema/v2/findCinemaScheduleList")
+    Observable<IRequest<List<CinemaScheduleList>>> findCinemaScheduleList(@Query("cinemaId") int cinemaId, @Query("page") int page, @Query("count") int count);
+
+    //影片搜索
+    @GET("movieApi/cinema/v1/findAllCinemas")
+    Observable<IRequest<List<FindAllCinemas>>> findAllCinemas(@Query("page") int page, @Query("count") int count, @Query("cinemaName") String cinemaName);
 
 }
