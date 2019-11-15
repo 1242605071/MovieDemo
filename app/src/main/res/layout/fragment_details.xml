@@ -58,13 +58,4 @@
         android:textSize="@dimen/sp_12"
         android:textColor="@android:color/white"
         />
-      <Button
-          android:id="@+id/btn_paiqi"
-          android:layout_width="match_parent"
-          android:layout_height="@dimen/dp_40"
-          android:text="查看该影院电影排期"
-          android:layout_alignParentBottom="true"
-          android:textColor="@android:color/white"
-          android:background="#e8185e"
-          />
 </RelativeLayout>

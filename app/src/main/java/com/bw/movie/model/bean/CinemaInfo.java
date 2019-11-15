@@ -21,4 +21,5 @@ public class CinemaInfo {
     public String address;
     public String phone;
     public String vehicleRoute;
+    public String name;
 }

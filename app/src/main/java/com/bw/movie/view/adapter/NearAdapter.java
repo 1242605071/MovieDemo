@@ -65,7 +65,7 @@ public class NearAdapter extends XRecyclerView.Adapter {
             @Override
             public void onClick(View v) {
                 if (listener!=null){
-                    listener.onClick(position);
+                    listener.onClick(list.get(position).id);
                 }
             }
         });

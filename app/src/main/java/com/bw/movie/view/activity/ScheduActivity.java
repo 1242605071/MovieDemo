@@ -6,7 +6,7 @@ import com.bw.movie.model.base.BaseActivity;
 /**
  * Time:  2019-11-14
  * Author:  杨世博
- * Description:
+ * Description: 影院的电影排期
  */
 public class ScheduActivity extends BaseActivity {
     @Override

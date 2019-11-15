@@ -119,6 +119,7 @@ public class CinemaFragment extends BaseFragment {
         switch (view.getId()) {
             case R.id.recom_button:
                 viewPager.setCurrentItem(0);
+
                 break;
             case R.id.near_button:
                 viewPager.setCurrentItem(1);

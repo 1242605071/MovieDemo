@@ -1,6 +1,8 @@
 package com.bw.movie.view.fragment.cinemaFragment;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
@@ -35,7 +37,7 @@ public class RecomFragment extends BaseFragment implements XRecyclerView.Loading
     Unbinder unbinder;
     private RecomAdapter adapter;
     private RecomPresenter recomPresenter;
-    private int idd;
+    private String name;
 
 
     @Override
@@ -53,7 +55,8 @@ public class RecomFragment extends BaseFragment implements XRecyclerView.Loading
             @Override
             public void onClick(int position) {
                 Intent intent = new Intent(getContext(), Cinema_detailsActivity.class);
-                intent.putExtra("id",idd);
+                intent.putExtra("id",position);
+                intent.putExtra("name",name);
                 startActivity(intent);
 
             }
@@ -103,8 +106,9 @@ public class RecomFragment extends BaseFragment implements XRecyclerView.Loading
             }
             adapter.addAll(data);
             adapter.notifyDataSetChanged();
+            CinemaBean result = (CinemaBean) data;
+            name = result.name;
 
-             idd = data.get(0).id;
         }
 
         @Override
