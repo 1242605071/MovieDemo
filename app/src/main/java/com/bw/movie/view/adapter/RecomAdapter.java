@@ -31,9 +31,10 @@ public class RecomAdapter extends XRecyclerView.Adapter {
             list.addAll(data);
         }
     }
+
     //第一步 定义接口
     public interface OnItemClickListener {
-        void onClick(int position);
+        void onClick(int  position);
     }
 
     private OnItemClickListener listener;
@@ -61,11 +62,12 @@ public class RecomAdapter extends XRecyclerView.Adapter {
                 .into(((MyViewHolder) holder).image_view);
 //        String logo = list.get(position).logo;
 //        ((MyViewHolder) holder).image_view.setImageURI(Uri.parse(logo));
+
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (listener!=null){
-                    listener.onClick(position);
+                if (listener != null) {
+                    listener.onClick(list.get(position).id);
                 }
             }
         });

@@ -140,4 +140,8 @@ public interface Api {
     @GET("movieApi/cinema/v1/findAllCinemas")
     Observable<IRequest<List<FindAllCinemas>>> findAllCinemas(@Query("page") int page, @Query("count") int count, @Query("cinemaName") String cinemaName);
 
+    //查询一周排期的时间
+    @GET("movieApi/tool/v2/findDateList")
+    Observable<IRequest> findDateList();
+
 }

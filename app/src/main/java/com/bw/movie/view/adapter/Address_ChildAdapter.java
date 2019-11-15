@@ -26,17 +26,36 @@ public class Address_ChildAdapter extends RecyclerView.Adapter<Address_ChildAdap
             list.addAll(data);
         }
     }
+    private ClickListener myclick;
+    //暴露点击方法
+    public  void setOnItemClickListener(ClickListener clickListener){
+        this.myclick = clickListener;
+    }
+
+
+    //自定义点击事件
+    public interface ClickListener{
+
+        public void click(int position);
+    }
 
     @NonNull
     @Override
-    public Address_ChildAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+    public Address_ChildAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, final int i) {
         View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.address_child, viewGroup, false);
+
+         view.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View v) {
+                 myclick.click(list.get(i).id);
+             }
+         });
         return new MyViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull Address_ChildAdapter.MyViewHolder myViewHolder, final int i) {
-       myViewHolder.address_child.setText(list.get(i).name);
+        myViewHolder.address_child.setText(list.get(i).name);
 
     }
 
@@ -57,5 +76,6 @@ public class Address_ChildAdapter extends RecyclerView.Adapter<Address_ChildAdap
             address_child = itemView.findViewById(R.id.address_child);
         }
     }
+
 
 }

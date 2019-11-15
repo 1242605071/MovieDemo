@@ -35,8 +35,7 @@ public class CommentFragment extends BaseFragment {
     @BindView(R.id.comm_recy)
     RecyclerView commRecy;
     Unbinder unbinder;
-    @BindView(R.id.btn_paiqi)
-    Button btnPaiqi;
+ 
     private CommentAdapter adapter;
     private CinemaCommentPresenter presenter;
 
@@ -69,11 +68,6 @@ public class CommentFragment extends BaseFragment {
         unbinder.unbind();
     }
 
-    @OnClick(R.id.btn_paiqi)
-    public void onViewClicked() {
-        Intent intent = new Intent(getContext(), ScheduActivity.class);
-        startActivity(intent);
-    }
 
 
     private class Cinema implements DataCall<List<CinemaCommentBean>> {

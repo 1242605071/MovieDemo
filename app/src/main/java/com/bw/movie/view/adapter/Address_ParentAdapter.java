@@ -34,12 +34,13 @@ public class Address_ParentAdapter extends RecyclerView.Adapter<Address_ParentAd
     }
 
     @Override
-    public void onBindViewHolder(@NonNull Address_ParentAdapter.MyViewholder myViewholder, final int i) {
+    public void onBindViewHolder(@NonNull final Address_ParentAdapter.MyViewholder myViewholder, final int i) {
         myViewholder.address_parent.setText(list.get(i).regionName);
         myViewholder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onItemCilckListener.OnItemCilck(list.get(i).regionId);
+
             }
         });
     }

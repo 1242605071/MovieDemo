@@ -1,5 +1,6 @@
 package com.bw.movie.view.fragment.cinemaFragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -14,6 +15,7 @@ import com.bw.movie.model.bean.RegioBean;
 import com.bw.movie.model.bean.ResultInfo;
 import com.bw.movie.presenter.AddressPresenter;
 import com.bw.movie.presenter.Address_ParentPresenter;
+import com.bw.movie.view.activity.Cinema_detailsActivity;
 import com.bw.movie.view.adapter.Address_ChildAdapter;
 import com.bw.movie.view.adapter.Address_ParentAdapter;
 import com.bw.movie.view.core.DataCall;
@@ -55,9 +57,18 @@ public class AddressFragment extends BaseFragment {
             }
         });
 
+
         LinearLayoutManager linearLayoutManager1 = new LinearLayoutManager(getContext());
         recyChild.setLayoutManager(linearLayoutManager1);
         childAdapter = new Address_ChildAdapter();
+        childAdapter.setOnItemClickListener(new Address_ChildAdapter.ClickListener() {
+            @Override
+            public void click(int position) {
+                Intent intent = new Intent(getContext(),Cinema_detailsActivity.class );
+                intent.putExtra("id",position);
+                startActivity(intent);
+            }
+        });
         recyChild.setAdapter(childAdapter);
         addressPresenter = new AddressPresenter(new Addres());
     }

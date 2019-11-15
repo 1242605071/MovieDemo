@@ -1,6 +1,8 @@
 package com.bw.movie.view.fragment.cinema_detailsFragment;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -36,16 +38,17 @@ public class DetailsFragment extends BaseFragment {
     @BindView(R.id.details_bus)
     TextView detailsBus;
     public CinemaInfoPresenter presenter;
-    @BindView(R.id.btn_paiqi)
-    Button btnPaiqi;
+
 
     @Override
     protected void initData() {
+
+        presenter = new CinemaInfoPresenter(new Cinmes());
+//        SharedPreferences sp  =getActivity().getSharedPreferences("admin",Context.MODE_PRIVATE);
+//        int id1 = sp.getInt("id", 0);
         Intent intent = getActivity().getIntent();
         int id = intent.getIntExtra("id", 0);
-        presenter = new CinemaInfoPresenter(new Cinmes());
-
-        presenter.RequestData("13772", "157355978503213772", id);
+        presenter.RequestData("13772", "157355978503213772",id );
     }
 
     @Override
@@ -66,13 +69,6 @@ public class DetailsFragment extends BaseFragment {
         super.onDestroyView();
         unbinder.unbind();
     }
-
-    @OnClick(R.id.btn_paiqi)
-    public void onViewClicked() {
-        Intent intent = new Intent(getContext(), ScheduActivity.class);
-        startActivity(intent);
-    }
-
 
     private class Cinmes implements DataCall<CinemaInfo> {
         @Override

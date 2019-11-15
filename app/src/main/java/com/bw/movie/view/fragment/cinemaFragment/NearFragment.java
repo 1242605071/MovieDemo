@@ -52,6 +52,7 @@ public class NearFragment extends BaseFragment implements XRecyclerView.LoadingL
             @Override
             public void onClick(int position) {
                 Intent intent = new Intent(getContext(), Cinema_detailsActivity.class);
+                intent.putExtra("id",position);
                 startActivity(intent);
             }
         });
