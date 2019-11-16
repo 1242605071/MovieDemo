@@ -41,6 +41,7 @@ public class WritecommentsActivity extends BaseActivity {
     private String userId;
     private String sessionId;
     private int movieId;
+    private String name;
 
     @Override
     protected int initLayout() {
@@ -65,11 +66,15 @@ public class WritecommentsActivity extends BaseActivity {
         // TODO: add setContentView(...) invocation
         ButterKnife.bind(this);
         Intent intent = getIntent();
+        name = intent.getStringExtra("name");
+        detaName.setText(name);
         movieId = intent.getIntExtra("movieId", 0);
         SharedPreferences login = getSharedPreferences("login", MODE_PRIVATE);
         userId = login.getString("userId", "");
         sessionId = login.getString("sessionId", "");
         presneter = new MovieCommentPresneter(new Writecom());
+
+
     }
 
     @OnClick(R.id.write_ima)
@@ -80,8 +85,8 @@ public class WritecommentsActivity extends BaseActivity {
     private class Writecom implements DataCall {
         @Override
         public void success(Object data) {
-            Intent intent = new Intent(WritecommentsActivity.this, ShowActivity.class);
-            startActivity(intent);
+            Toast.makeText(WritecommentsActivity.this,"评论成功",Toast.LENGTH_SHORT).show();
+          finish();
         }
 
         @Override

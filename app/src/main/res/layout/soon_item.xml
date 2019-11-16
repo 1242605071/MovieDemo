@@ -43,7 +43,7 @@
             android:layout_marginLeft="@dimen/dp_257"
             android:layout_marginTop="@dimen/dp_68"
             android:background="@drawable/se"
-            android:text="购票"
+            android:text="预约"
             android:textColor="#ffff"
             android:textSize="@dimen/sp_12" />
     </RelativeLayout>
