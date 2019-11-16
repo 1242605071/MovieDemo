@@ -46,7 +46,9 @@ public class CommentFragment extends BaseFragment {
         adapter = new CommentAdapter();
         commRecy.setAdapter(adapter);
         presenter = new CinemaCommentPresenter(new Cinema());
-        presenter.RequestData(1, 1, 5);
+        Intent intent = getActivity().getIntent();
+        int id = intent.getIntExtra("id", 0);
+        presenter.RequestData(id, 1, 5);
     }
 
     @Override

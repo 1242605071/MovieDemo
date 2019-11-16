@@ -35,10 +35,7 @@ public abstract class BasePresenter {
                         }if (iRequest.status.equals("9999")){
                             Toast.makeText(App.context, iRequest.message, Toast.LENGTH_SHORT).show();
                         }
-                        else
-                        {
-                            dataCall.fail(iRequest);
-                        }
+
                     }
                 }, new Consumer<Throwable>() {
                     @Override

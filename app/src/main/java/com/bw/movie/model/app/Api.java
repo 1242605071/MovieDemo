@@ -27,6 +27,7 @@ import com.bw.movie.model.bean.WxLogBean;
 import java.util.List;
 
 import io.reactivex.Observable;
+import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
@@ -143,5 +144,11 @@ public interface Api {
     //查询一周排期的时间
     @GET("movieApi/tool/v2/findDateList")
     Observable<IRequest> findDateList();
+
+    //添加用户对影片的评论
+    @FormUrlEncoded
+    @POST("movieApi/movie/v1/verify/movieComment")
+    Observable<IRequest> movieComment(@Header("userId") String userId, @Header("sessionId") String sessionId, @Field("movieId") int movieId,
+                                      @Field("commentContent")String commentContent, @Field("score")double score );
 
 }
