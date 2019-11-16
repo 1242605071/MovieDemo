@@ -28,9 +28,11 @@
             android:paddingLeft="@dimen/dp_10"
             android:layout_toRightOf="@+id/location"
             android:gravity="center_vertical"
-            android:text="北京"
+            android:text="未定位"
             android:textColor="#ffffff"
             android:textSize="14sp" />
+
+
 
         <ImageView
             android:id="@+id/cim_ss"

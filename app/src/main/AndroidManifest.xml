@@ -85,7 +85,10 @@
         <activity android:name=".view.activity.WritecommentsActivity" />
         <activity android:name=".view.activity.ChangeActivity" />
         <activity android:name=".view.activity.SelectionActivity" />
-        <activity android:name=".view.activity.TestActivity" />
+        <activity android:name=".view.activity.TestActivity" >
+
+        </activity>
+
         <activity android:name=".view.activity.ScheduActivity" />
         <activity android:name=".view.activity.SearchCinActivity" />
         <activity android:name=".view.myactivity.OrderActivity" />
