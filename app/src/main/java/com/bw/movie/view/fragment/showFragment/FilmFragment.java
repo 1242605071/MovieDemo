@@ -1,19 +1,26 @@
 package com.bw.movie.view.fragment.showFragment;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.baidu.location.BDLocation;
+import com.baidu.location.BDLocationListener;
+import com.baidu.location.LocationClient;
+import com.baidu.location.LocationClientOption;
 import com.bumptech.glide.Glide;
-
 import com.bw.movie.R;
+import com.bw.movie.model.app.App;
 import com.bw.movie.model.base.BaseFragment;
 import com.bw.movie.model.bean.BanBean;
 import com.bw.movie.model.bean.ComBean;
@@ -41,6 +48,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
+
+import static android.content.Context.MODE_PRIVATE;
 
 /**
  *  * <p>文件描述：首页<p>
@@ -75,7 +84,12 @@ public class FilmFragment extends BaseFragment {
     @BindView(R.id.rmmove)
     RecyclerView rmmove;
     Unbinder unbinder;
+    @BindView(R.id.pb)
+    ProgressBar pb;
     private BannerPresenter bannerPresenter;
+    private LocationClient mLocationClient;
+    private BDLocationListener mBDLocationListener;
+
     @Override
     protected int initView() {
         return R.layout.fragment_film;
@@ -91,20 +105,28 @@ public class FilmFragment extends BaseFragment {
 
     @Override
     protected void initData() {
-       bannerPresenter= new BannerPresenter(new BannerData());
-       bannerPresenter.RequestData();
-       FindReleaseMovieListPresenter findReleaseMovieListPresenter = new FindReleaseMovieListPresenter(new MovieData());
-       findReleaseMovieListPresenter.RequestData(1,10);
-       FindComingSoonMovieListPresenter findComingSoonMovieListPresenter = new FindComingSoonMovieListPresenter(new ComData());
-       findComingSoonMovieListPresenter.RequestData(1,3);
+        bannerPresenter = new BannerPresenter(new BannerData());
+        bannerPresenter.RequestData();
+        FindReleaseMovieListPresenter findReleaseMovieListPresenter = new FindReleaseMovieListPresenter(new MovieData());
+        findReleaseMovieListPresenter.RequestData(1, 10);
+        FindComingSoonMovieListPresenter findComingSoonMovieListPresenter = new FindComingSoonMovieListPresenter(new ComData());
+        findComingSoonMovieListPresenter.RequestData(1, 3);
         FindHotMovieListPresenter hotMovieListPresenter = new FindHotMovieListPresenter(new PopData());
-        hotMovieListPresenter.RequestData(1,10);
+        hotMovieListPresenter.RequestData(1, 10);
+        //定位
+        mLocationClient = new LocationClient(App.context);
+        mBDLocationListener = new MyBDLocationListener();
+        // 注册监听  
+        mLocationClient.registerLocationListener(mBDLocationListener);
     }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
         unbinder.unbind();
+        if (mLocationClient != null) {
+            mLocationClient.unRegisterLocationListener(mBDLocationListener);
+        }
     }
 
     @OnClick({R.id.ss, R.id.g1, R.id.g2, R.id.g3})
@@ -128,6 +150,43 @@ public class FilmFragment extends BaseFragment {
                 break;
         }
     }
+
+    //定位
+    @OnClick(R.id.location)
+    public void onViewClicked() {
+        pb.setVisibility(View.VISIBLE);
+        city.setVisibility(View.GONE);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                pb.setVisibility(View.GONE);
+                LocationClientOption option = new LocationClientOption();
+                option.setLocationMode(LocationClientOption.LocationMode.Hight_Accuracy);
+                option.setCoorType("bd09ll");
+                option.setScanSpan(5000);
+                option.setIsNeedAddress(true);
+                option.setNeedDeviceDirect(true);
+                mLocationClient.setLocOption(option);
+                mLocationClient.start();
+            }
+        },1000);
+    }
+
+    private class MyBDLocationListener implements BDLocationListener {
+
+        @Override
+        public void onReceiveLocation(BDLocation location) {
+            if (location != null) {
+                String address = location.getCity();
+                city.setText(address);
+                city.setVisibility(View.VISIBLE);
+                if (mLocationClient.isStarted()) {
+                    mLocationClient.stop();
+                }
+            }
+        }
+    }
+
     //轮播图
     private class BannerData implements DataCall<List<BanBean>> {
 
@@ -148,6 +207,7 @@ public class FilmFragment extends BaseFragment {
 
         }
     }
+
     //正在上映
     private class MovieData implements DataCall<List<HotBean>> {
         @Override
@@ -155,7 +215,7 @@ public class FilmFragment extends BaseFragment {
             LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
             linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
             homeFragmentHotMovieRecy.setLayoutManager(linearLayoutManager);
-            ReleaseAdapter wellreceived = new ReleaseAdapter(R.layout.hot_item,data);
+            ReleaseAdapter wellreceived = new ReleaseAdapter(R.layout.hot_item, data);
             homeFragmentHotMovieRecy.setAdapter(wellreceived);
             wellreceived.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
                 @Override
@@ -173,8 +233,9 @@ public class FilmFragment extends BaseFragment {
 
         }
     }
+
     //即将上映
-    private class ComData implements DataCall <List<ComBean>> {
+    private class ComData implements DataCall<List<ComBean>> {
         @Override
         public void success(final List<ComBean> data) {
             LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
@@ -198,8 +259,9 @@ public class FilmFragment extends BaseFragment {
 
         }
     }
+
     //热门电影
-    private class PopData implements DataCall <List<PopBean>>{
+    private class PopData implements DataCall<List<PopBean>> {
         @Override
         public void success(final List<PopBean> data) {
             homeI1.setImageURI(Uri.parse(data.get(0).horizontalImage));
