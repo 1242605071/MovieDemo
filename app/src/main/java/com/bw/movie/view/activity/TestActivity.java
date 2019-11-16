@@ -68,6 +68,7 @@ public class TestActivity extends AppCompatActivity {
                     mLocationClient.stop();
                 }
             }
+            
         }
     }
 
