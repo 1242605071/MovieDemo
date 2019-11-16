@@ -8,4 +8,5 @@ import com.baidu.location.BDLocation;
  * Description:
  */
 public class Context {
+
 }

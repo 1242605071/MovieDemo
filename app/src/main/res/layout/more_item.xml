@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto">
 
     <RelativeLayout
         android:layout_width="wrap_content"
@@ -15,12 +16,15 @@
             android:layout_marginRight="@dimen/dp_24"
             android:background="#1c2243">
 
-            <ImageView
+            <com.facebook.drawee.view.SimpleDraweeView
+                fresco:roundedCornerRadius="10dp"
+                android:id="@+id/img_gd"
                 android:layout_width="@dimen/dp_84"
                 android:layout_height="@dimen/dp_101"
                 android:layout_margin="@dimen/dp_10" />
 
             <TextView
+                android:id="@+id/name_gd"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/dp_104"
@@ -30,6 +34,7 @@
                 android:textSize="@dimen/sp_14" />
 
             <TextView
+                android:id="@+id/dy_gd"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/dp_104"
@@ -39,15 +44,19 @@
                 android:textSize="@dimen/sp_12" />
 
             <TextView
-                android:layout_width="wrap_content"
+                android:id="@+id/zhu_gd"
+                android:layout_width="@dimen/dp_160"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/dp_104"
                 android:layout_marginTop="@dimen/dp_67"
                 android:text="主演：赵英博  任敏  辛云来"
+                android:maxLines="1"
+                android:ellipsize="end"
                 android:textColor="@android:color/white"
                 android:textSize="@dimen/sp_12" />
 
             <TextView
+                android:id="@+id/pf_gd"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/dp_104"
