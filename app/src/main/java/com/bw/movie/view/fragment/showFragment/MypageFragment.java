@@ -7,12 +7,20 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bw.movie.R;
 import com.bw.movie.model.base.BaseFragment;
 import com.bw.movie.view.activity.LoginActivity;
 import com.bw.movie.view.activity.ModifyActivity;
+import com.bw.movie.view.myactivity.FeedBackActivity;
+import com.bw.movie.view.myactivity.FollowActivity;
+import com.bw.movie.view.myactivity.MyCommentActivity;
+import com.bw.movie.view.myactivity.OrderActivity;
+import com.bw.movie.view.myactivity.RecordActivity;
+import com.bw.movie.view.myactivity.SeenActivity;
+import com.bw.movie.view.myactivity.SetupActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -40,6 +48,20 @@ public class MypageFragment extends BaseFragment {
     Unbinder unbinder;
     @BindView(R.id.dsz)
     ImageView dsz;
+    @BindView(R.id.my_btn1)
+    LinearLayout myBtn1;
+    @BindView(R.id.my_btn2)
+    LinearLayout myBtn2;
+    @BindView(R.id.my_btn3)
+    LinearLayout myBtn3;
+    @BindView(R.id.my_btn4)
+    LinearLayout myBtn4;
+    @BindView(R.id.my_btn5)
+    LinearLayout myBtn5;
+    @BindView(R.id.my_btn6)
+    LinearLayout myBtn6;
+    @BindView(R.id.my_btn7)
+    LinearLayout myBtn7;
 
     @Override
     protected void initData() {
@@ -65,18 +87,47 @@ public class MypageFragment extends BaseFragment {
         unbinder.unbind();
     }
 
-
-    @OnClick({R.id.sz, R.id.carddl})
+    @OnClick({R.id.sz, R.id.carddl, R.id.my_btn1, R.id.my_btn2, R.id.my_btn3, R.id.my_btn4, R.id.my_btn5, R.id.my_btn6, R.id.my_btn7})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.sz:
-                Intent intent1 = new Intent(getContext(),ModifyActivity.class);
-                startActivity(intent1);
+                Intent intentsz = new Intent(getContext(), ModifyActivity.class);
+                startActivity(intentsz);
                 break;
             case R.id.carddl:
-                Intent intent = new Intent(getContext(),LoginActivity.class);
-                startActivity(intent);
+                Intent intentdl = new Intent(getContext(), LoginActivity.class);
+                startActivity(intentdl);
+                break;
+            case R.id.my_btn1:
+                Intent intent1 = new Intent(getContext(), FollowActivity.class);
+                startActivity(intent1);
+                break;
+            case R.id.my_btn2:
+                Intent intent2 = new Intent(getContext(), OrderActivity.class);
+                startActivity(intent2);
+                break;
+            case R.id.my_btn3:
+                Intent intent3 = new Intent(getContext(), RecordActivity.class);
+                startActivity(intent3);
+                break;
+            case R.id.my_btn4:
+                Intent intent4 = new Intent(getContext(), SeenActivity.class);
+                startActivity(intent4);
+                break;
+            case R.id.my_btn5:
+                Intent intent5 = new Intent(getContext(), MyCommentActivity.class);
+                startActivity(intent5);
+                break;
+            case R.id.my_btn6:
+                Intent intent6 = new Intent(getContext(), FeedBackActivity.class);
+                startActivity(intent6);
+                break;
+            case R.id.my_btn7:
+                Intent intent7 = new Intent(getContext(), SetupActivity.class);
+                startActivity(intent7);
                 break;
         }
     }
+
+
 }
