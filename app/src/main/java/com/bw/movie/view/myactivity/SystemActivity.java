@@ -5,6 +5,11 @@ import android.os.Bundle;
 
 import com.bw.movie.R;
 
+/**
+ *
+ *
+ *系统通知
+ */
 public class SystemActivity extends AppCompatActivity {
 
     @Override

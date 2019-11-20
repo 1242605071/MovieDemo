@@ -5,6 +5,11 @@ import android.os.Bundle;
 
 import com.bw.movie.R;
 
+/**
+ *
+ * 我的评论
+ *
+ */
 public class MyCommentActivity extends AppCompatActivity {
 
     @Override

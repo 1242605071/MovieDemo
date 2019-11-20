@@ -5,6 +5,10 @@ import android.os.Bundle;
 
 import com.bw.movie.R;
 
+/**
+ *
+ * 购票记录
+ */
 public class RecordActivity extends AppCompatActivity {
 
     @Override

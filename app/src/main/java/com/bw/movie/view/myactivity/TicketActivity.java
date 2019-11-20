@@ -5,6 +5,10 @@ import android.os.Bundle;
 
 import com.bw.movie.R;
 
+/**
+ *
+ * 我的电影票
+ */
 public class TicketActivity extends AppCompatActivity {
 
     @Override

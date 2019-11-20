@@ -5,6 +5,10 @@ import android.os.Bundle;
 
 import com.bw.movie.R;
 
+/**
+ *
+ * 设置
+ */
 public class SetupActivity extends AppCompatActivity {
 
     @Override

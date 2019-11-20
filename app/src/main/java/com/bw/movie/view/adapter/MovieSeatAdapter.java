@@ -51,11 +51,11 @@ public class MovieSeatAdapter extends RecyclerView.Adapter<MovieSeatAdapter.Movi
 
 
         int status = result.get(i).status;
-        if (status == 1) {
-            movieVIewHolder.cheBox.setChecked(false);
-        } else if (status == 2) {
-            movieVIewHolder.cheBox.setChecked(true);
-            movieVIewHolder.cheBox.setBackgroundColor(R.drawable.myy_shape);
+            if (status == 1) {
+                movieVIewHolder.cheBox.setChecked(false);
+            } else if (status == 2) {
+                movieVIewHolder.cheBox.setChecked(true);
+                movieVIewHolder.cheBox.setBackgroundColor(R.drawable.myy_shape);
         }
         final ArrayList<String> list = new ArrayList<>();
         movieVIewHolder.cheBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {

@@ -2,6 +2,7 @@ package com.bw.movie.view.fragment.showFragment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -9,11 +10,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
+import com.baidu.location.BDLocation;
+import com.baidu.location.BDLocationListener;
+import com.baidu.location.LocationClient;
+import com.baidu.location.LocationClientOption;
 import com.bw.movie.R;
+import com.bw.movie.model.app.App;
 import com.bw.movie.model.base.BaseFragment;
 import com.bw.movie.view.activity.SearchCinActivity;
 import com.bw.movie.view.fragment.cinemaFragment.AddressFragment;
@@ -54,8 +61,12 @@ public class CinemaFragment extends BaseFragment {
     TextView city;
     @BindView(R.id.cim_ss)
     ImageView cimSs;
-    private ArrayList<Fragment> list;
+    @BindView(R.id.pb)
+    ProgressBar pb;
 
+    private ArrayList<Fragment> list;
+    private LocationClient mLocationClient;
+    private BDLocationListener mBDLocationListener;
 
     @Override
     protected void initData() {
@@ -92,7 +103,11 @@ public class CinemaFragment extends BaseFragment {
 
             }
         });
-
+        //定位
+        mLocationClient = new LocationClient(App.context);
+        mBDLocationListener = new MyBDLocationListener();
+        // 注册监听  
+        mLocationClient.registerLocationListener(mBDLocationListener);
     }
 
     @Override
@@ -114,12 +129,11 @@ public class CinemaFragment extends BaseFragment {
         unbinder.unbind();
     }
 
-    @OnClick({R.id.recom_button, R.id.near_button, R.id.address_button})
+    @OnClick({R.id.recom_button, R.id.near_button, R.id.address_button, R.id.cim_ss})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.recom_button:
                 viewPager.setCurrentItem(0);
-
                 break;
             case R.id.near_button:
                 viewPager.setCurrentItem(1);
@@ -127,13 +141,48 @@ public class CinemaFragment extends BaseFragment {
             case R.id.address_button:
                 viewPager.setCurrentItem(2);
                 break;
+            case R.id.cim_ss:
+                Intent intent = new Intent(getContext(), SearchCinActivity.class);
+                startActivity(intent);
+                break;
+        }
+    }
+
+    //定位
+    @OnClick(R.id.location)
+    public void onViewClicked() {
+        pb.setVisibility(View.VISIBLE);
+        city.setVisibility(View.GONE);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                pb.setVisibility(View.GONE);
+                LocationClientOption option = new LocationClientOption();
+                option.setLocationMode(LocationClientOption.LocationMode.Hight_Accuracy);
+                option.setCoorType("bd09ll");
+                option.setScanSpan(5000);
+                option.setIsNeedAddress(true);
+                option.setNeedDeviceDirect(true);
+                mLocationClient.setLocOption(option);
+                mLocationClient.start();
+            }
+        }, 1000);
+    }
+
+    private class MyBDLocationListener implements BDLocationListener {
+
+        @Override
+        public void onReceiveLocation(BDLocation location) {
+            if (location != null) {
+                String address = location.getCity();
+                city.setText(address);
+                city.setVisibility(View.VISIBLE);
+                if (mLocationClient.isStarted()) {
+                    mLocationClient.stop();
+                }
+            }
         }
     }
 
 
-    @OnClick(R.id.cim_ss)
-    public void onViewClicked() {
-        Intent intent = new Intent(getContext(),SearchCinActivity.class);
-        startActivity(intent);
-    }
 }

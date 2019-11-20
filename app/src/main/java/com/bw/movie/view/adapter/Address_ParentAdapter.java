@@ -40,7 +40,6 @@ public class Address_ParentAdapter extends RecyclerView.Adapter<Address_ParentAd
             @Override
             public void onClick(View v) {
                 onItemCilckListener.OnItemCilck(list.get(i).regionId);
-
             }
         });
     }

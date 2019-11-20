@@ -5,6 +5,10 @@ import android.os.Bundle;
 
 import com.bw.movie.R;
 
+/**
+ *
+ * 我的关注
+ */
 public class FollowActivity extends AppCompatActivity {
 
     @Override
