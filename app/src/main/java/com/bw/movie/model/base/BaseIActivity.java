@@ -18,6 +18,7 @@ public abstract class BaseIActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
         if (initLayout()!=0){
             setContentView(initLayout());
             //初始化
