@@ -114,7 +114,7 @@ public class SelectionActivity extends BaseIActivity implements IView.doView {
         movieId = intent.getIntExtra("movieId", 0);
         cinemaId = intent.getIntExtra("cinemaId", 0);
         Log.i("aaa", "initView: " + cinemaId);
-        persenter.bySchedule(25, 1);
+        persenter.bySchedule(24, 2);
 
     }
 

@@ -5,6 +5,7 @@ import android.widget.Toast;
 import com.bw.movie.model.app.App;
 import com.bw.movie.model.base.IBaseView;
 import com.bw.movie.model.bean.CinemasInfoByRegionBean;
+import com.bw.movie.model.bean.MovieBean;
 import com.bw.movie.model.bean.OrderBean;
 import com.bw.movie.model.bean.PayBean;
 import com.bw.movie.model.bean.SchedBean;
@@ -127,6 +128,20 @@ public class Presenter extends IView.doData{
                     @Override
                     public void accept(Throwable throwable) throws Exception {
 
+                    }
+                });
+    }
+
+    @Override
+    public void findMyMovieCommentList(String userId, String sessionId, int page, int count) {
+        HttpUtils.getHttpUtils().getApi()
+                .findMyMovieCommentList(userId, sessionId, page, count)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Consumer<MovieBean>() {
+                    @Override
+                    public void accept(MovieBean movieBean) throws Exception {
+                        iBaseView.onCurress(movieBean);
                     }
                 });
     }

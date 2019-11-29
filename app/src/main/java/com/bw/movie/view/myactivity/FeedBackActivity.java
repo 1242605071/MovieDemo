@@ -5,7 +5,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.Toast;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.bw.movie.R;
 import com.bw.movie.model.base.BaseActivity;
@@ -26,6 +27,16 @@ public class FeedBackActivity extends BaseActivity {
     Button mTv;
     @BindView(R.id.text)
     EditText mText;
+    @BindView(R.id.back_image)
+    ImageView mBackImage;
+    @BindView(R.id.back_name)
+    TextView mBackName;
+    @BindView(R.id.back_wenzi)
+    TextView mBackWenzi;
+    @BindView(R.id.back_wenzi2)
+    TextView mBackWenzi2;
+    @BindView(R.id.rl)
+    RelativeLayout mRl;
 
 
     @Override
@@ -48,9 +59,13 @@ public class FeedBackActivity extends BaseActivity {
                 finish();
                 break;
             case R.id.tv:
-
-                Toast.makeText(this, "提交成功", Toast.LENGTH_SHORT).show();
-                finish();
+                mRl.setVisibility(View.GONE);
+                mTv.setVisibility(View.GONE);
+                mText.setVisibility(View.GONE);
+                mBackImage.setVisibility(View.VISIBLE);
+                mBackName.setVisibility(View.VISIBLE);
+                mBackWenzi.setVisibility(View.VISIBLE);
+                mBackWenzi2.setVisibility(View.VISIBLE);
                 break;
         }
     }

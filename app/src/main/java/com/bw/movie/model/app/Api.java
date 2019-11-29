@@ -13,6 +13,7 @@ import com.bw.movie.model.bean.FindAllCinemas;
 import com.bw.movie.model.bean.HotBean;
 import com.bw.movie.model.bean.IRequest;
 import com.bw.movie.model.bean.LogBean;
+import com.bw.movie.model.bean.MovieBean;
 import com.bw.movie.model.bean.NearbyBean;
 import com.bw.movie.model.bean.OrderBean;
 import com.bw.movie.model.bean.PayBean;
@@ -149,5 +150,7 @@ public interface Api {
     @POST("movieApi/movie/v1/verify/movieComment")
     Observable<IRequest> movieComment(@Header("userId") String userId, @Header("sessionId") String sessionId, @Field("movieId") int movieId,
                                       @Field("commentContent")String commentContent, @Field("score")double score );
-
+    //查询我对电影的评论列表
+    @GET("movieApi/user/v2/verify/findMyMovieCommentList")
+    Observable<MovieBean> findMyMovieCommentList(@Header("userId") String userId, @Header("sessionId") String sessionId, @Query("page") int page,@Query("count") int count);
 }

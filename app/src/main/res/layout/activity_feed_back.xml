@@ -23,6 +23,7 @@
         android:textColor="@android:color/white"
         android:textSize="@dimen/sp_16" />
    <RelativeLayout
+       android:id="@+id/rl"
        android:background="#1c2243"
        android:layout_marginTop="@dimen/dp_100"
        android:layout_centerHorizontal="true"
@@ -51,4 +52,52 @@
         android:background="#e8185e"
         android:text="提交"
         android:textColor="#ffff" />
+    <ImageView
+        android:id="@+id/back_image"
+        android:layout_width="@dimen/dp_70"
+        android:layout_height="@dimen/dp_70"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/dp_140"
+        android:src="@drawable/group"
+        android:visibility="gone"
+        />
+
+    <TextView
+        android:id="@+id/back_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/dp_237"
+        android:text="提交成功"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/sp_16"
+        android:visibility="gone"
+        />
+
+    <TextView
+        android:id="@+id/back_wenzi"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_40"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="@dimen/dp_24"
+        android:layout_marginTop="@dimen/dp_283"
+        android:layout_marginRight="@dimen/dp_24"
+        android:text="感谢您对维度影院的关注与支持,我们会认真处理您问题,"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/sp_12"
+        android:visibility="gone"
+        />
+
+    <TextView
+        android:id="@+id/back_wenzi2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/dp_303"
+        android:gravity="center_horizontal"
+        android:text="尽快修复和完善相关功能。"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/sp_12"
+        android:visibility="gone"
+        />
 </RelativeLayout>
