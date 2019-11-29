@@ -110,6 +110,7 @@ public class AddressFragment extends BaseFragment {
         @Override
         public void success(List<ResultInfo> data) {
                 parentAdapter.addAll(data);
+                parentAdapter.clear();
                 parentAdapter.notifyDataSetChanged();
 
         }
