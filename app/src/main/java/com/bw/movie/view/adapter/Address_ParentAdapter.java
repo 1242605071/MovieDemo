@@ -49,6 +49,10 @@ public class Address_ParentAdapter extends RecyclerView.Adapter<Address_ParentAd
         return list.size();
     }
 
+    public void clear() {
+        list.clear();
+    }
+
     public class MyViewholder extends RecyclerView.ViewHolder {
         TextView address_parent;
         public MyViewholder(@NonNull View itemView) {
