@@ -26,6 +26,7 @@ import com.bw.movie.model.bean.ResultInfo;
 import com.bw.movie.model.bean.SchedBean;
 import com.bw.movie.model.bean.SeatleBean;
 import com.bw.movie.model.bean.SerachBean;
+import com.bw.movie.model.bean.TonBean;
 import com.bw.movie.model.bean.WxLogBean;
 import com.bw.movie.model.bean.YingYuanPaiQi;
 
@@ -164,8 +165,8 @@ public interface Api {
 
     @GET("movieApi/user/v2/verify/findUserFollowMovieList")
     Observable<IRequest<List<GuanzhuBean>>> findUserFollowMovieList(@Header("userId")String userId, @Header("sessionId")String sessionId, @Query("page")int page, @Query("count")int count);
-
-
-
+    //查询系统消息列表
+    @GET("movieApi/tool/v1/verify/findAllSysMsgList")
+    Observable<TonBean> findAllSysMsgList(@Header("userId")String userId, @Header("sessionId")String sessionId, @Query("page")int page, @Query("count")int count);
     //@Header("userId")int userId, @Header("sessionId")String sessionId,
 }

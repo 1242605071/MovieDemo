@@ -3,7 +3,6 @@ package com.bw.movie.view.fragment.showFragment;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
@@ -17,9 +16,9 @@ import com.bumptech.glide.Glide;
 import com.bw.movie.R;
 import com.bw.movie.model.base.BaseFragment;
 import com.bw.movie.view.activity.LoginActivity;
-import com.bw.movie.view.activity.ModifyActivity;
 import com.bw.movie.view.myactivity.FeedBackActivity;
 import com.bw.movie.view.myactivity.FollowActivity;
+import com.bw.movie.view.myactivity.MessageActivity;
 import com.bw.movie.view.myactivity.MyCommentActivity;
 import com.bw.movie.view.myactivity.OrderActivity;
 import com.bw.movie.view.myactivity.RecordActivity;
@@ -64,6 +63,8 @@ public class MypageFragment extends BaseFragment {
     LinearLayout myBtn6;
     @BindView(R.id.my_btn7)
     LinearLayout myBtn7;
+    @BindView(R.id.image)
+    ImageView mImage;
     private SharedPreferences sp;
     private String name;
     private String headPic;
@@ -97,17 +98,17 @@ public class MypageFragment extends BaseFragment {
         unbinder.unbind();
     }
 
-    @OnClick({ R.id.carddl, R.id.my_btn1, R.id.my_btn2, R.id.my_btn3, R.id.my_btn4, R.id.my_btn5, R.id.my_btn6, R.id.my_btn7})
+    @OnClick({R.id.carddl, R.id.my_btn1, R.id.my_btn2, R.id.my_btn3, R.id.my_btn4, R.id.my_btn5, R.id.my_btn6, R.id.my_btn7, R.id.image})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.carddl:
-               if (textdying != null) {
-                    Intent intent = new Intent(getContext(), ModifyActivity.class);
-                   startActivity(intent);
-                }else {
-                    Intent intentdl = new Intent(getContext(), LoginActivity.class);
-                    startActivity(intentdl);
-                }
+//               if (textdying != null) {
+//                    Intent intent = new Intent(getContext(), ModifyActivity.class);
+//                   startActivity(intent);
+//                }else {
+                Intent intentdl = new Intent(getContext(), LoginActivity.class);
+                startActivity(intentdl);
+//                }
                 break;
             case R.id.my_btn1:
                 Intent intent1 = new Intent(getContext(), FollowActivity.class);
@@ -137,8 +138,13 @@ public class MypageFragment extends BaseFragment {
                 Intent intent7 = new Intent(getContext(), SetupActivity.class);
                 startActivity(intent7);
                 break;
+            case R.id.image:
+                Intent intent8 = new Intent(getContext(), MessageActivity.class);
+                startActivity(intent8);
+                break;
         }
     }
+
 
 
 }

@@ -10,6 +10,7 @@ import com.bw.movie.model.bean.OrderBean;
 import com.bw.movie.model.bean.PayBean;
 import com.bw.movie.model.bean.SchedBean;
 import com.bw.movie.model.bean.SeatleBean;
+import com.bw.movie.model.bean.TonBean;
 import com.bw.movie.model.http.HttpUtils;
 import com.bw.movie.view.core.IView;
 
@@ -142,6 +143,20 @@ public class Presenter extends IView.doData{
                     @Override
                     public void accept(MovieBean movieBean) throws Exception {
                         iBaseView.onCurress(movieBean);
+                    }
+                });
+    }
+
+    @Override
+    public void findAllSysMsgList(String userId, String sessionId, int page, int count) {
+        HttpUtils.getHttpUtils().getApi()
+                .findAllSysMsgList(userId, sessionId, page, count)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Consumer<TonBean>() {
+                    @Override
+                    public void accept(TonBean tonBean) throws Exception {
+                        iBaseView.onCurress(tonBean);
                     }
                 });
     }

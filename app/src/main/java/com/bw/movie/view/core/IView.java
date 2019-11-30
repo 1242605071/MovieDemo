@@ -31,5 +31,6 @@ public interface IView {
         public abstract void pay(String userId,String sessionId, int paytype,String orderId);
         //查询我对电影的评论列表
         public abstract void findMyMovieCommentList(String userId,String sessionId, int page, int count);
+        public abstract void findAllSysMsgList(String userId,String sessionId, int page, int count);
     }
 }

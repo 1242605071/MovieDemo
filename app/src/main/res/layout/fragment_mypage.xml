@@ -22,6 +22,7 @@
             android:textSize="@dimen/sp_16"></TextView>
 
         <ImageView
+            android:id="@+id/image"
             android:layout_width="@dimen/dp_22"
             android:layout_height="@dimen/dp_17"
             android:layout_alignParentRight="true"
