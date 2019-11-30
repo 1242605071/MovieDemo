@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginTop="@dimen/dp_20">
+    <RelativeLayout
+        android:background="#1c2243"
+        android:layout_centerHorizontal="true"
+        android:layout_width="@dimen/dp_312"
+        android:layout_height="@dimen/dp_231">
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/movie_sim"
+            android:layout_width="@dimen/dp_84"
+            android:layout_height="@dimen/dp_101"
+            android:layout_marginTop="@dimen/dp_10"
+            android:layout_marginLeft="@dimen/dp_10"
+            />
+        <TextView
+            android:id="@+id/movie_name"
+            android:layout_marginTop="@dimen/dp_10"
+            android:layout_marginLeft="@dimen/dp_114"
+            android:textSize="@dimen/sp_14"
+            android:textColor="#fff"
+            android:text="悲伤"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/movie_dao"
+            android:layout_marginTop="@dimen/dp_40"
+            android:layout_marginLeft="@dimen/dp_114"
+            android:textSize="@dimen/sp_12"
+            android:textColor="#fff"
+            android:text="悲伤"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/movie_zhu"
+            android:layout_marginTop="@dimen/dp_67"
+            android:layout_marginLeft="@dimen/dp_114"
+            android:textSize="@dimen/sp_12"
+            android:textColor="#fff"
+            android:text="悲伤"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/movie_ping"
+            android:layout_marginTop="@dimen/dp_94"
+            android:layout_marginLeft="@dimen/dp_114"
+            android:textSize="@dimen/sp_12"
+            android:textColor="#fff"
+            android:text="悲伤"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <View
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/dp_121"
+            android:background="#1c2243"
+            android:layout_width="@dimen/dp_292"
+            android:layout_height="@dimen/dp_2"
+            ></View>
+        <TextView
+            android:layout_marginTop="@dimen/dp_133"
+            android:layout_marginLeft="@dimen/dp_10"
+            android:textSize="@dimen/sp_14"
+            android:textColor="#fff"
+            android:text="我的评价"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/movie_nei"
+            android:layout_marginTop="@dimen/dp_163"
+            android:layout_marginLeft="@dimen/dp_10"
+            android:textSize="@dimen/sp_11"
+            android:textColor="#fff"
+            android:text="悲伤"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/movie_shi"
+            android:layout_marginTop="@dimen/dp_207"
+            android:layout_marginLeft="@dimen/dp_209"
+            android:textColor="#fff"
+            android:textSize="11sp"
+            android:text="2019-06-04 12:10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <com.iarcuschin.simpleratingbar.SimpleRatingBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_10"
+            android:layout_marginTop="@dimen/dp_207"
+            app:srb_drawBorderEnabled="false"
+            app:srb_fillColor="#E91E63"
+            app:srb_numberOfStars="5"
+            app:srb_rating="3"
+            app:srb_starBackgroundColor="#fff"
+            app:srb_starSize="@dimen/dp_12"
+            app:srb_stepSize="0.5"
+            />
+    </RelativeLayout>
+</RelativeLayout>

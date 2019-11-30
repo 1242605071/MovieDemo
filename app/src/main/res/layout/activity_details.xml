@@ -39,6 +39,7 @@
                     android:id="@+id/guanzhu"
                     android:layout_marginLeft="@dimen/dp_250"
                     android:layout_width="@dimen/dp_30"
+
                     android:layout_height="@dimen/dp_30"
                     android:src="@drawable/baise" />
             </LinearLayout>

@@ -45,6 +45,7 @@ public class Cinema_detailsActivity extends BaseActivity {
     TextView xiangName;
 
     private FragmentAdapter adapter;
+    private int id;
 
     @Override
     protected int initLayout() {
@@ -69,8 +70,8 @@ public class Cinema_detailsActivity extends BaseActivity {
 
         CinemaInfoPresenter presenter = new CinemaInfoPresenter(new Cinmess());
         Intent intent = getIntent();
-        int id = intent.getIntExtra("id", 0);
-        presenter.RequestData("13772", "157355978503213772",id );
+        id = intent.getIntExtra("id", 0);
+        presenter.RequestData("13772", "157355978503213772", id);
 
     }
 
@@ -82,6 +83,7 @@ public class Cinema_detailsActivity extends BaseActivity {
                 break;
             case R.id.btn_paiqi:
                 Intent intent = new Intent(this, ScheduActivity.class);
+                intent.getIntExtra("Id",id);
                 startActivity(intent);
                 break;
         }

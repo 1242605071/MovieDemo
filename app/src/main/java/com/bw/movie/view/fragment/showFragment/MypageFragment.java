@@ -1,6 +1,8 @@
 package com.bw.movie.view.fragment.showFragment;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
@@ -9,7 +11,9 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.bw.movie.R;
 import com.bw.movie.model.base.BaseFragment;
 import com.bw.movie.view.activity.LoginActivity;
@@ -41,8 +45,6 @@ public class MypageFragment extends BaseFragment {
     ImageView personimage;
     @BindView(R.id.textdying)
     TextView textdying;
-    @BindView(R.id.sz)
-    ImageView sz;
     @BindView(R.id.carddl)
     CardView carddl;
     Unbinder unbinder;
@@ -62,6 +64,13 @@ public class MypageFragment extends BaseFragment {
     LinearLayout myBtn6;
     @BindView(R.id.my_btn7)
     LinearLayout myBtn7;
+    @BindView(R.id.image_jian)
+    ImageView imageJian;
+    private SharedPreferences sp;
+    private String name;
+    private String headPic;
+    private String userId;
+    private String status;
 
     @Override
     protected void initData() {
@@ -78,6 +87,13 @@ public class MypageFragment extends BaseFragment {
         // TODO: inflate a fragment view
         View rootView = super.onCreateView(inflater, container, savedInstanceState);
         unbinder = ButterKnife.bind(this, rootView);
+        sp = getActivity().getSharedPreferences("login", Context.MODE_PRIVATE);
+        name = sp.getString("nickName", "");
+        userId = sp.getString("userId", "");
+        headPic = sp.getString("headPic", "");
+        status = sp.getString("status", "");
+        textdying.setText(name);
+        Glide.with(getActivity()).load(headPic).into(personimage);
         return rootView;
     }
 
@@ -87,16 +103,18 @@ public class MypageFragment extends BaseFragment {
         unbinder.unbind();
     }
 
-    @OnClick({R.id.sz, R.id.carddl, R.id.my_btn1, R.id.my_btn2, R.id.my_btn3, R.id.my_btn4, R.id.my_btn5, R.id.my_btn6, R.id.my_btn7})
+    @OnClick({R.id.carddl,R.id.my_btn1, R.id.my_btn2, R.id.my_btn3, R.id.my_btn4, R.id.my_btn5, R.id.my_btn6, R.id.my_btn7})
     public void onViewClicked(View view) {
         switch (view.getId()) {
-            case R.id.sz:
-                Intent intentsz = new Intent(getContext(), ModifyActivity.class);
-                startActivity(intentsz);
-                break;
             case R.id.carddl:
-                Intent intentdl = new Intent(getContext(), LoginActivity.class);
-                startActivity(intentdl);
+                if (status.equals("0000")) {
+                    Toast.makeText(getActivity(), "您已登录!!", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(getContext(), ModifyActivity.class);
+                    startActivity(intent);
+                }else{
+                    Intent intentdl = new Intent(getContext(), LoginActivity.class);
+                    startActivity(intentdl);
+                }
                 break;
             case R.id.my_btn1:
                 Intent intent1 = new Intent(getContext(), FollowActivity.class);
@@ -128,6 +146,4 @@ public class MypageFragment extends BaseFragment {
                 break;
         }
     }
-
-
 }

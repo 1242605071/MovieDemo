@@ -29,6 +29,9 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
+import java.text.SimpleDateFormat;
+import java.util.function.LongToDoubleFunction;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -110,10 +113,17 @@ public class LoginActivity extends BaseActivity {
         public void success(LogBean data) {
             SharedPreferences login = getSharedPreferences("login", MODE_PRIVATE);
             SharedPreferences.Editor edit = login.edit();
+
             edit.putString("userId", data.userId + "");
             edit.putString("sessionId", data.sessionId );
+            edit.putString("nickName",data.userInfo.nickName);
+            edit.putString("headPic",data.userInfo.headPic);
+            edit.putString("email",data.userInfo.email+"");
+            edit.putInt("sex",data.userInfo.sex);
+            edit.putLong("lastLoginTime", data.userInfo.lastLoginTime);
             edit.commit();
             Toast.makeText(LoginActivity.this, "登录成功", Toast.LENGTH_SHORT).show();
+            Log.d("sex", "sex: ");
             startActivity(new Intent(LoginActivity.this, ShowActivity.class));
         }
 

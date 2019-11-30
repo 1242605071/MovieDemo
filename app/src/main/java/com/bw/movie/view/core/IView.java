@@ -29,5 +29,7 @@ public interface IView {
         //购票下单
         public abstract void buyMovieTickets(String userId,String sessionId, int scheduleId,String seat,String sign);
         public abstract void pay(String userId,String sessionId, int paytype,String orderId);
+        //查询我对电影的评论列表
+        public abstract void findMyMovieCommentList(String userId,String sessionId, int page, int count);
     }
 }
