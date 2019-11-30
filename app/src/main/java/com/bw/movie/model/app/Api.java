@@ -1,5 +1,6 @@
 package com.bw.movie.model.app;
 
+import com.android.volley.Request;
 import com.bw.movie.model.bean.BanBean;
 import com.bw.movie.model.bean.CinemaBean;
 import com.bw.movie.model.bean.CinemaCommentBean;
@@ -19,11 +20,13 @@ import com.bw.movie.model.bean.OrderBean;
 import com.bw.movie.model.bean.PayBean;
 import com.bw.movie.model.bean.PopBean;
 import com.bw.movie.model.bean.RegioBean;
+import com.bw.movie.model.bean.Requests;
 import com.bw.movie.model.bean.ResultInfo;
 import com.bw.movie.model.bean.SchedBean;
 import com.bw.movie.model.bean.SeatleBean;
 import com.bw.movie.model.bean.SerachBean;
 import com.bw.movie.model.bean.WxLogBean;
+import com.bw.movie.model.bean.YingYuanPaiQi;
 
 import java.util.List;
 
@@ -133,23 +136,27 @@ public interface Api {
     @POST("movieApi/movie/v2/verify/pay")
     Observable<PayBean> pay(@Header("userId") String userId, @Header("sessionId") String sessionId, @Field("payType") int paytype, @Field("orderId")String orderId);
 
+//    //查询影院下的电影排期
+//    @GET("movieApi/cinema/v2/findCinemaScheduleList")
+//    Observable<IRequest<List<CinemaScheduleList>>> findCinemaScheduleList(@Query("cinemaId") int cinemaId, @Query("page") int page, @Query("count") int count);
     //查询影院下的电影排期
-    @GET("movieApi/cinema/v2/findCinemaScheduleList")
-    Observable<IRequest<List<CinemaScheduleList>>> findCinemaScheduleList(@Query("cinemaId") int cinemaId, @Query("page") int page, @Query("count") int count);
-
+    @GET("cinema/v2/findCinemaScheduleList")
+    Observable<Request<List<YingYuanPaiQi>>>findCinemaScheduleList(@Query("cinemaId")int cinemaId, @Query("page")int page,
+                                                                   @Query("count")int count);
     //影片搜索
     @GET("movieApi/cinema/v1/findAllCinemas")
     Observable<IRequest<List<FindAllCinemas>>> findAllCinemas(@Query("page") int page, @Query("count") int count, @Query("cinemaName") String cinemaName);
 
     //查询一周排期的时间
     @GET("movieApi/tool/v2/findDateList")
-    Observable<IRequest> findDateList();
+    Observable<Requests> findDateList();
 
     //添加用户对影片的评论
     @FormUrlEncoded
     @POST("movieApi/movie/v1/verify/movieComment")
     Observable<IRequest> movieComment(@Header("userId") String userId, @Header("sessionId") String sessionId, @Field("movieId") int movieId,
                                       @Field("commentContent")String commentContent, @Field("score")double score );
+
 
 
     @GET("movieApi/user/v2/verify/findUserFollowMovieList")

@@ -61,7 +61,6 @@
             android:textSize="@dimen/sp_16" />
 
         <ImageView
-            android:id="@+id/sz"
             android:layout_width="@dimen/dp_24"
             android:layout_height="@dimen/dp_24"
             android:layout_gravity="center_vertical"
