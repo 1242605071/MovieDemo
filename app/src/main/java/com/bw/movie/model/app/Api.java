@@ -157,4 +157,6 @@ public interface Api {
     Observable<IRequest> movieComment(@Header("userId") String userId, @Header("sessionId") String sessionId, @Field("movieId") int movieId,
                                       @Field("commentContent")String commentContent, @Field("score")double score );
 
+    @GET("movieApi/user/v2/verify/findMyMovieCommentList")
+    Observable<MovieBean> findMyMovieCommentList(@Header("userId") String userId,@Header("sessionId") String sessionId,@Query("page") int page, @Query("count") int count);
 }
