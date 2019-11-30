@@ -1,5 +1,7 @@
 package com.bw.movie.model.base;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.widget.Toast;
 
 import com.bw.movie.model.app.Api;
@@ -22,6 +24,8 @@ public abstract class BasePresenter {
     }
 
     public void RequestData(Object... args) {
+        SharedPreferences login = App.context.getSharedPreferences("login", Context.MODE_PRIVATE);
+        final SharedPreferences.Editor edit = login.edit();
         Api api = HttpUtils.getHttpUtils().create(Api.class);
         getModel(api, args)
                 .subscribeOn(Schedulers.io())
@@ -32,6 +36,8 @@ public abstract class BasePresenter {
                     public void accept(IRequest iRequest) throws Exception {
                         if (iRequest.status.equals("0000")) {
                             dataCall.success(iRequest.result);
+                            edit.putString("status",iRequest.status);
+                            edit.commit();
                         }if (iRequest.status.equals("9999")){
                             Toast.makeText(App.context, iRequest.message, Toast.LENGTH_SHORT).show();
                         }
