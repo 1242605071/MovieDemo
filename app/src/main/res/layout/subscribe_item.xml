@@ -37,27 +37,6 @@
                 android:layout_height="@dimen/dp_17" />
 
         </LinearLayout>
-        <Button
-            android:id="@+id/subscribetwo"
-            android:layout_width="@dimen/dp_45"
-            android:layout_height="@dimen/dp_20"
-            android:layout_marginLeft="@dimen/dp_257"
-            android:layout_marginTop="@dimen/dp_68"
-            android:text="已预约"
-            android:background="@drawable/subscribe_selectortwo"
-            android:textColor="#ffff"
-            android:textSize="@dimen/sp_12" />
-        <Button
-            android:id="@+id/subscribeone"
-            android:layout_width="@dimen/dp_45"
-            android:layout_height="@dimen/dp_20"
-            android:layout_marginLeft="@dimen/dp_257"
-            android:layout_marginTop="@dimen/dp_68"
-            android:text="预约"
-            android:background="@drawable/subscribe_selector"
-            android:textColor="#ffff"
-            android:textSize="@dimen/sp_12" />
-
     </RelativeLayout>
     <com.facebook.drawee.view.SimpleDraweeView
         android:layout_width="@dimen/dp_88"

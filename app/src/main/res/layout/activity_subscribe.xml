@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.activity.SubscribeActivity"
+    android:orientation="vertical"
+    android:background="#141931">
+
+    <RelativeLayout
+        android:layout_marginLeft="@dimen/dp_34"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/dp_20">
+
+        <ImageView
+            android:id="@+id/subscribe_back"
+            android:layout_marginTop="@dimen/dp_37"
+            android:src="@drawable/jian"
+            android:layout_width="@dimen/dp_16"
+            android:layout_height="@dimen/dp_16"/>
+
+        <TextView
+            android:gravity="center"
+            android:layout_marginTop="@dimen/dp_37"
+            android:textSize="@dimen/dp_16"
+            android:text="我的预约"
+            android:textColor="#F7F2F2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    </RelativeLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/subscriberec"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    </android.support.v7.widget.RecyclerView>
+
+</LinearLayout>

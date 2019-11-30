@@ -14,10 +14,10 @@ import com.bw.movie.R;
 import com.bw.movie.model.base.BaseFragment;
 import com.bw.movie.view.activity.LoginActivity;
 import com.bw.movie.view.activity.ModifyActivity;
+import com.bw.movie.view.activity.SubscribeActivity;
 import com.bw.movie.view.myactivity.FeedBackActivity;
 import com.bw.movie.view.myactivity.FollowActivity;
 import com.bw.movie.view.myactivity.MyCommentActivity;
-import com.bw.movie.view.myactivity.OrderActivity;
 import com.bw.movie.view.myactivity.RecordActivity;
 import com.bw.movie.view.myactivity.SeenActivity;
 import com.bw.movie.view.myactivity.SetupActivity;
@@ -103,7 +103,7 @@ public class MypageFragment extends BaseFragment {
                 startActivity(intent1);
                 break;
             case R.id.my_btn2:
-                Intent intent2 = new Intent(getContext(), OrderActivity.class);
+                Intent intent2 = new Intent(getContext(), SubscribeActivity.class);
                 startActivity(intent2);
                 break;
             case R.id.my_btn3:

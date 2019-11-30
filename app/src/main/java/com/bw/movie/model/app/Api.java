@@ -22,6 +22,7 @@ import com.bw.movie.model.bean.ResultInfo;
 import com.bw.movie.model.bean.SchedBean;
 import com.bw.movie.model.bean.SeatleBean;
 import com.bw.movie.model.bean.SerachBean;
+import com.bw.movie.model.bean.Subscribe;
 import com.bw.movie.model.bean.WxLogBean;
 
 import java.util.List;
@@ -149,5 +150,10 @@ public interface Api {
     @POST("movieApi/movie/v1/verify/movieComment")
     Observable<IRequest> movieComment(@Header("userId") String userId, @Header("sessionId") String sessionId, @Field("movieId") int movieId,
                                       @Field("commentContent")String commentContent, @Field("score")double score );
+
+    //预约
+    @POST("movieApi/movie/v2/verify/reserve")
+    Observable<IRequest<Subscribe>> reserve(@Header("userId")int userId, @Header("sessionId")String sessionId,
+                                            @Query("movieId")int movieId);
 
 }

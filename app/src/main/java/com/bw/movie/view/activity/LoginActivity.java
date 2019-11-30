@@ -105,8 +105,6 @@ public class LoginActivity extends BaseActivity {
         }
     }
 
-
-
     private class Login implements DataCall <LogBean>{
         @Override
         public void success(LogBean data) {
