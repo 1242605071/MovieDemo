@@ -10,6 +10,7 @@ import com.bw.movie.model.bean.ComBean;
 import com.bw.movie.model.bean.CommentsBean;
 import com.bw.movie.model.bean.DetailsBean;
 import com.bw.movie.model.bean.FindAllCinemas;
+import com.bw.movie.model.bean.GuanzhuBean;
 import com.bw.movie.model.bean.HotBean;
 import com.bw.movie.model.bean.IRequest;
 import com.bw.movie.model.bean.LogBean;
@@ -150,4 +151,11 @@ public interface Api {
     Observable<IRequest> movieComment(@Header("userId") String userId, @Header("sessionId") String sessionId, @Field("movieId") int movieId,
                                       @Field("commentContent")String commentContent, @Field("score")double score );
 
+
+    @GET("movieApi/user/v2/verify/findUserFollowMovieList")
+    Observable<IRequest<List<GuanzhuBean>>> findUserFollowMovieList(@Header("userId")String userId, @Header("sessionId")String sessionId, @Query("page")int page, @Query("count")int count);
+
+
+
+    //@Header("userId")int userId, @Header("sessionId")String sessionId,
 }

@@ -108,12 +108,19 @@ public class LoginActivity extends BaseActivity {
 
 
     private class Login implements DataCall <LogBean>{
+
+        private String userId;
+        private String sessionId;
+
         @Override
         public void success(LogBean data) {
             SharedPreferences login = getSharedPreferences("login", MODE_PRIVATE);
             SharedPreferences.Editor edit = login.edit();
             edit.putString("userId", data.userId + "");
             edit.putString("sessionId", data.sessionId );
+
+
+
             edit.commit();
             Toast.makeText(LoginActivity.this, "登录成功", Toast.LENGTH_SHORT).show();
             startActivity(new Intent(LoginActivity.this, ShowActivity.class));
