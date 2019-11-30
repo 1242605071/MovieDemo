@@ -33,5 +33,6 @@ public class ReleaseAdapter extends BaseQuickAdapter<HotBean,BaseViewHolder> {
         helper.setText(R.id.name,item.name);
         ImageView imageView = helper.getView(R.id.hot_i1);
         imageView.setImageURI(Uri.parse(item.imageUrl));
+
     }
 }

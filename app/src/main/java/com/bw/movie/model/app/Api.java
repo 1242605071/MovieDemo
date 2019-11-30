@@ -26,6 +26,7 @@ import com.bw.movie.model.bean.ResultInfo;
 import com.bw.movie.model.bean.SchedBean;
 import com.bw.movie.model.bean.SeatleBean;
 import com.bw.movie.model.bean.SerachBean;
+import com.bw.movie.model.bean.Subscribe;
 import com.bw.movie.model.bean.TonBean;
 import com.bw.movie.model.bean.WxLogBean;
 import com.bw.movie.model.bean.YingYuanPaiQi;
@@ -169,4 +170,9 @@ public interface Api {
     @GET("movieApi/tool/v1/verify/findAllSysMsgList")
     Observable<TonBean> findAllSysMsgList(@Header("userId")String userId, @Header("sessionId")String sessionId, @Query("page")int page, @Query("count")int count);
     //@Header("userId")int userId, @Header("sessionId")String sessionId,
+    //预约
+    @POST("movieApi/movie/v2/verify/reserve")
+    Observable<IRequest<Subscribe>> reserve(@Header("userId")int userId, @Header("sessionId")String sessionId,
+                                            @Query("movieId")int movieId);
+
 }

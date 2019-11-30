@@ -11,16 +11,18 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bw.movie.R;
 import com.bw.movie.model.base.BaseFragment;
 import com.bw.movie.view.activity.LoginActivity;
+import com.bw.movie.view.activity.ModifyActivity;
+import com.bw.movie.view.activity.SubscribeActivity;
 import com.bw.movie.view.myactivity.FeedBackActivity;
 import com.bw.movie.view.myactivity.FollowActivity;
 import com.bw.movie.view.myactivity.MessageActivity;
 import com.bw.movie.view.myactivity.MyCommentActivity;
-import com.bw.movie.view.myactivity.OrderActivity;
 import com.bw.movie.view.myactivity.RecordActivity;
 import com.bw.movie.view.myactivity.SeenActivity;
 import com.bw.movie.view.myactivity.SetupActivity;
@@ -65,9 +67,13 @@ public class MypageFragment extends BaseFragment {
     LinearLayout myBtn7;
     @BindView(R.id.image)
     ImageView mImage;
+    @BindView(R.id.image_jian)
+    ImageView imageJian;
     private SharedPreferences sp;
     private String name;
     private String headPic;
+    private String userId;
+    private String status;
 
     @Override
     protected void initData() {
@@ -86,7 +92,9 @@ public class MypageFragment extends BaseFragment {
         unbinder = ButterKnife.bind(this, rootView);
         sp = getActivity().getSharedPreferences("login", Context.MODE_PRIVATE);
         name = sp.getString("nickName", "");
+        userId = sp.getString("userId", "");
         headPic = sp.getString("headPic", "");
+        status = sp.getString("status", "");
         textdying.setText(name);
         Glide.with(getActivity()).load(headPic).into(personimage);
         return rootView;
@@ -102,20 +110,21 @@ public class MypageFragment extends BaseFragment {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.carddl:
-//               if (textdying != null) {
-//                    Intent intent = new Intent(getContext(), ModifyActivity.class);
-//                   startActivity(intent);
-//                }else {
-                Intent intentdl = new Intent(getContext(), LoginActivity.class);
-                startActivity(intentdl);
-//                }
+                if (status.equals("0000")) {
+                    Toast.makeText(getActivity(), "您已登录!!", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(getContext(), ModifyActivity.class);
+                    startActivity(intent);
+                }else{
+                    Intent intentdl = new Intent(getContext(), LoginActivity.class);
+                    startActivity(intentdl);
+                }
                 break;
             case R.id.my_btn1:
                 Intent intent1 = new Intent(getContext(), FollowActivity.class);
                 startActivity(intent1);
                 break;
             case R.id.my_btn2:
-                Intent intent2 = new Intent(getContext(), OrderActivity.class);
+                Intent intent2 = new Intent(getContext(), SubscribeActivity.class);
                 startActivity(intent2);
                 break;
             case R.id.my_btn3:

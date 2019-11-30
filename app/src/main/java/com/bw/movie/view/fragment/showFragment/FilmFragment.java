@@ -1,5 +1,6 @@
 package com.bw.movie.view.fragment.showFragment;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
@@ -13,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.baidu.location.BDLocation;
 import com.baidu.location.BDLocationListener;
@@ -27,13 +29,16 @@ import com.bw.movie.model.bean.ComBean;
 import com.bw.movie.model.bean.HotBean;
 import com.bw.movie.model.bean.IRequest;
 import com.bw.movie.model.bean.PopBean;
+import com.bw.movie.model.bean.Subscribe;
 import com.bw.movie.presenter.BannerPresenter;
 import com.bw.movie.presenter.FindComingSoonMovieListPresenter;
 import com.bw.movie.presenter.FindHotMovieListPresenter;
 import com.bw.movie.presenter.FindReleaseMovieListPresenter;
+import com.bw.movie.presenter.SubscribePresenter;
 import com.bw.movie.view.activity.DetailsActivity;
 import com.bw.movie.view.activity.GdActivity;
 import com.bw.movie.view.activity.SearchActivity;
+import com.bw.movie.view.activity.SubscribeActivity;
 import com.bw.movie.view.adapter.ReleaseAdapter;
 import com.bw.movie.view.adapter.SoonAdapter;
 import com.bw.movie.view.adapter.WellreiveAdapter;
@@ -89,6 +94,10 @@ public class FilmFragment extends BaseFragment {
     private BannerPresenter bannerPresenter;
     private LocationClient mLocationClient;
     private BDLocationListener mBDLocationListener;
+    private SubscribePresenter subscribePresenter;
+    private SharedPreferences login;
+    private String userId;
+    private String sessionId;
 
     @Override
     protected int initView() {
@@ -118,6 +127,11 @@ public class FilmFragment extends BaseFragment {
         mBDLocationListener = new MyBDLocationListener();
         // 注册监听  
         mLocationClient.registerLocationListener(mBDLocationListener);
+        //预约
+        subscribePresenter = new SubscribePresenter(new subscribeBack());
+        login = getActivity().getSharedPreferences("login", Context.MODE_MULTI_PROCESS);
+        userId = login.getString("userId", "");
+        sessionId = login.getString("sessionId", "");
     }
 
     @Override
@@ -148,6 +162,22 @@ public class FilmFragment extends BaseFragment {
                 Intent intent3 = new Intent(getContext(), GdActivity.class);
                 startActivity(intent3);
                 break;
+        }
+    }
+
+    //预约
+    public class subscribeBack implements DataCall<Subscribe>{
+
+        @Override
+        public void success(Subscribe data) {
+            if (data.status.equals("0000")){
+                Toast.makeText(getContext(), ""+data.message, Toast.LENGTH_SHORT).show();
+            }
+        }
+
+        @Override
+        public void fail(IRequest iRequest) {
+
         }
     }
 
@@ -250,6 +280,12 @@ public class FilmFragment extends BaseFragment {
                     Intent intent = new Intent(getContext(), DetailsActivity.class);
                     intent.putExtra("movieId", movieId);
                     getActivity().startActivity(intent);
+                }
+            });
+            soonAdapter.setSubscribeoneOnClickListener(new SoonAdapter.subscribeoneOnClickListener() {
+                @Override
+                public void subscribeOnClickone(int position) {
+                    subscribePresenter.RequestData(Integer.valueOf(userId),sessionId,16);
                 }
             });
         }
