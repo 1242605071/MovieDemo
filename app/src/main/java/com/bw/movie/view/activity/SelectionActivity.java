@@ -133,7 +133,7 @@ public class SelectionActivity extends BaseIActivity implements IView.doView {
         SharedPreferences login = getSharedPreferences("login", MODE_PRIVATE);
         userId = login.getString("userId", "");
         sessionId = login.getString("sessionId", "");
-        String s = userId+""+23 + "movie";
+        String s = userId+""+136 + "movie";
         Log.i("asd", "加密前 "+s);
         sign = MD5(s);
         Log.i("asdd", "加密后"+sign);

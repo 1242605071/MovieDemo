@@ -67,12 +67,13 @@
 
             <Button
                 android:layout_width="@dimen/dp_45"
+                android:id="@+id/bt_more"
                 android:layout_height="@dimen/dp_20"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentBottom="true"
                 android:layout_marginRight="@dimen/dp_20"
                 android:layout_marginBottom="@dimen/dp_12"
-                android:background="#e8185e"
+                android:background="@drawable/subscribe_selector"
                 android:text="购买"
                 android:textColor="@android:color/white" />
         </RelativeLayout>
