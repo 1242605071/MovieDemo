@@ -35,6 +35,7 @@ import com.bw.movie.presenter.FindComingSoonMovieListPresenter;
 import com.bw.movie.presenter.FindHotMovieListPresenter;
 import com.bw.movie.presenter.FindReleaseMovieListPresenter;
 import com.bw.movie.presenter.SubscribePresenter;
+import com.bw.movie.view.activity.ChangeActivity;
 import com.bw.movie.view.activity.DetailsActivity;
 import com.bw.movie.view.activity.GdActivity;
 import com.bw.movie.view.activity.SearchActivity;
@@ -98,6 +99,7 @@ public class FilmFragment extends BaseFragment {
     private SharedPreferences login;
     private String userId;
     private String sessionId;
+    private int movieId;
 
     @Override
     protected int initView() {
@@ -245,17 +247,19 @@ public class FilmFragment extends BaseFragment {
             LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
             linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
             homeFragmentHotMovieRecy.setLayoutManager(linearLayoutManager);
-            ReleaseAdapter wellreceived = new ReleaseAdapter(R.layout.hot_item, data);
+            final ReleaseAdapter wellreceived = new ReleaseAdapter(R.layout.hot_item, data);
             homeFragmentHotMovieRecy.setAdapter(wellreceived);
             wellreceived.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
                 @Override
-                public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                    int movieId = data.get(position).movieId;
+                public void onItemClick(BaseQuickAdapter adapter, View view, final int position) {
+                    movieId = data.get(position).movieId;
                     Intent intent = new Intent(getContext(), DetailsActivity.class);
                     intent.putExtra("movieId", movieId);
                     getActivity().startActivity(intent);
                 }
             });
+
+
         }
 
         @Override

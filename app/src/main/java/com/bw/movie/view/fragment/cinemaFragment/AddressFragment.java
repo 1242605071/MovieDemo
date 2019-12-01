@@ -1,23 +1,23 @@
 package com.bw.movie.view.fragment.cinemaFragment;
 
-import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import com.bw.movie.R;
 import com.bw.movie.model.base.BaseFragment;
 import com.bw.movie.model.bean.IRequest;
 import com.bw.movie.model.bean.RegioBean;
 import com.bw.movie.model.bean.ResultInfo;
-import com.bw.movie.presenter.AddressPresenter;
-import com.bw.movie.presenter.Address_ParentPresenter;
-import com.bw.movie.view.activity.Cinema_detailsActivity;
-import com.bw.movie.view.adapter.Address_ChildAdapter;
-import com.bw.movie.view.adapter.Address_ParentAdapter;
+import com.bw.movie.presenter.NearPresenter;
+import com.bw.movie.presenter.QuYuQueryPresenter;
+import com.bw.movie.view.adapter.QuYuMAdapter;
+import com.bw.movie.view.adapter.QuYuQueryMAdapter;
 import com.bw.movie.view.core.DataCall;
 
 import java.util.List;
@@ -26,51 +26,62 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
+
 /**
  * Time:  2019-11-07
  * Author:  l
  * Description: 根据区域查询影院
  */
 public class AddressFragment extends BaseFragment {
+
+
     @BindView(R.id.recy_parent)
     RecyclerView recyParent;
     @BindView(R.id.recy_child)
     RecyclerView recyChild;
     Unbinder unbinder;
-    private Address_ParentAdapter parentAdapter;
-    private Address_ChildAdapter childAdapter;
-    private AddressPresenter addressPresenter;
-    private Address_ParentPresenter address_parentPresenter;
+    @BindView(R.id.pb)
+    ProgressBar pb;
+    private NearPresenter nearPresenter;
+    private QuYuMAdapter quYuMAdapter;
+    private QuYuQueryMAdapter quYuQueryMAdapter;
+    private QuYuQueryPresenter quYuQueryPresenter;
+    private Boolean b = true;
 
     @Override
     protected void initData() {
+
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+        linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyParent.setLayoutManager(linearLayoutManager);
-        parentAdapter = new Address_ParentAdapter();
-        recyParent.setAdapter(parentAdapter);
-        address_parentPresenter = new Address_ParentPresenter(new Pdd());
-        address_parentPresenter.RequestData();
-        parentAdapter.setOnItemCilckListener(new Address_ParentAdapter.OnItemCilckListener() {
+        quYuMAdapter = new QuYuMAdapter(getContext());
+        recyParent.setAdapter(quYuMAdapter);
+        nearPresenter = new NearPresenter(new NearPersen());
+        nearPresenter.RequestData();
+
+        quYuMAdapter.setIsWork(new QuYuMAdapter.IsWork() {
             @Override
-            public void OnItemCilck(int position) {
-                addressPresenter.RequestData(position);
+            public void SetId(final int Id) {
+                if (b) {
+                    b = false;
+                    pb.setVisibility(View.VISIBLE);
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            quYuQueryPresenter.RequestData(Id);
+                            pb.setVisibility(View.GONE);
+                            b = true;
+                        }
+                    }, 2000);
+                }
             }
         });
-
-
         LinearLayoutManager linearLayoutManager1 = new LinearLayoutManager(getContext());
+        linearLayoutManager1.setOrientation(LinearLayoutManager.VERTICAL);
         recyChild.setLayoutManager(linearLayoutManager1);
-        childAdapter = new Address_ChildAdapter();
-        childAdapter.setOnItemClickListener(new Address_ChildAdapter.ClickListener() {
-            @Override
-            public void click(int position) {
-                Intent intent = new Intent(getContext(),Cinema_detailsActivity.class );
-                intent.putExtra("id",position);
-                startActivity(intent);
-            }
-        });
-        recyChild.setAdapter(childAdapter);
-        addressPresenter = new AddressPresenter(new Addres());
+        quYuQueryMAdapter = new QuYuQueryMAdapter(getContext());
+        recyChild.setAdapter(quYuQueryMAdapter);
+        quYuQueryPresenter = new QuYuQueryPresenter(new QuYuQueryPresen());
     }
 
     @Override
@@ -92,12 +103,12 @@ public class AddressFragment extends BaseFragment {
         unbinder.unbind();
     }
 
-    private class Addres implements DataCall<List<RegioBean>> {
+    private class NearPersen implements DataCall<List<ResultInfo>> {
         @Override
-        public void success(List<RegioBean> data) {
-          childAdapter.clear();
-          childAdapter.addAll(data);
-          childAdapter.notifyDataSetChanged();
+        public void success(List<ResultInfo> data) {
+            quYuMAdapter.addAll(data);
+
+            quYuMAdapter.notifyDataSetChanged();
         }
 
         @Override
@@ -106,13 +117,13 @@ public class AddressFragment extends BaseFragment {
         }
     }
 
-    private class Pdd implements DataCall<List<ResultInfo>>{
+    private class QuYuQueryPresen implements DataCall<List<RegioBean>> {
         @Override
-        public void success(List<ResultInfo> data) {
-                parentAdapter.addAll(data);
-                parentAdapter.clear();
-                parentAdapter.notifyDataSetChanged();
+        public void success(List<RegioBean> data) {
+            quYuQueryMAdapter.clear();
+            quYuQueryMAdapter.addAll(data);
 
+            quYuQueryMAdapter.notifyDataSetChanged();
         }
 
         @Override

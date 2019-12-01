@@ -110,14 +110,14 @@ public class MypageFragment extends BaseFragment {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.carddl:
-              /*  if (status.equals("0000")) {
+                if (status.equals("0000")) {
                     Toast.makeText(getActivity(), "您已登录!!", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(getContext(), ModifyActivity.class);
                     startActivity(intent);
-                }else{*/
+                }else{
                     Intent intentdl = new Intent(getContext(), LoginActivity.class);
                     startActivity(intentdl);
-               // }
+                }
                 break;
             case R.id.my_btn1:
                 Intent intent1 = new Intent(getContext(), FollowActivity.class);
