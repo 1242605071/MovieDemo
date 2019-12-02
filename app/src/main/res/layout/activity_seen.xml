@@ -22,4 +22,7 @@
         android:text="看过的电影"
         android:textColor="@android:color/white"
         android:textSize="@dimen/sp_16" />
+
+
+
 </RelativeLayout>

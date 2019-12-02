@@ -134,7 +134,8 @@ public class SelectionActivity extends BaseIActivity implements IView.doView {
         SharedPreferences login = getSharedPreferences("login", MODE_PRIVATE);
         userId = login.getString("userId", "");
         sessionId = login.getString("sessionId", "");
-        String s = userId+""+nameid + "movie";
+        String s = userId+""+136 + "movie";
+
         Log.i("asd", "加密前 "+s);
         sign = MD5(s);
         Log.i("asdd", "加密后"+sign);
@@ -177,8 +178,6 @@ public class SelectionActivity extends BaseIActivity implements IView.doView {
         if (obj instanceof SchedBean) {
             SchedBean schedBean = (SchedBean) obj;
             List<SchedBean.ResultBean> resut = schedBean.result;
-            Log.d("aaa", "onCurress: "+nameid);
-            nameid = resut.get(0).id;
             final int halld = resut.get(0).hallId;
             LinearLayoutManager manager = new LinearLayoutManager(SelectionActivity.this, LinearLayoutManager.HORIZONTAL, false);
             roomRecycler.setLayoutManager(manager);
