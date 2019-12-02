@@ -101,7 +101,7 @@ public class MypageFragment extends BaseFragment {
         status = sp.getString("status", "");
         textdying.setText(name);
         Glide.with(getActivity()).load(headPic)
-                .placeholder(R.drawable.shape)
+                .placeholder(R.drawable.yy)
                 .into(personimage);
         return rootView;
     }

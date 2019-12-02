@@ -74,7 +74,6 @@ public class WritecommentsActivity extends BaseActivity {
         sessionId = login.getString("sessionId", "");
         presneter = new MovieCommentPresneter(new Writecom());
 
-
     }
 
     @OnClick(R.id.write_ima)
@@ -86,7 +85,7 @@ public class WritecommentsActivity extends BaseActivity {
         @Override
         public void success(Object data) {
             Toast.makeText(WritecommentsActivity.this,"评论成功",Toast.LENGTH_SHORT).show();
-          finish();
+            finish();
         }
 
         @Override

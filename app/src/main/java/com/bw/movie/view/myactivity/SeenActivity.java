@@ -1,5 +1,6 @@
 package com.bw.movie.view.myactivity;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -10,9 +11,13 @@ import com.bw.movie.R;
 import com.bw.movie.model.base.BaseActivity;
 import com.bw.movie.model.bean.ComBean;
 import com.bw.movie.model.bean.IRequest;
+import com.bw.movie.model.bean.SeenMovie;
 import com.bw.movie.presenter.FindComingSoonMovieListPresenter;
+import com.bw.movie.presenter.SeeMoviePresenter;
 import com.bw.movie.view.adapter.SeeAdapter;
+import com.bw.movie.view.adapter.SeeMovieAdapter;
 import com.bw.movie.view.core.DataCall;
+import com.facebook.drawee.backends.pipeline.Fresco;
 
 import java.util.List;
 
@@ -31,6 +36,7 @@ public class SeenActivity extends BaseActivity {
     @BindView(R.id.seeback)
     ImageView seeback;
     private Unbinder bind;
+    private SharedPreferences login;
 
     @Override
     protected int initLayout() {
@@ -42,6 +48,11 @@ public class SeenActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         bind = ButterKnife.bind(this);
 
+        Fresco.initialize(this);
+        login = getSharedPreferences("login", MODE_PRIVATE);
+        String userId = login.getString("userId", "");
+        String sessionId = login.getString("sessionId", "");
+
         seeback.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -50,8 +61,8 @@ public class SeenActivity extends BaseActivity {
         });
 
         seerec.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-        FindComingSoonMovieListPresenter findComingSoonMovieListPresenter = new FindComingSoonMovieListPresenter(new seeBack());
-        findComingSoonMovieListPresenter.RequestData(1, 3);
+        SeeMoviePresenter seeMoviePresenter = new SeeMoviePresenter(new seeMovieBack());
+        seeMoviePresenter.RequestData(userId,sessionId);
     }
 
     @Override
@@ -60,12 +71,14 @@ public class SeenActivity extends BaseActivity {
         bind.unbind();
     }
 
-    private class seeBack implements DataCall<List<ComBean>> {
-        @Override
-        public void success(final List<ComBean> data) {
+    class seeMovieBack implements DataCall<List<SeenMovie>>{
 
-            SeeAdapter seeAdapter = new SeeAdapter(R.layout.seed_item, data);
-            seerec.setAdapter(seeAdapter);
+        @Override
+        public void success(List<SeenMovie> data) {
+
+            SeeMovieAdapter seeMovieAdapter = new SeeMovieAdapter(R.layout.seed_item, data);
+            seerec.setAdapter(seeMovieAdapter);
+
         }
 
         @Override
