@@ -82,7 +82,6 @@ public class Dianying_fragment extends BaseFragment {
         public void success(List<GuanzhuBean> data) {
             myGuanzhuadapter.addAll(data);
             myGuanzhuadapter.notifyDataSetChanged();
-            Log.d("aaa", "success: " + data.get(0).name);
         }
 
         @Override

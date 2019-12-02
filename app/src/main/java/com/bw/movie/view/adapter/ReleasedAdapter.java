@@ -43,8 +43,8 @@ public class ReleasedAdapter extends BaseQuickAdapter<HotBean,BaseViewHolder> {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(App.context, ChangeActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 intent.putExtra("movieId",item.movieId);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 App.context.startActivity(intent);
             }
         });
