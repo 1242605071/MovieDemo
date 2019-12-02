@@ -58,6 +58,7 @@
                     />
 
             <TextView
+                android:id="@+id/genxin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/sp_14"
@@ -68,6 +69,7 @@
                 />
 
             <ImageView
+                android:id="@+id/gen"
                 android:layout_width="@dimen/dp_24"
                 android:layout_height="@dimen/dp_24"
                 android:layout_alignParentRight="true"
