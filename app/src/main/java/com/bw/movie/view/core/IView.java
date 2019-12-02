@@ -32,5 +32,6 @@ public interface IView {
         //查询我对电影的评论列表
         public abstract void findMyMovieCommentList(String userId,String sessionId, int page, int count);
         public abstract void findAllSysMsgList(String userId,String sessionId, int page, int count);
+        public abstract void findExchangeCode(String userId,String sessionId, int recordId);
     }
 }
