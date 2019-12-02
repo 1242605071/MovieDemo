@@ -175,4 +175,11 @@ public interface Api {
     Observable<IRequest<Subscribe>> reserve(@Header("userId")int userId, @Header("sessionId")String sessionId,
                                             @Query("movieId")int movieId);
 
+
+
+    //修改密码
+    @FormUrlEncoded
+    @POST("movieApi/user/v1/verify/modifyUserPwd")
+    Observable<IRequest>modifyUserPwd(@Header("userId")int userId, @Header("sessionId")String sessionId,
+                                      @Field("oldPwd")String oldPwd,@Field("newPwd")String newPwd,@Field("newPwd2")String newPwd2);
 }
