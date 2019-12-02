@@ -18,6 +18,7 @@ import com.bw.movie.model.bean.LogBean;
 import com.bw.movie.model.bean.MovieBean;
 import com.bw.movie.model.bean.NearbyBean;
 import com.bw.movie.model.bean.OrderBean;
+import com.bw.movie.model.bean.Paiqi;
 import com.bw.movie.model.bean.PayBean;
 import com.bw.movie.model.bean.PopBean;
 import com.bw.movie.model.bean.RegioBean;
@@ -175,4 +176,7 @@ public interface Api {
     Observable<IRequest<Subscribe>> reserve(@Header("userId")int userId, @Header("sessionId")String sessionId,
                                             @Query("movieId")int movieId);
 
+    //查询影院下的电影排期
+    @GET("movieApi/cinema/v2/findCinemaScheduleList")
+    Observable<IRequest<List<Paiqi>>>paiqischedulelist(@Query("cinemaId")int cinemaId, @Query("page")int page, @Query("count")int count);
 }
