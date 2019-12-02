@@ -8,8 +8,10 @@ import android.view.View;
 
 import com.bw.movie.R;
 import com.bw.movie.model.base.BaseFragment;
+import com.bw.movie.model.bean.GouPao;
 import com.bw.movie.model.bean.GuanzhuBean;
 import com.bw.movie.model.bean.IRequest;
+import com.bw.movie.presenter.GouPiaoPresenter;
 import com.bw.movie.presenter.GuanzhuPresenter;
 import com.bw.movie.view.adapter.MyGuanzhuadapter;
 import com.bw.movie.view.adapter.MyYifukuanadapter;
@@ -26,22 +28,25 @@ public class Yifukuan_fragment extends BaseFragment {
     private MyGuanzhuadapter myGuanzhuadapter;
     private LinearLayoutManager linearLayoutManager;
     private MyYifukuanadapter myYifukuanadapter;
+    private GouPiaoPresenter gouPiaoPresenter;
 
     @Override
     protected void initData() {
         recyclerView = getActivity().findViewById(R.id.recy_view2);
 
-     GuanzhuPresenter   guanzhuPresenter = new GuanzhuPresenter(new yizhifu());
+        gouPiaoPresenter = new GouPiaoPresenter(new yizhifu());
         SharedPreferences login = getActivity().getSharedPreferences("login", MODE_PRIVATE);
-      String  userId = login.getString("userId", "");
-       String sessionId = login.getString("sessionId", "");
-        guanzhuPresenter.guanzhu(userId, sessionId, 1, 5);
+        String  userId = login.getString("userId", "");
+        String sessionId = login.getString("sessionId", "");
+        gouPiaoPresenter.RequestData(Integer.valueOf(userId),sessionId,2,1,2);
 
 
-        linearLayoutManager = new LinearLayoutManager(getContext());
-        myYifukuanadapter = new MyYifukuanadapter(getContext());
-        recyclerView.setLayoutManager(linearLayoutManager);
-        recyclerView.setAdapter(myYifukuanadapter);
+
+       linearLayoutManager = new LinearLayoutManager(getContext());
+       linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+       myYifukuanadapter = new MyYifukuanadapter(getContext());
+       recyclerView.setLayoutManager(linearLayoutManager);
+       recyclerView.setAdapter(myYifukuanadapter);
 
     }
 
@@ -54,12 +59,13 @@ public class Yifukuan_fragment extends BaseFragment {
 
 
     }
-    class yizhifu implements DataCall<List<GuanzhuBean>>{
+    class yizhifu implements DataCall<List<GouPao>>{
+
 
         @Override
-        public void success(List<GuanzhuBean> data) {
-            Log.d("aaa", "success: "+data.get(0).name);
+        public void success(List<GouPao> data) {
             myYifukuanadapter.addAll(data);
+
             myYifukuanadapter.notifyDataSetChanged();
         }
 

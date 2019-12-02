@@ -11,6 +11,7 @@ import com.bw.movie.model.bean.ComBean;
 import com.bw.movie.model.bean.CommentsBean;
 import com.bw.movie.model.bean.DetailsBean;
 import com.bw.movie.model.bean.FindAllCinemas;
+import com.bw.movie.model.bean.GouPao;
 import com.bw.movie.model.bean.GuanzhuBean;
 import com.bw.movie.model.bean.HotBean;
 import com.bw.movie.model.bean.IRequest;
@@ -190,4 +191,13 @@ public interface Api {
     //查询影院下的电影排期
     @GET("movieApi/cinema/v2/findCinemaScheduleList")
     Observable<IRequest<List<Paiqi>>>paiqischedulelist(@Query("cinemaId")int cinemaId, @Query("page")int page, @Query("count")int count);
+
+    //购票记录
+    @GET("movieApi/user/v2/verify/findUserBuyTicketRecord")
+    Observable<IRequest<List<GouPao>>>findUserBuyTicketRecord(@Header("userId")int userId, @Header("sessionId")String sessionId,
+                                                              @Query("page") int page,@Query("count") int count,@Query("status") int status);
+
+    //关注
+    @GET("movieApi/movie/v1/verify/followMovie")
+    Observable<IRequest>followMovie(@Header("userId")String userId, @Header("sessionId")String sessionId,@Query("movieId")int movieId);
 }

@@ -8,7 +8,7 @@
     <com.facebook.drawee.view.SimpleDraweeView
         android:layout_width="@dimen/dp_100"
         android:layout_height="@dimen/dp_150"
-        android:id="@+id/image2"
+        android:id="@+id/image"
         android:layout_marginLeft="@dimen/dp_20"
         android:layout_marginTop="@dimen/dp_12"
         />
@@ -69,13 +69,16 @@
             />
     </LinearLayout>
 
-    <TextView
+    <Button
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="查看详细>>"
-        android:textColor="#fff"
+        android:layout_height="@dimen/dp_40"
+        android:background="@drawable/translucent"
+        android:text="立即支付"
+        android:id="@+id/dianji"
+        android:layout_marginRight="@dimen/dp_30"
         android:layout_alignParentBottom="true"
-        android:layout_marginLeft="@dimen/dp_150"
-        android:layout_marginBottom="@dimen/dp_20"
+        android:layout_alignParentRight="true"
+        android:textColor="#fff"
+        android:layout_marginBottom="@dimen/dp_5"
         />
 </RelativeLayout>

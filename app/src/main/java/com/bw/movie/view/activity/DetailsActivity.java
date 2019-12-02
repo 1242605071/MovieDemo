@@ -24,6 +24,7 @@ import com.bw.movie.model.base.BaseActivity;
 import com.bw.movie.model.bean.DetailsBean;
 import com.bw.movie.model.bean.IRequest;
 import com.bw.movie.presenter.FindMoviesDetailPresenter;
+import com.bw.movie.presenter.GuanzhuPresenter;
 import com.bw.movie.view.adapter.DetailsPageAdapter;
 import com.bw.movie.view.core.DataCall;
 import com.bw.movie.view.custom.ObservableScrollView;
@@ -90,6 +91,10 @@ public class DetailsActivity extends BaseActivity implements ObservableScrollVie
     private DetailsBean result;
     private SharedPreferences login;
     private String loginstatus;
+    private String status;
+    private GuanzhuPresenter guanzhuPresenter;
+    private String userId;
+    private String sessionId;
 
     @Override
     protected int initLayout() {
@@ -97,24 +102,7 @@ public class DetailsActivity extends BaseActivity implements ObservableScrollVie
     }
 
 
-    @OnClick({R.id.x_pingjia, R.id.x_xuan})
-    public void onViewClicked(View view) {
-        switch (view.getId()) {
-            case R.id.x_pingjia:
-                Intent intent = new Intent(DetailsActivity.this, WritecommentsActivity.class);
-                intent.putExtra("movieId", movieId);
-                intent.putExtra("name", result.name);
-                startActivity(intent);
-                break;
-            case R.id.x_xuan:
-                Intent intent1 = new Intent(DetailsActivity.this, ChangeActivity.class);
-                intent1.putExtra("movieId", movieId);
-                intent1.putExtra("name", result.name);
-                startActivity(intent1);
 
-                break;
-        }
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -128,23 +116,37 @@ public class DetailsActivity extends BaseActivity implements ObservableScrollVie
         initListener();
         initdata();
         login = getSharedPreferences("login", MODE_PRIVATE);
-        loginstatus = login.getString("loginstatus", "");
-        guanzhuNo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                guanzhuYes.setVisibility(View.VISIBLE);
-                guanzhuNo.setVisibility(View.INVISIBLE);
-            }
-        });
-        guanzhuYes.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                guanzhuYes.setVisibility(View.INVISIBLE);
-                guanzhuNo.setVisibility(View.VISIBLE);
-            }
-        });
-    }
+        status = login.getString("status", "");
+        userId = login.getString("userId", "");
+        sessionId = login.getString("sessionId", "");
 
+    }
+    @OnClick({R.id.x_pingjia, R.id.x_xuan,R.id.guanzhu_no,R.id.guanzhu_yes})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.x_pingjia:
+                Intent intent = new Intent(DetailsActivity.this, WritecommentsActivity.class);
+                intent.putExtra("movieId", movieId);
+                intent.putExtra("name", result.name);
+                startActivity(intent);
+                break;
+            case R.id.x_xuan:
+                Intent intent1 = new Intent(DetailsActivity.this, ChangeActivity.class);
+                intent1.putExtra("movieId", movieId);
+                intent1.putExtra("name", result.name);
+                startActivity(intent1);
+                break;
+            case R.id.guanzhu_no:
+                    guanzhuPresenter = new GuanzhuPresenter(new GuanZhuPresen());
+                    guanzhuPresenter.RequestData(userId,sessionId,movieId);
+
+
+                break;
+            case R.id.guanzhu_yes:
+
+                break;
+        }
+    }
 
     private class SerachData implements DataCall<DetailsBean> {
 
@@ -152,6 +154,7 @@ public class DetailsActivity extends BaseActivity implements ObservableScrollVie
         @Override
         public void success(DetailsBean data) {
             result = data;
+
             name = result.name;
             xName.setText(name);
             String imageUrl = result.imageUrl;
@@ -239,4 +242,22 @@ public class DetailsActivity extends BaseActivity implements ObservableScrollVie
         detailsTab.getTabAt(3).setText("影评");
     }
 
+    private class GuanZhuPresen implements DataCall<IRequest> {
+        @Override
+        public void success(IRequest data) {
+            Toast.makeText(DetailsActivity.this, data.message, Toast.LENGTH_SHORT).show();
+            if (result.whetherFollow == 1 ) {
+                guanzhuYes.setVisibility(View.VISIBLE);
+                guanzhuNo.setVisibility(View.GONE);
+            }else if (result.whetherFollow == 2) {
+                guanzhuYes.setVisibility(View.GONE);
+                guanzhuNo.setVisibility(View.VISIBLE);
+            }
+        }
+
+        @Override
+        public void fail(IRequest iRequest) {
+
+        }
+    }
 }

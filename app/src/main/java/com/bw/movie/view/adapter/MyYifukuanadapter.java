@@ -11,13 +11,16 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bw.movie.R;
+import com.bw.movie.model.bean.GouPao;
 import com.bw.movie.model.bean.GuanzhuBean;
+import com.facebook.drawee.view.SimpleDraweeView;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
 public class MyYifukuanadapter extends RecyclerView.Adapter<MyYifukuanadapter.myViewHolder> {
-    private ArrayList<GuanzhuBean> list;
+    private ArrayList<GouPao> list;
     private Context context;
     private View view;
 
@@ -26,9 +29,9 @@ public class MyYifukuanadapter extends RecyclerView.Adapter<MyYifukuanadapter.my
         this.context = context;
     }
 
-    public void addAll(List<GuanzhuBean> guanzhuBeans){
-        if (guanzhuBeans!=null){
-            list.addAll(guanzhuBeans);
+    public void addAll(List<GouPao> data){
+        if (data!=null){
+            list.addAll(data);
         }
     }
 
@@ -41,10 +44,13 @@ public class MyYifukuanadapter extends RecyclerView.Adapter<MyYifukuanadapter.my
 
     @Override
     public void onBindViewHolder(@NonNull MyYifukuanadapter.myViewHolder myViewHolder, int i) {
-
-        Glide.with(context).load(list.get(i).imageUrl).into(myViewHolder.imageView);
-
-        myViewHolder.textView.setText(list.get(i).director);
+        String imageUrl = list.get(i).imageUrl;
+        myViewHolder.imageView.setImageURI(imageUrl);
+        myViewHolder.name.setText(list.get(i).movieName);
+        myViewHolder.text_Id.setText(list.get(i).orderId);
+        SimpleDateFormat format = new SimpleDateFormat("yyyy" + "-" + "MM" + "-" + "dd" + " "+"HH"+":"+"mm");
+        String Time = format.format(list.get(i).createTime);
+        myViewHolder.text_time.setText(Time);
     }
 
     @Override
@@ -53,13 +59,17 @@ public class MyYifukuanadapter extends RecyclerView.Adapter<MyYifukuanadapter.my
     }
     class myViewHolder extends RecyclerView.ViewHolder{
 
-        private final ImageView imageView;
-        private final TextView textView;
+         SimpleDraweeView imageView;
+         TextView text_time;
+         TextView name;
+         TextView text_Id;
 
         public myViewHolder(@NonNull View itemView) {
             super(itemView);
             imageView = itemView.findViewById(R.id.image2);
-            textView = itemView.findViewById(R.id.text_name);
+            name = itemView.findViewById(R.id.text_name);
+            text_Id = itemView.findViewById(R.id.text_Id);
+            text_time = itemView.findViewById(R.id.text_time);
 
         }
     }

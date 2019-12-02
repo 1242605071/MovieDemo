@@ -1,5 +1,7 @@
 package com.bw.movie.model.bean;
 
+import com.bw.movie.model.app.App;
+
 /**
  *  * <p>文件描述：<p>
  *  * <p>作者：zheng<p>
@@ -20,8 +22,8 @@ public class LogBean {
         public int userId;
         public UserInfoBean userInfo;
         public String status;
-
         public static class UserInfoBean {
+
             /**
              * email : 1242605071@qq.com
              * headPic : http://172.17.8.100/images/movie/head_pic/bwjy.jpg

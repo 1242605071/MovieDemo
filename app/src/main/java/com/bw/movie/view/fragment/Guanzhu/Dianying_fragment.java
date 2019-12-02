@@ -46,7 +46,7 @@ public class Dianying_fragment extends BaseFragment {
         SharedPreferences login = getActivity().getSharedPreferences("login", MODE_PRIVATE);
         userId = login.getString("userId", "");
         sessionId = login.getString("sessionId", "");
-     guanzhuPresenter.guanzhu(userId, sessionId, 1, 5);
+       //guanzhuPresenter.guanzhu(userId, sessionId, 1, 5);
         recyclerView = getActivity().findViewById(R.id.recy_view);
 
         linearLayoutManager = new LinearLayoutManager(getContext());
