@@ -113,7 +113,7 @@ public class LoginActivity extends BaseActivity {
         public void success(LogBean data) {
             SharedPreferences login = getSharedPreferences("login", MODE_PRIVATE);
             SharedPreferences.Editor edit = login.edit();
-
+            edit.putString("loginstatus",data.status);
             edit.putString("userId", data.userId + "");
             edit.putString("sessionId", data.sessionId );
             edit.putString("nickName",data.userInfo.nickName);

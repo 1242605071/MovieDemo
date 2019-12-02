@@ -1,7 +1,7 @@
 package com.bw.movie.view.activity;
 
-import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
@@ -17,14 +17,12 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
 import com.bw.movie.R;
-import com.bw.movie.model.app.App;
 import com.bw.movie.model.base.BaseActivity;
 import com.bw.movie.model.bean.DetailsBean;
 import com.bw.movie.model.bean.IRequest;
-import com.bw.movie.model.bean.SerachBean;
 import com.bw.movie.presenter.FindMoviesDetailPresenter;
 import com.bw.movie.view.adapter.DetailsPageAdapter;
 import com.bw.movie.view.core.DataCall;
@@ -37,7 +35,6 @@ import com.facebook.drawee.view.SimpleDraweeView;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -53,14 +50,12 @@ import butterknife.OnClick;
  *  
  */
 
-public class DetailsActivity extends BaseActivity implements ObservableScrollView.ScrollViewListener{
+public class DetailsActivity extends BaseActivity implements ObservableScrollView.ScrollViewListener {
 
     @BindView(R.id.x_tp)
     SimpleDraweeView xTp;
     @BindView(R.id.x_name)
     TextView xName;
-    @BindView(R.id.guanzhu)
-    ImageView guanzhu;
     @BindView(R.id.x_leixing)
     TextView xLeixing;
     @BindView(R.id.x_time)
@@ -83,12 +78,19 @@ public class DetailsActivity extends BaseActivity implements ObservableScrollVie
     TextView tvTitlebar;
     @BindView(R.id.layout_title)
     RelativeLayout layoutTitle;
+    @BindView(R.id.guanzhu_no)
+    ImageView guanzhuNo;
+    @BindView(R.id.guanzhu_yes)
+    ImageView guanzhuYes;
     private int mImageHeight;
     private int movieId;
     private float scale;
     private String name;
     private FindMoviesDetailPresenter findMoviesDetailPresenter;
     private DetailsBean result;
+    private SharedPreferences login;
+    private String loginstatus;
+
     @Override
     protected int initLayout() {
         return R.layout.activity_details;
@@ -106,8 +108,8 @@ public class DetailsActivity extends BaseActivity implements ObservableScrollVie
                 break;
             case R.id.x_xuan:
                 Intent intent1 = new Intent(DetailsActivity.this, ChangeActivity.class);
-                intent1.putExtra("movieId",movieId);
-                intent1.putExtra("name",result.name);
+                intent1.putExtra("movieId", movieId);
+                intent1.putExtra("name", result.name);
                 startActivity(intent1);
 
                 break;
@@ -125,13 +127,26 @@ public class DetailsActivity extends BaseActivity implements ObservableScrollVie
         findMoviesDetailPresenter.RequestData(movieId);
         initListener();
         initdata();
-
+        login = getSharedPreferences("login", MODE_PRIVATE);
+        loginstatus = login.getString("loginstatus", "");
+        guanzhuNo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                guanzhuYes.setVisibility(View.VISIBLE);
+                guanzhuNo.setVisibility(View.INVISIBLE);
+            }
+        });
+        guanzhuYes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                guanzhuYes.setVisibility(View.INVISIBLE);
+                guanzhuNo.setVisibility(View.VISIBLE);
+            }
+        });
     }
 
 
-
-    private class SerachData implements DataCall <DetailsBean>{
-
+    private class SerachData implements DataCall<DetailsBean> {
 
 
         @Override
@@ -161,6 +176,7 @@ public class DetailsActivity extends BaseActivity implements ObservableScrollVie
 
 
     }
+
     @Override
     public void onScrollChanged(ObservableScrollView scrollView, int l, int t, int oldl, int oldt) {
         if (t <= 0) {
@@ -203,6 +219,7 @@ public class DetailsActivity extends BaseActivity implements ObservableScrollVie
         });
 
     }
+
     private void initdata() {
 
         scrollView1.setScrollViewListener(this);
