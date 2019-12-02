@@ -19,6 +19,7 @@ import com.bw.movie.model.bean.MaBean;
 import com.bw.movie.model.bean.MovieBean;
 import com.bw.movie.model.bean.NearbyBean;
 import com.bw.movie.model.bean.OrderBean;
+import com.bw.movie.model.bean.Paiqi;
 import com.bw.movie.model.bean.PayBean;
 import com.bw.movie.model.bean.PopBean;
 import com.bw.movie.model.bean.RegioBean;
@@ -192,4 +193,7 @@ public interface Api {
     @POST("movieApi/user/v1/verify/modifyUserPwd")
     Observable<IRequest>modifyUserPwd(@Header("userId")int userId, @Header("sessionId")String sessionId,
                                       @Field("oldPwd")String oldPwd,@Field("newPwd")String newPwd,@Field("newPwd2")String newPwd2);
+    //查询影院下的电影排期
+    @GET("movieApi/cinema/v2/findCinemaScheduleList")
+    Observable<IRequest<List<Paiqi>>>paiqischedulelist(@Query("cinemaId")int cinemaId, @Query("page")int page, @Query("count")int count);
 }

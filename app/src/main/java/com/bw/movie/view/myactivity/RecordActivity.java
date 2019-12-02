@@ -64,5 +64,8 @@ public class RecordActivity extends AppCompatActivity {
     @OnClick(R.id.imager)
     public void onClick() {
         finish();
+
+
+
     }
 }
