@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    android:layout_marginLeft="@dimen/dp_24"
+    android:layout_marginRight="@dimen/dp_24">
+    <RelativeLayout
+        android:background="#1c2243"
+        android:layout_marginTop="@dimen/dp_40"
+        android:layout_marginLeft="@dimen/dp_24"
+        android:layout_width="@dimen/dp_312"
+        android:layout_height="@dimen/dp_98">
+        <LinearLayout
+            android:layout_marginTop="14dp"
+            android:layout_marginLeft="@dimen/dp_118"
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/name"
+                android:textSize="@dimen/sp_14"
+                android:textColor="#ffffff"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/dp_20" />
+            <TextView
+                android:id="@+id/time1"
+                android:textSize="@dimen/sp_12"
+                android:layout_marginTop="11dp"
+                android:textColor="#ffffff"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/dp_17" />
+            <Button
+                android:id="@+id/person"
+                android:text="评价"
+                android:background="@drawable/subscribe_selector"
+                android:textSize="@dimen/sp_12"
+                android:layout_marginTop="10dp"
+                android:textColor="#ffffff"
+                android:layout_width="@dimen/dp_60"
+                android:layout_height="@dimen/dp_24" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:layout_width="@dimen/dp_88"
+        android:layout_height="@dimen/dp_108"
+        android:id="@+id/image1"
+        android:layout_marginTop="@dimen/dp_24"
+        android:layout_marginLeft="@dimen/dp_34"
+        fresco:roundedCornerRadius="10dp"
+        />
+
+</RelativeLayout>

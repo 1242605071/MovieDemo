@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,6 +27,7 @@ import com.bw.movie.view.myactivity.MyCommentActivity;
 import com.bw.movie.view.myactivity.RecordActivity;
 import com.bw.movie.view.myactivity.SeenActivity;
 import com.bw.movie.view.myactivity.SetupActivity;
+import com.bw.movie.view.myactivity.TicketActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -69,6 +71,8 @@ public class MypageFragment extends BaseFragment {
     ImageView mImage;
     @BindView(R.id.image_jian)
     ImageView imageJian;
+    @BindView(R.id.rl_dian)
+    RelativeLayout mRlDian;
     private SharedPreferences sp;
     private String name;
     private String headPic;
@@ -114,7 +118,7 @@ public class MypageFragment extends BaseFragment {
                     Toast.makeText(getActivity(), "您已登录!!", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(getContext(), ModifyActivity.class);
                     startActivity(intent);
-                }else{
+                } else {
                     Intent intentdl = new Intent(getContext(), LoginActivity.class);
                     startActivity(intentdl);
                 }
@@ -155,5 +159,9 @@ public class MypageFragment extends BaseFragment {
     }
 
 
-
+    @OnClick(R.id.rl_dian)
+    public void onViewClicked() {
+        Intent intent9 = new Intent(getContext(), TicketActivity.class);
+        startActivity(intent9);
+    }
 }
