@@ -19,6 +19,7 @@ public class LogBean {
         public String sessionId;
         public int userId;
         public UserInfoBean userInfo;
+        public String status;
 
         public static class UserInfoBean {
             /**

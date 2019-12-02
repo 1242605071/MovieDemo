@@ -43,6 +43,10 @@ public class Cinema_detailsActivity extends BaseActivity {
     Button btnPaiqi;
     @BindView(R.id.xiang_name)
     TextView xiangName;
+    @BindView(R.id.xiangxin_no)
+    ImageView xiangxinNo;
+    @BindView(R.id.xiangxin_yes)
+    ImageView xiangxinYes;
 
     private FragmentAdapter adapter;
     private int id;
@@ -73,6 +77,21 @@ public class Cinema_detailsActivity extends BaseActivity {
         id = intent.getIntExtra("id", 0);
         presenter.RequestData("13772", "157355978503213772", id);
 
+        xiangxinNo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                xiangxinNo.setVisibility(View.INVISIBLE);
+                xiangxinYes.setVisibility(View.VISIBLE);
+            }
+        });
+
+        xiangxinYes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                xiangxinYes.setVisibility(View.INVISIBLE);
+                xiangxinNo.setVisibility(View.VISIBLE);
+            }
+        });
     }
 
     @OnClick({R.id.jian, R.id.btn_paiqi})
@@ -83,7 +102,7 @@ public class Cinema_detailsActivity extends BaseActivity {
                 break;
             case R.id.btn_paiqi:
                 Intent intent = new Intent(this, ScheduActivity.class);
-                intent.getIntExtra("Id",id);
+                intent.getIntExtra("Id", id);
                 startActivity(intent);
                 break;
         }
@@ -92,7 +111,7 @@ public class Cinema_detailsActivity extends BaseActivity {
     private class Cinmess implements DataCall<CinemaInfo> {
         @Override
         public void success(CinemaInfo data) {
-              xiangName.setText(data.name);
+            xiangName.setText(data.name);
         }
 
         @Override

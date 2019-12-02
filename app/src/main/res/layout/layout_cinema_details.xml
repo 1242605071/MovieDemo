@@ -34,6 +34,7 @@
         android:textSize="@dimen/sp_14" />
 
     <ImageView
+        android:id="@+id/xiangxin_no"
         android:layout_width="@dimen/sp_16"
         android:layout_height="@dimen/sp_16"
         android:layout_marginLeft="@dimen/dp_28"
@@ -41,6 +42,15 @@
         android:layout_marginRight="@dimen/dp_24"
         android:layout_alignParentRight="true"
         android:src="@drawable/emptyheart" />
+    <ImageView
+        android:id="@+id/xiangxin_yes"
+        android:layout_width="@dimen/sp_16"
+        android:layout_height="@dimen/sp_16"
+        android:layout_marginLeft="@dimen/dp_28"
+        android:layout_marginTop="@dimen/dp_82"
+        android:layout_marginRight="@dimen/dp_24"
+        android:layout_alignParentRight="true"
+        android:src="@drawable/baise" />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
