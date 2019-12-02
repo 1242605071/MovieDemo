@@ -39,7 +39,7 @@
         android:networkSecurityConfig="@xml/network_config"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".view.activity.SubscribeActivity"></activity>
+        <activity android:name=".view.activity.SubscribeActivity" />
         <activity android:name=".view.activity.MainActivity" />
         <activity android:name=".view.activity.LoginActivity" />
         <activity android:name=".view.activity.ShowActivity">
@@ -93,7 +93,8 @@
         <activity android:name=".view.myactivity.TicketActivity" />
         <activity android:name=".view.myactivity.SystemActivity" />
         <activity android:name=".view.activity.ModifyActivity" />
-        <activity android:name=".view.myactivity.MessageActivity"></activity>
+        <activity android:name=".view.myactivity.MessageActivity" />
+        <activity android:name=".view.myactivity.BanActivity"></activity>
     </application>
 
 </manifest>

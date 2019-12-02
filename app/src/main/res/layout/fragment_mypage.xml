@@ -72,7 +72,7 @@
 
 
     <RelativeLayout
-
+        android:id="@+id/rl_dian"
         android:layout_width="@dimen/dp_312"
         android:layout_height="@dimen/dp_40"
         android:layout_marginLeft="@dimen/dp_24"
