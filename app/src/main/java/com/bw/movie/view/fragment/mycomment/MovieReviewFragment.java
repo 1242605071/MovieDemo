@@ -82,6 +82,7 @@ public class MovieReviewFragment extends BaseFragment implements IView.doView{
         mRv.setLayoutManager(linearLayoutManager);
         MovieReviewAdapter serachcimAdapter = new MovieReviewAdapter(R.layout.movie_item, result);
         mRv.setAdapter(serachcimAdapter);
+        serachcimAdapter.notifyDataSetChanged();
     }
 
     @Override

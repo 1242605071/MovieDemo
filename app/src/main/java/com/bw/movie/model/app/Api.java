@@ -28,6 +28,7 @@ import com.bw.movie.model.bean.Requests;
 import com.bw.movie.model.bean.ResultInfo;
 import com.bw.movie.model.bean.SchedBean;
 import com.bw.movie.model.bean.SeatleBean;
+import com.bw.movie.model.bean.SeenMovie;
 import com.bw.movie.model.bean.SerachBean;
 import com.bw.movie.model.bean.Subscribe;
 import com.bw.movie.model.bean.TonBean;
@@ -45,6 +46,11 @@ import retrofit2.http.POST;
 import retrofit2.http.Query;
 
 public interface Api {
+
+    //看过的电影
+    @GET("movieApi/user/v2/verify/findSeenMovie")
+    Observable<IRequest<List<SeenMovie>>> findSeenMovie(@Header("userId")String userId,@Header("sessionId")String sessionId);
+
     //登录
     @FormUrlEncoded
     @POST("movieApi/user/v2/login")

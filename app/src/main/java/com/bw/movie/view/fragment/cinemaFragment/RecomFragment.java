@@ -75,7 +75,6 @@ public class RecomFragment extends BaseFragment implements XRecyclerView.Loading
         // TODO: inflate a fragment view
         View rootView = super.onCreateView(inflater, container, savedInstanceState);
         unbinder = ButterKnife.bind(this, rootView);
-
         return rootView;
     }
 
@@ -95,7 +94,6 @@ public class RecomFragment extends BaseFragment implements XRecyclerView.Loading
     public void onLoadMore() {
         recomPresenter.RequestData("13764", "157312968444113764", false);
         recomXrecyview.loadMoreComplete();
-
     }
 
     private class Rccom implements DataCall<List<CinemaBean>> {
