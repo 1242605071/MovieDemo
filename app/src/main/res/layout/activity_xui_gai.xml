@@ -27,6 +27,7 @@
             android:textColor="#fff"
             android:hint="请输入您旧密码"
             android:padding="@dimen/dp_0_1"
+            android:password="true"
             android:textColorHint="#999999"
             android:textSize="@dimen/dp_20" />
 
@@ -40,6 +41,7 @@
             android:background="@drawable/shapes"
             android:hint="请设置新密码"
             android:padding="@dimen/dp_0_1"
+            android:password="true"
             android:textColorHint="#999999"
             android:textSize="@dimen/dp_20" />
 
@@ -52,6 +54,7 @@
             android:textColor="#fff"
             android:background="@drawable/shapes"
             android:hint="请重复新密码"
+            android:password="true"
             android:padding="@dimen/dp_0_1"
             android:textColorHint="#999999"
             android:textSize="@dimen/dp_20" />

@@ -1,5 +1,6 @@
 package com.bw.movie.view.activity;
 
+import android.content.Entity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -12,6 +13,8 @@ import android.widget.Toast;
 import com.bw.movie.R;
 import com.bw.movie.model.base.BaseActivity;
 import com.bw.movie.model.bean.IRequest;
+import com.bw.movie.model.encryption.Base64;
+import com.bw.movie.model.encryption.EncryptUtil;
 import com.bw.movie.presenter.XiuGaiPresenter;
 import com.bw.movie.view.core.DataCall;
 import com.bw.movie.view.myactivity.SetupActivity;
@@ -39,6 +42,10 @@ public class XuiGaiActivity extends BaseActivity {
     private String sessionId;
     private XiuGaiPresenter xiuGaiPresenter;
     private String pwd1;
+    private String encode;
+    private String pwds;
+    private String encodes;
+    private String pwd1s;
 
 
     @Override
@@ -51,8 +58,11 @@ public class XuiGaiActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         // TODO: add setContentView(...) invocation
         ButterKnife.bind(this);
+
         sp = getSharedPreferences("login",MODE_PRIVATE);
         pwd1 = sp.getString("pwd", "");
+        encode = Base64.encode(pwd1.getBytes());
+        pwds = EncryptUtil.encrypt(encode);
         userId = sp.getString("userId", "");
         sessionId = sp.getString("sessionId", "");
 
@@ -66,9 +76,10 @@ public class XuiGaiActivity extends BaseActivity {
                 break;
             case R.id.xiugai:
                 pwd = xinpwd1.getText().toString();
-
+                encodes = Base64.encode(pwd.getBytes());
+                pwd1s = EncryptUtil.encrypt(encodes);
                 xiuGaiPresenter = new XiuGaiPresenter(new XiuGaiPresen());
-                xiuGaiPresenter.RequestData(Integer.valueOf(userId),sessionId,pwd1,pwd,pwd);
+                xiuGaiPresenter.RequestData(Integer.valueOf(userId),sessionId,pwds,pwd1s,pwd1s);
                 break;
         }
     }
@@ -76,7 +87,7 @@ public class XuiGaiActivity extends BaseActivity {
     private class XiuGaiPresen implements DataCall<IRequest> {
         @Override
         public void success(IRequest data) {
-            Toast.makeText(XuiGaiActivity.this, data.message, Toast.LENGTH_SHORT).show();
+            Toast.makeText(XuiGaiActivity.this,"修改成功", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(XuiGaiActivity.this, SetupActivity.class);
             startActivity(intent);
         }
