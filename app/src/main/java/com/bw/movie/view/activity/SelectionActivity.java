@@ -101,6 +101,7 @@ public class SelectionActivity extends BaseIActivity implements IView.doView {
     public static int flag = 0;
     //排期表
     private int id;
+    private int nameid;
 
     @Override
     protected BasePersenter initPersenter() {
@@ -134,6 +135,7 @@ public class SelectionActivity extends BaseIActivity implements IView.doView {
         userId = login.getString("userId", "");
         sessionId = login.getString("sessionId", "");
         String s = userId+""+136 + "movie";
+
         Log.i("asd", "加密前 "+s);
         sign = MD5(s);
         Log.i("asdd", "加密后"+sign);
