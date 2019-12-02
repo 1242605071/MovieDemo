@@ -1,11 +1,14 @@
 package com.bw.movie.view.myactivity;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
 import com.bw.movie.R;
 import com.bw.movie.model.base.BaseActivity;
+import com.bw.movie.view.activity.LoginActivity;
 import com.bw.movie.view.activity.ModifyActivity;
 
 import butterknife.BindView;
@@ -37,6 +40,11 @@ public class SetupActivity extends BaseActivity {
     public void onViewClicked(View view) {
         switch (view.getId()){
             case R.id.but_tuiLogin:
+                SharedPreferences sharedPreferences = getSharedPreferences("login", MODE_PRIVATE);
+                sharedPreferences.edit().clear().commit();
+                Intent intent = new Intent(SetupActivity.this, LoginActivity.class);
+                startActivity(intent);
+                finish();
                 break;
         }
     }
