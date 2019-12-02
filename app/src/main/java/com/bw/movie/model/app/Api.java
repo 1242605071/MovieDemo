@@ -15,6 +15,7 @@ import com.bw.movie.model.bean.GuanzhuBean;
 import com.bw.movie.model.bean.HotBean;
 import com.bw.movie.model.bean.IRequest;
 import com.bw.movie.model.bean.LogBean;
+import com.bw.movie.model.bean.MaBean;
 import com.bw.movie.model.bean.MovieBean;
 import com.bw.movie.model.bean.NearbyBean;
 import com.bw.movie.model.bean.OrderBean;
@@ -174,5 +175,15 @@ public interface Api {
     @POST("movieApi/movie/v2/verify/reserve")
     Observable<IRequest<Subscribe>> reserve(@Header("userId")int userId, @Header("sessionId")String sessionId,
                                             @Query("movieId")int movieId);
+    //二维码
+    @GET("movieApi/user/v2/verify/findExchangeCode")
+    Observable<MaBean> findExchangeCode(@Header("userId")String userId, @Header("sessionId")String sessionId,@Query("recordId")int recordId);
 
+
+
+    //修改密码
+    @FormUrlEncoded
+    @POST("movieApi/user/v1/verify/modifyUserPwd")
+    Observable<IRequest>modifyUserPwd(@Header("userId")int userId, @Header("sessionId")String sessionId,
+                                      @Field("oldPwd")String oldPwd,@Field("newPwd")String newPwd,@Field("newPwd2")String newPwd2);
 }

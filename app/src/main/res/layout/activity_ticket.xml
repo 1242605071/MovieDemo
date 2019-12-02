@@ -7,6 +7,7 @@
     android:background="#141931"
     tools:context=".view.myactivity.TicketActivity">
     <ImageView
+
         android:id="@+id/back"
         android:layout_width="@dimen/dp_16"
         android:layout_height="@dimen/dp_16"
@@ -62,8 +63,8 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/dp_30"
-        android:layout_marginTop="@dimen/dp_49"
+        android:layout_marginLeft="@dimen/dp_31"
+        android:layout_marginTop="@dimen/dp_90"
         android:text="5排 5座"
         android:textColor="@android:color/white"
         android:textSize="@dimen/sp_12" />
@@ -129,7 +130,6 @@
         android:layout_centerHorizontal="true"
         android:layout_width="@dimen/dp_174"
         android:layout_height="@dimen/dp_174"
-        android:background="@drawable/asdd"
         android:visibility="gone"
         />
     <android.support.v7.widget.CardView

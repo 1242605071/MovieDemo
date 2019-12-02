@@ -5,6 +5,7 @@ import android.widget.Toast;
 import com.bw.movie.model.app.App;
 import com.bw.movie.model.base.IBaseView;
 import com.bw.movie.model.bean.CinemasInfoByRegionBean;
+import com.bw.movie.model.bean.MaBean;
 import com.bw.movie.model.bean.MovieBean;
 import com.bw.movie.model.bean.OrderBean;
 import com.bw.movie.model.bean.PayBean;
@@ -157,6 +158,20 @@ public class Presenter extends IView.doData{
                     @Override
                     public void accept(TonBean tonBean) throws Exception {
                         iBaseView.onCurress(tonBean);
+                    }
+                });
+    }
+
+    @Override
+    public void findExchangeCode(String userId, String sessionId, int recordId) {
+        HttpUtils.getHttpUtils().getApi()
+                .findExchangeCode(userId, sessionId, recordId)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Consumer<MaBean>() {
+                    @Override
+                    public void accept(MaBean maBean) throws Exception {
+                        iBaseView.onCurress(maBean);
                     }
                 });
     }

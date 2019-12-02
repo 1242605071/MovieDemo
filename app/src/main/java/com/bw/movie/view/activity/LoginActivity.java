@@ -62,7 +62,8 @@ public class LoginActivity extends BaseActivity {
     private String JmPwd = "";
     private LoginPresenter loginPresenter;
     private BindingLoginPresenter bindingLoginPresenter;
-
+    private SharedPreferences.Editor edit;
+    private SharedPreferences login;
     @Override
     protected int initLayout() {
         return R.layout.activity_login;
@@ -76,6 +77,8 @@ public class LoginActivity extends BaseActivity {
         loginPresenter = new LoginPresenter(new Login());
         bindingLoginPresenter = new BindingLoginPresenter(new BindingLog());
         EventBus.getDefault().register(this);
+        login = getSharedPreferences("login", MODE_PRIVATE);
+        edit = login.edit();
     }
 
     @OnClick({R.id.zc, R.id.dl, R.id.wxdl,R.id.forget})
@@ -87,6 +90,8 @@ public class LoginActivity extends BaseActivity {
             case R.id.dl:
                 String email = emailzh.getText().toString().trim();
                 String pwd = this.pwd.getText().toString().trim();
+                edit.putString("pwd",pwd);
+                edit.commit();
                 JmPwd = Base64.encode(pwd.getBytes());
                 String encrypt = EncryptUtil.encrypt(JmPwd);
                 Log.i("aaaa", encrypt);
@@ -109,8 +114,13 @@ public class LoginActivity extends BaseActivity {
     }
 
     private class Login implements DataCall <LogBean>{
+
+
+
         @Override
         public void success(LogBean data) {
+
+
             SharedPreferences login = getSharedPreferences("login", MODE_PRIVATE);
             SharedPreferences.Editor edit = login.edit();
             edit.putString("loginstatus",data.status);
